@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/SearchForm/SearchForm.css"],"names":[],"mappings":"AAAA,KACI,aAAiB","file":"static/css/main.b9235d3b.css","sourcesContent":["Form {\n    margin: 10px 0px;\n\n}\n\n\n\n// WEBPACK FOOTER //\n// ./src/components/SearchForm/SearchForm.css"],"sourceRoot":""}
