@@ -10,6 +10,11 @@ import Page404 from "./pages/404";
 
 class App extends React.Component {
   state = {
+    loggedIn: false,
+    //user will be the user's facebook or user id. don't know exactly yet
+    user: '',
+    //code = school code in the model. its an identifier and each one is hopefully unique
+    code: '',
   };
 
   handleInputChange = event => {
@@ -29,19 +34,28 @@ class App extends React.Component {
   }
 
   render() {
-    return(
-      <Router>
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route component={Page404} />
-        </Switch>
-      </div>
-      </ Router>
-    )
+    if (!this.state.loggedIn) {
+      return (
+        <div>
+          <Header />
+          <Login />
+        </div>
+      )
+    } else {
+      return (
+        <Router>
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/login" message="You are already logged in!" component={Home} />
+            <Route component={Page404} />
+          </Switch>
+        </div>
+        </ Router>
+      )
+    }
   }
 }
 
