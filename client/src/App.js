@@ -2,7 +2,6 @@ import React from "react";
 import Container from "./components/Container/Container";
 import Header from "./components/Header/";
 import API from "./utils/API";
-import WeHaveAnEmptyProject from "./components/WeHaveAnEmptyProject";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
