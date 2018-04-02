@@ -6,8 +6,8 @@
   "scripts": {
     "server": "node server.js",
     "client": "node scripts/start-client.js",
-    "dev": "concurrently \"nodemon server.js\" \"yarn run client\"",
-    "start": "node server.js",
+    "dev": "concurrently \"nodemon server\" \"yarn run client\"",
+    "start": "node server",
     "build": "node scripts/build.js",
     "seed": "node scripts/seedDB.js",
     "test": "echo \"Error: no test specified\" && exit 1",

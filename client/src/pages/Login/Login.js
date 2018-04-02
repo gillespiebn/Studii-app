@@ -25,7 +25,7 @@ class Login extends React.Component {
           autoLoad={true}
           fields="name,email,picture"
           // onClick={componentClicked}
-          // callback={responseFacebook} 
+          callback={responseFacebook} 
         />,
         document.getElementById('demo')
       </div>
