@@ -1,0 +1,10 @@
+.profile-button {
+    background: #194584;
+    font-family: "Arial Rounded MT Bold";
+    color: #FFFFFF;
+    font-size: 30px;
+    border-radius: 4px;
+    border-style: none;
+    width: 200px;
+    height: 60px;
+}
