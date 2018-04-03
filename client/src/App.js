@@ -4,15 +4,15 @@ import Header from "./components/Header/";
 import API from "./utils/API";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 import Page404 from "./pages/404";
+import FacebookLogin from 'react-facebook-login';
 
 
 class App extends React.Component {
   state = {
-    loggedIn: false,
     //user will be the user's facebook or user id. don't know exactly yet
-    user: '',
+    facebook_id: '',
     //code = school code in the model. its an identifier and each one is hopefully unique
     code: '',
   };
@@ -29,16 +29,30 @@ class App extends React.Component {
     event.preventDefault();
   };
 
+  responseFacebook = (response) => {
+    console.log(response.id);
+    this.setState({facebook_id: response.id});
+  }
 
   componentDidMount () {
   }
 
+
   render() {
-    if (!this.state.loggedIn) {
+    if (!this.state.facebook_id) {
       return (
         <div>
           <Header />
-          <Login />
+          <div>
+            <h1>Login page</h1>
+            <FacebookLogin
+              appId="432818630486037"
+              autoLoad={true}
+              fields="name,email,picture"
+              // onClick={componentClicked}
+              callback={this.responseFacebook} 
+            />
+          </div>
         </div>
       )
     } else {
@@ -49,7 +63,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
-            <Route exact path="/login" message="You are already logged in!" component={Home} />
+            <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} />
             <Route component={Page404} />
           </Switch>
         </div>
