@@ -24,7 +24,7 @@ class Questionnaire extends Component {
       handleFormSubmit = event => {
         event.preventDefault();
         alert("Thanks, now let's find your Studdii Buddies.");
-        this.setState({ schoolName: "", classStanding: "", classID: [], professorName: [], studyMethod: [], studyPlace: [], availability:{}});
+        this.setState({ schoolName: "", classStanding: "", classID: [], professorName: [], studyMethod: [], studyPlace: [], availability:[]});
        };
 
        updateStudyMethods = event => {
