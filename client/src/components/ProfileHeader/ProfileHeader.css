@@ -1,0 +1,50 @@
+/* 
+MAIN COLORS
+ Pink = #F4AE9F
+ Dark Blue = #22223B
+ Light Blue = #194584
+ Light Grey = #E4E3E5
+ White = #FFFFFF
+
+ ACCENT COLORS
+Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = #282840
+ */
+ 
+.profileHeadPink {
+    background-color: #F4AE9F;
+    height: 175px;
+    position: relative;
+  }
+  
+  .profileImage {
+    height: 200px;
+    width: 200px;
+    border: solid 3px #22223B;
+    border-radius: 50px;
+    position: absolute;
+    top:-150px;
+    margin-right: 10%;
+    
+  }
+  
+  .profileHeadBlue {
+    background-color: #22223B;
+    height: 310px; 
+    position: relative;
+    text-align: center;
+  }
+  .headerInfo {
+    position: relative;
+    top: 60px;
+    font-family: "arial";
+    font-weight: bold;
+    font-size: 36px;
+    color:  #E4E3E5; 
+    text-align: center;
+  }
+  
+  .name {
+    font-size: 50px;
+    color: #F4AE9F;
+  }
+  
