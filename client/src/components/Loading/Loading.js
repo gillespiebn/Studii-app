@@ -1,8 +1,8 @@
 import React from "react";
-import "./Profile.css";
+import "./Loading.css";
 
 
-const Profile = (props) => (
+const Loading = (props) => (
     <div style={{paddingTop: 200}}>
         <div className="container">
             <div className="bookshelf_wrapper">
@@ -21,4 +21,4 @@ const Profile = (props) => (
 );
 
 
-export default Profile;
+export default Loading;

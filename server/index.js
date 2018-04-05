@@ -29,8 +29,8 @@ if (process.env.MONGODB_URI){
     mongoose.connect("mongodb://localhost/studii");
 }
 
-//Routes
-// app.use(require('./controllers'));
+// Routes
+app.use(require('../controllers'));
 
 app.get("*", (req, res) => res.sendFile(path.join(__dirname, "client/build/index.html")));
 
