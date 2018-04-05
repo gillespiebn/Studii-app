@@ -1,9 +1,16 @@
 import React from "react";
-import Container from "./components/Container/Container";
-import Header from "./components/Header/";
-import API from "./utils/API";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import API from "./utils/API";
+import Container from "./components/Container/Container";
+import NavMenu from "./components/NavMenu";
+import Header from "./components/Header/";
+import Questionnaire from "./components/Questionnaire";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Groups from "./pages/Groups";
+import Messenger from "./pages/Messenger";
+import Settings from "./pages/Settings";
+import Register from "./pages/Register";
 // import Login from "./pages/Login";
 import Page404 from "./pages/404";
 import FacebookLogin from 'react-facebook-login';
@@ -64,6 +71,11 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/groups" component={Groups} />
+            <Route exact path="/messenger" component={Messenger} />
+            <Route exact path="/settings" component={Settings} />
+            <Route exact path="/register" component={Register} />
             <Route component={Page404} />
           </Switch>
         </div>
