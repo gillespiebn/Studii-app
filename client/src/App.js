@@ -65,20 +65,21 @@ class App extends React.Component {
     } else {
       return (
         <Router>
-        <div>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/groups" component={Groups} />
-            <Route exact path="/messenger" component={Messenger} />
-            <Route exact path="/settings" component={Settings} />
-            <Route exact path="/register" component={Register} />
-            <Route component={Page404} />
-          </Switch>
-        </div>
+          <div>
+            <NavMenu />
+            <Header />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/groups" component={Groups} />
+              <Route exact path="/messenger" component={Messenger} />
+              <Route exact path="/settings" component={Settings} />
+              <Route exact path="/register" component={Register} />
+              <Route component={Page404} />
+            </Switch>
+          </div>
         </ Router>
       )
     }
