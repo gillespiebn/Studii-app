@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import API from "./utils/API";
 import Container from "./components/Container/Container";
@@ -19,6 +20,11 @@ import { Link } from "react-router-dom";
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.checkFB = this.checkFB.bind(this);
+  }
+
   state = {
     //user will be the user's facebook or user id. don't know exactly yet
     facebook_id: '',
@@ -26,6 +32,7 @@ class App extends React.Component {
     user: {},
     school: {},
     checked: false,
+    intervalId: null,
 
   };
 
@@ -41,13 +48,58 @@ class App extends React.Component {
     event.preventDefault();
   };
 
+  checkFB = () => {
+		if (window.fbToken) {
+      window.clearInterval(this.state.intervalId);
+      console.log(window.fbToken);
+      // do stuff
+      // console.log("id: " + window.fbToken.authResponse.userID)
+      if (!window.fbToken.authResponse) {
+        this.setState({checked: true})
+      } else {
+        this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+      }
+
+		}
+	};
+
   responseFacebook = (response) => {
     console.log(response.id);
     this.setState({facebook_id: response.id});
-  }
+  };
 
   componentDidMount () {
-    setTimeout( () => { this.setState({ checked: true }) }, 2500);
+    let interval = setInterval(this.checkFB, 100);
+    this.setState({intervalId: interval})
+
+
+  //   setTimeout( () => { 
+  //     this.setState({ checked: true });
+  //     this.fadeout()
+  // }, 2500);
+  // axios.get('/cookie', {
+  //   withCredentials: true
+  // }).then(data => console.log(data))
+    // this.responseFacebook();
+  };
+
+  fadeout = () => {
+    console.log("we will be fading")
+  }
+
+  facebookButton = () => {
+    return (
+      <div>
+        <h1>Login page</h1>
+        <FacebookLogin
+          appId="432818630486037"
+          autoLoad={true}
+          fields="name,email,picture"
+          // onClick={componentClicked}
+          callback={this.responseFacebook} 
+        />
+      </div>
+    );
   }
 
 
@@ -60,14 +112,7 @@ class App extends React.Component {
           <div 
             style={{display: "none"}}
           >
-            <h1>Login page</h1>
-            <FacebookLogin
-              appId="432818630486037"
-              autoLoad={true}
-              fields="name,email,picture"
-              // onClick={componentClicked}
-              callback={this.responseFacebook} 
-            />
+            {this.facebookButton()}
           </div>
         </div>
       )
@@ -77,14 +122,7 @@ class App extends React.Component {
           <div>
             <Header />
             <div>
-              <h1>Login page</h1>
-              <FacebookLogin
-                appId="432818630486037"
-                autoLoad={true}
-                fields="name,email,picture"
-                // onClick={componentClicked}
-                callback={this.responseFacebook} 
-              />
+              {this.facebookButton()}
             </div>
           </div>
         )

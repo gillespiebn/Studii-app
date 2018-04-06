@@ -10,6 +10,8 @@ const mongoose = require("mongoose");
 // });
 
 router.use('/api', require('./api.js'));
+router.use('/cookie', require('./cookie.js'));
+
 
 
 

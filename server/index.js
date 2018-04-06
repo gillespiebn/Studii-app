@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const https = require('https');
 const fs = require('fs');
+const cookieParser = require('cookie-parser')
 
 // const db = require("./models");
 const PORT = process.env.PORT || 5000;
@@ -18,6 +19,9 @@ app.use(bodyParser.json())
 const router = express.Router();
 
 app.use(express.static("client/build"));
+
+//cookie parser for grabbing cookies
+app.use(cookieParser())
 
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
