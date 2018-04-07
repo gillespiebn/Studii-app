@@ -5,12 +5,14 @@ import ClassInput from "../Classes";
 
 class Questionnaire extends Component {
     state = {
+        Name: "",
+        Email: "",
         schoolName: "",
         classStanding: "",
         classID: "",
         classes: [],
         professorName: "",
-        professors: [],
+       // professors: [],
         teachers: [],
         studyMethod: [],
         studyPlace: [],
@@ -86,6 +88,22 @@ class Questionnaire extends Component {
        render() {
         return (
             <form>
+                <p> Name:
+                    <input 
+                    type="text"
+                    name="Name"
+                    onChange={this.handleInputChange}
+                    value={this.state.Name}
+                   />
+                  </p>
+                <p> Email:
+                    <input
+                    type="text"
+                    name="Email"
+                    onChange={this.handleInputChange}
+                    value={this.state.Email}
+                   />
+                 </p>
                 <p>School Name: 
                  <input 
                 type="text"
