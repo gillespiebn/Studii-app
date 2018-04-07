@@ -146,7 +146,29 @@ class App extends React.Component {
         )
       }
     }
-  }
+  } 
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   //Matching Algorithm
+    //School "wraps" the algorithm
+    //At least one class together
+    //At least 1 time
+    //At least two study preferences
+
+    //map{schools.map((schools) => (
+        //if (schools.users.classes[i] === schools.users.classes[i]) {
+        //   let i=0
+         //  for (; i < users.length; i++) {
+         //   if (users.availability[i] === users.availability[i]) {
+          //   let i=0 
+          //   for (; i < users.length; i++) {
+          //    if (users.studyMethod[i] === users.studyMethod[i]) || users.studyPlace[i] === users.studyPlace[i] {
+          //        //match them }
+          //}
+         //  }
+         //} 
+         //}
+     //   ))}
 }
 
 export default App;
