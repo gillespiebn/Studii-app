@@ -11,9 +11,6 @@ class Questionnaire extends Component {
         classStanding: "",
         classID: "",
         classes: [],
-        professorName: "",
-       // professors: [],
-        teachers: [],
         studyMethod: [],
         studyPlace: [],
         availability: []
@@ -30,13 +27,9 @@ class Questionnaire extends Component {
 
       handleAddClass = event => {
         event.preventDefault();
-        var teacherArray = this.state.teachers
-        teacherArray.push(this.state.professorName);
         var classArray=this.state.classes;
         classArray.push(this.state.classID);
         this.setState({
-         teachers: teacherArray,
-         professorName:"",
          classes: classArray,
          classID: ""
         });
@@ -131,14 +124,6 @@ class Questionnaire extends Component {
                     class={classes}
                     />
                 ))}
-              {this.state.teachers.map((teachers, index) => (
-                <TeacherInput
-                   key={index}
-                   teacherName={teachers}
-                />
-            ))}
-        
-
             Class ID: 
                  <input
                  type="text"
@@ -146,14 +131,6 @@ class Questionnaire extends Component {
                  onChange={this.handleInputChange}
                  value={this.state.classID}
                   />
-                Professor Name: 
-                <input 
-                type="text"
-                name="professorName"
-                onChange={this.handleInputChange}
-                value={this.state.professorName}
-               />
-
                <button onClick={this.handleAddClass}>➕</button>
                </div>
              
