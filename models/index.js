@@ -1,4 +1,5 @@
 module.exports = {
-    Schools: require("./Schools")
+    Schools: require("./Schools"),
+    Users: require("./Users")
   };
   

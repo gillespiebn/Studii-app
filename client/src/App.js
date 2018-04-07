@@ -80,15 +80,6 @@ class App extends React.Component {
     return (
       <Container textAlign="center">
         <h1 style={{color: "white"}}>Login page</h1>
-        {/* <FacebookLogin
-          style={{backgroundColor: "white"}}
-          id="facebook-button"
-          appId="432818630486037"
-          autoLoad={true}
-          fields="name,email,picture"
-          // onClick={componentClicked}
-          callback={this.responseFacebook} 
-        /> */}
 
         <FacebookLogin
           appId="432818630486037"
@@ -111,7 +102,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
-            <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} />
+            {/* <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/groups" component={Groups} />
             <Route exact path="/messenger" component={Messenger} />
@@ -149,7 +140,9 @@ class App extends React.Component {
         )
       } else {
         return (
-          <div>{this.router()}</div>
+          <div>
+            {this.router()}
+          </div>
         )
       }
     }
