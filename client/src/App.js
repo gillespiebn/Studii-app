@@ -1,8 +1,9 @@
 import React from "react";
+import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import API from "./utils/API";
-import Container from "./components/Container/Container";
-// import NavMenu from "./components/NavMenu";
+import ContainerNonSemantic from "./components/Container/Container";
+import NavMenu from "./components/NavMenu";
 import Header from "./components/Header/";
 import Questionnaire from "./components/Questionnaire";
 import Loading from "./components/Loading";
@@ -12,21 +13,25 @@ import Groups from "./pages/Groups";
 import Messenger from "./pages/Messenger";
 import Settings from "./pages/Settings";
 import Register from "./pages/Register";
-// import Login from "./pages/Login";
 import Page404 from "./pages/404";
-import FacebookLogin from 'react-facebook-login';
+// import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { Link } from "react-router-dom";
+import { Container, Button } from 'semantic-ui-react';
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.checkFB = this.checkFB.bind(this);
+  }
+
   state = {
-    //user will be the user's facebook or user id. don't know exactly yet
     facebook_id: '',
-    //code = school code in the model. its an identifier and each one is hopefully unique
     user: {},
     school: {},
     checked: false,
-
+    intervalId: null,
   };
 
   handleInputChange = event => {
@@ -41,15 +46,74 @@ class App extends React.Component {
     event.preventDefault();
   };
 
+  checkFB = () => {
+		if (window.fbToken) {
+      window.clearInterval(this.state.intervalId);
+      console.log(window.fbToken);
+      if (!window.fbToken.authResponse) {
+        this.setState({checked: true})
+      } else {
+        this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+      }
+
+		}
+	};
+
   responseFacebook = (response) => {
     console.log(response.id);
     this.setState({facebook_id: response.id});
-  }
+  };
 
   componentDidMount () {
-    setTimeout( () => { this.setState({ checked: true }) }, 2500);
+    let interval = setInterval(this.checkFB, 100);
+    this.setState({intervalId: interval})
+  };
+
+  fadeout = () => {
+    console.log("we will be fading")
   }
 
+
+  ///////////////////////////////////////////////////////////////////////////////////
+
+  facebookButton = () => {
+    return (
+      <Container textAlign="center">
+        <h1 style={{color: "white"}}>Login page</h1>
+
+        <FacebookLogin
+          appId="432818630486037"
+          autoLoad
+          callback={this.responseFacebook}
+          render={renderProps => (
+            <button onClick={renderProps.onClick}>This is my custom FB button</button>
+          )}
+        />
+      </Container>
+    );
+  }
+
+  router = () => {
+    return(
+      <Router>
+        <div>
+          {/* <NavMenu /> */}
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/home" component={Home} />
+            {/* <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} /> */}
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/groups" component={Groups} />
+            <Route exact path="/messenger" component={Messenger} />
+            <Route exact path="/settings" component={Settings} />
+            <Route exact path="/register" component={Register} />
+            <Route component={Page404} />
+          </Switch>
+        </div>
+      </ Router>
+    )
+  }
 
   render() {
     if (!this.state.checked) {
@@ -60,14 +124,7 @@ class App extends React.Component {
           <div 
             style={{display: "none"}}
           >
-            <h1>Login page</h1>
-            <FacebookLogin
-              appId="432818630486037"
-              autoLoad={true}
-              fields="name,email,picture"
-              // onClick={componentClicked}
-              callback={this.responseFacebook} 
-            />
+            {this.facebookButton()}
           </div>
         </div>
       )
@@ -77,42 +134,15 @@ class App extends React.Component {
           <div>
             <Header />
             <div>
-              <h1>Login page</h1>
-              <FacebookLogin
-                appId="432818630486037"
-                autoLoad={true}
-                fields="name,email,picture"
-                // onClick={componentClicked}
-                callback={this.responseFacebook} 
-              />
+              {this.facebookButton()}
             </div>
           </div>
         )
       } else {
         return (
-          <Router>
-            <div>
-              {/* <NavMenu /> */}
-              <Header />
-              <Link
-                to="/profile"
-                className={
-                    window.location.pathname === "/profile"
-                }
-               >profile</Link>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/home" component={Home} />
-                <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} />
-                <Route exact path="/profile" component={Profile} />
-                <Route exact path="/groups" component={Groups} />
-                <Route exact path="/messenger" component={Messenger} />
-                <Route exact path="/settings" component={Settings} />
-                <Route exact path="/register" component={Register} />
-                <Route component={Page404} />
-              </Switch>
-            </div>
-          </ Router>
+          <div>
+            {this.router()}
+          </div>
         )
       }
     }

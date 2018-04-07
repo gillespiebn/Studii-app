@@ -9,7 +9,9 @@ const mongoose = require("mongoose");
 //   useMongoClient: true
 // });
 
-router.use('/api', require('./api.js'));
+router.use('/api/', require('./api.js'));
+router.use('/cookie/', require('./cookie.js'));
+
 
 
 

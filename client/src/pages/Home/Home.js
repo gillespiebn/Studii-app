@@ -1,13 +1,20 @@
 import React from 'react'
 import { Container, Header, Icon } from 'semantic-ui-react'
+import PracticeProfileLayout from "../../components/PracticeProfileLayout"
+import API from "../../utils/API";
 
 
 class Login extends React.Component {
   state = {
-    default: ""
+    default: "",
+    profiles: null
   };
 
   componentDidMount() {
+    API.retrieveProiles().then(data => {
+      // console.log(data.data[0]);
+      this.setState({profiles: data})
+    })
   }
 
   handleInputChange = event => {
@@ -24,7 +31,10 @@ class Login extends React.Component {
   render() {
     return(
     <div>
-      <h1>This will be the home page</h1>
+      {this.state.profiles ? 
+        <PracticeProfileLayout profiles={this.state.profiles} />
+        : <h1>This is the home page</h1> 
+      }
     </div>
     )
   }

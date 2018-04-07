@@ -1,1 +1,0 @@
-{"version":3,"sources":["components/Header/Header.css"],"names":[],"mappings":"AAAA,SACI,wBAAyB,CAG7B,UACI,aAAc","file":"static/css/main.ffa501a9.css","sourcesContent":[".dark-bg {\r\n    background-color: #22223B\r\n}\r\n\r\n#pink-txt {\r\n    color: #C9ADA7\r\n}\n\n\n// WEBPACK FOOTER //\n// ./src/components/Header/Header.css"],"sourceRoot":""}
