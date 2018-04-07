@@ -27,7 +27,7 @@ body {
   height: 120px;
   opacity: 0;
   background-color: #22223B;
-  border: 5px solid #C9ADA7;
+  border: 5px solid #F4AE9F;
   transform-origin: bottom left;
   transform: translateX(300px);
   animation: travel 2500ms linear infinite;
@@ -43,7 +43,7 @@ body {
   left: 0;
   width: 100%;
   height: 5px;
-  background-color:  #C9ADA7;
+  background-color:  #F4AE9F;
 }
 .book_item.first:after {
   top: initial;
@@ -57,8 +57,8 @@ body {
   left: 0;
   width: 100%;
   height: 17.5px;
-  border-top: 5px solid #C9ADA7;
-  border-bottom: 5px solid #C9ADA7;
+  border-top: 5px solid #F4AE9F;
+  border-bottom: 5px solid #F4AE9F;
 }
 .book_item.second:after, .book_item.fifth:after {
   top: initial;
@@ -73,7 +73,7 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 5px solid #C9ADA7;
+  border: 5px solid #F4AE9F;
 }
 .book_item.third:after {
   top: initial;
@@ -91,8 +91,8 @@ body {
   left: 0;
   width: 100%;
   height: 17.5px;
-  border-top: 5px solid #C9ADA7;
-  border-bottom: 5px solid #C9ADA7;
+  border-top: 5px solid #F4AE9F;
+  border-bottom: 5px solid #F4AE9F;
 }
 .book_item.fifth {
   top: -100px;
@@ -110,7 +110,7 @@ body {
   left: 0px;
   width: 100%;
   height: 5px;
-  background-color: #C9ADA7;
+  background-color: #F4AE9F;
 }
 .book_item.sixth:after {
   box-sizing: border-box;
@@ -121,7 +121,7 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 5px solid #C9ADA7;
+  border: 5px solid #F4AE9F;
 }
 .book_item:nth-child(2) {
   animation-delay: 416.66667ms;
@@ -143,7 +143,7 @@ body {
   width: 300px;
   height: 5px;
   margin: 0 auto;
-  background-color: #C9ADA7;
+  background-color: #F4AE9F;
   position: relative;
 }
 .shelf:before, .shelf:after {

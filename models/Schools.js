@@ -33,7 +33,7 @@ var SchoolsSchema = new Schema({
     },
     secondaryColor: {
         type: String,
-        default: "#C9ADA7",
+        default: "#F4AE9F",
         required: true
     },
     logo: {
