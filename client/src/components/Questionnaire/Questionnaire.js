@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Questionnaire.css";
-import TeacherInput from "./Teachers";
-import ClassInput from "./Classes";
+import TeacherInput from "../Teachers";
+import ClassInput from "../Classes";
 
 class Questionnaire extends Component {
     state = {
