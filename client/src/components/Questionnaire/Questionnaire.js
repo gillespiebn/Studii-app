@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import "./Questionnaire.css";
+import TeacherInput from "./Teachers";
+import ClassInput from "./Classes";
 
 class Questionnaire extends Component {
     state = {
         schoolName: "",
         classStanding: "",
-        classID: [],
-        professorName: [],
+        classID: "",
+        classes: [],
+        professorName: "",
+        professors: [],
+        teachers: [],
         studyMethod: [],
         studyPlace: [],
         availability: []
@@ -21,20 +26,31 @@ class Questionnaire extends Component {
         });
       };
 
+      handleAddClass = event => {
+        event.preventDefault();
+        var teacherArray = this.state.teachers
+        teacherArray.push(this.state.professorName);
+        var classArray=this.state.classes;
+        classArray.push(this.state.classID);
+        this.setState({
+         teachers: teacherArray,
+         professorName:"",
+         classes: classArray,
+         classID: ""
+        });
+    }
       handleFormSubmit = event => {
         event.preventDefault();
         alert("Thanks, now let's find your Studdii Buddies.");
         console.log(this.state.schoolName);
         console.log(this.state.classStanding);
+        console.log(this.state.availability);
+        console.log(this.state.studyPlace);
+        console.log(this.state.studyMethod);
+        console.log(this.state.teachers);
+        console.log(this.state.classes);
        };
 
-       updateClassID = event => {
-        event.preventDefault();
-            var classIDs=this.state.classID
-            classIDs.push(event.target)
-            this.setState({ classID: classIDs})
-                console.log("State " , this.state.classID)
-           };
 
        updateStudyMethods = event => {
        event.preventDefault();
@@ -70,10 +86,9 @@ class Questionnaire extends Component {
        render() {
         return (
             <form>
-                <p>School Name: {this.state.schoolName}
+                <p>School Name: 
                  <input 
                 type="text"
-                placeholder="School Name"
                 name="schoolName"
                 onChange={this.handleInputChange}
                 value={this.state.schoolName}
@@ -82,37 +97,55 @@ class Questionnaire extends Component {
                </p>
               <label>
                 Class Standing
-                <select value={this.state.classStanding} onChange={this.handleInputChange}>
+                <select value={this.state.classStanding} name="classStanding" onChange={this.handleInputChange}>
+                    <option value="Null">Please select your class year</option>
                     <option value="Freshman">Freshman</option>
                     <option value="Sophomore">Sophomore</option>
                     <option value="Junior">Junior</option>
                     <option value="Senior">Senior</option>
                  </select>
                </label>
-               <p>Class ID: {this.state.classID} 
+               <div>
+          
+               {this.state.classes.map((classes,index) => (
+                <ClassInput
+                    key={index}
+                    class={classes}
+                    />
+                ))}
+              {this.state.teachers.map((teachers, index) => (
+                <TeacherInput
+                   key={index}
+                   teacherName={teachers}
+                />
+            ))}
+        
+
+            Class ID: 
                  <input
                  type="text"
-                 placeholder="Class ID"
                  name="classID"
                  onChange={this.handleInputChange}
                  value={this.state.classID}
                   />
-               Professor: {this.state.professorName}
-                <input
+                Professor Name: 
+                <input 
                 type="text"
-                placeholder="Professor"
                 name="professorName"
                 onChange={this.handleInputChange}
                 value={this.state.professorName}
-                 />
-               </p>
+               />
+
+               <button onClick={this.handleAddClass}>➕</button>
+               </div>
+             
                <p>Preferred study methods (select all that apply)</p>
               <button onClick={this.updateStudyMethods} data-studymethod="Flashcards" > Flashcards </button>
               <button onClick={this.updateStudyMethods} data-studymethod="Quizzes" > Quizzes </button>
               <button onClick={this.updateStudyMethods} data-studymethod="Rereading" > Rereading </button>
-              <button onClick={this.updateStudyMethods} data-studyMethod="Revision Notes" > Revision Notes </button>
-              <button onClick={this.updateStudyMethods} data-studyMethod="Mnemonics" > Mnemonics </button>
-              <button onClick={this.updateStudyMethods} data-studyMethod="Other" > Other </button>
+              <button onClick={this.updateStudyMethods} data-studymethod="Revision Notes" > Revision Notes </button>
+              <button onClick={this.updateStudyMethods} data-studymethod="Mnemonics" > Mnemonics </button>
+              <button onClick={this.updateStudyMethods} data-studymethod="Other" > Other </button>
                <p>Preferred places to study (select all that apply)</p>
                <button onClick={this.updateStudyPlaces} data-studyplace="Library" > Library </button>
                <button onClick={this.updateStudyPlaces} data-studyplace="Coffee Shop" > Coffee Shop </button>
@@ -160,7 +193,6 @@ class Questionnaire extends Component {
 
 
      export default Questionnaire;
-
 
 
                     
