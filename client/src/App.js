@@ -53,11 +53,32 @@ class App extends React.Component {
       if (!window.fbToken.authResponse) {
         this.setState({checked: true})
       } else {
-        this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+        // For production, the two commented out lines below will be the ones used. currently using the other ones for production
+        // this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+        // this.getUser(window.fbToken.authResponse.usereID);
+        this.setState({checked: true, facebook_id: 10})
+        this.getUser(10);
       }
-
 		}
-	};
+  };
+  
+  getUser = (fbID) => {
+    API.getUser(fbID)
+      .then(data => {
+        this.setState({user: data.data[0]})
+        this.getMatches()
+      }
+    )
+  };
+
+  getMatches = () => {
+    API.getMatches(this.state.user)
+      .then(data => {
+        console.log("the line under this is matches")
+        console.log(data)
+      } 
+    )
+  }
 
   responseFacebook = (response) => {
     console.log(response.id);
@@ -72,7 +93,6 @@ class App extends React.Component {
   fadeout = () => {
     console.log("we will be fading")
   }
-
 
   ///////////////////////////////////////////////////////////////////////////////////
 

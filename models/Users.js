@@ -27,13 +27,7 @@ var UsersSchema = new Schema({
     type: String,
     required: true
   },
-  classes: [
-    {
-      prefix: String,
-      number: Number,
-      professor: String
-    }
-  ],
+  classes: [],
   methods: [],
   times: [],
   locations: [],
@@ -42,7 +36,8 @@ var UsersSchema = new Schema({
     type: String,
     required: true
   },
-  minor: String
+  minor: String,
+  blockedUsers: []
 });
 var Users = mongoose.model("Users", UsersSchema);
 

@@ -8,9 +8,9 @@ const PracticeProfileLayout = (props) => {
   console.log(props);
   return(
   <div>
+    <Container>
     {props.profiles.data.map(profile => (
-      <Container>
-        <Card fluid style={{marginTop: 20}} align="center">
+        <Card fluid style={{marginTop: 20}} align="center" key={profile._id}>
           {/* <Segment align="center"> */}
             <Image src={profile.photo} size='small' />
             <h2>Name: {profile.name}</h2>
@@ -22,8 +22,8 @@ const PracticeProfileLayout = (props) => {
             }
           {/* </ Segment> */}
         </ Card>
-      </ Container>
     ))}
+    </ Container>
     {/* <Card
       image='/assets/images/avatar/large/elliot.jpg'
       header='Elliot Baker'

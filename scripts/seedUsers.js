@@ -20,16 +20,8 @@ const userSeed = [
     "email": "hingmcring@vcu.edu",
     "classStanding": "F",
     "classes": [
-      {
-        "prefix": "bio",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
-      {
-        "prefix": "math",
-        "number": 100,
-        "professor": "Queen of Memphis"
-      }
+      "bio:101",
+      "math100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
@@ -52,16 +44,8 @@ const userSeed = [
     "email": "ty@vcu.edu",
     "classStanding": "F",
     "classes": [
-      {
-        "prefix": "bio",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
-      {
-        "prefix": "math",
-        "number": 100,
-        "professor": "Queen of Memphis"
-      }
+      "bio101",
+      "math100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
@@ -84,21 +68,9 @@ const userSeed = [
     "email": "tjajrj@vcu.edu",
     "classStanding": "F",
     "classes": [
-      {
-        "prefix": "bio",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
-      {
-        "prefix": "math",
-        "number": 100,
-        "professor": "Queen of Memphis"
-      },
-      {
-        "prefix": "eng",
-        "number": 100,
-        "professor": "Norma Jean Riley"
-      }
+      "bio101",
+      "math100",
+      "eng100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
@@ -122,21 +94,9 @@ const userSeed = [
     "email": "tjajrj@vcu.edu",
     "classStanding": "F",
     "classes": [
-      {
-        "prefix": "bio",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
-      {
-        "prefix": "math",
-        "number": 100,
-        "professor": "Queen of Memphis"
-      },
-      {
-        "prefix": "eng",
-        "number": 100,
-        "professor": "Norma Jean Riley"
-      }
+      "bio101",
+      "math100",
+      "eng100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
@@ -160,21 +120,9 @@ const userSeed = [
     "email": "tjajrj@urich.edu",
     "classStanding": "F",
     "classes": [
-      {
-        "prefix": "bio",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
-      {
-        "prefix": "math",
-        "number": 100,
-        "professor": "Queen of Memphis"
-      },
-      {
-        "prefix": "eng",
-        "number": 100,
-        "professor": "Norma Jean Riley"
-      }
+      "bio101",
+      "math100",
+      "eng100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
@@ -198,21 +146,9 @@ const userSeed = [
     "email": "tjajrj@urich.edu",
     "classStanding": "F",
     "classes": [
-      {
-        "prefix": "bio",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
-      {
-        "prefix": "math",
-        "number": 100,
-        "professor": "Queen of Memphis"
-      },
-      {
-        "prefix": "eng",
-        "number": 100,
-        "professor": "Norma Jean Riley"
-      }
+      "bio101",
+      "math100",
+      "eng100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
@@ -236,16 +172,8 @@ const userSeed = [
     "email": "neckbeard@urich.edu",
     "classStanding": "F",
     "classes": [
-      {
-        "prefix": "bio",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
-      {
-        "prefix": "eng",
-        "number": 100,
-        "professor": "Norma Jean Riley"
-      }
+      "bio101",
+      "eng100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
@@ -268,11 +196,7 @@ const userSeed = [
     "email": "beandip@urich.edu",
     "classStanding": "S",
     "classes": [
-      {
-        "prefix": "bio",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
+      "bio101"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
@@ -295,21 +219,9 @@ const userSeed = [
     "email": "grunk@urich.edu",
     "classStanding": "F",
     "classes": [
-      {
-        "prefix": "biol",
-        "number": 101,
-        "professor": "Dave Thomas"
-      },
-      {
-        "prefix": "m",
-        "number": 100,
-        "professor": "Queen of Memphis"
-      },
-      {
-        "prefix": "wri",
-        "number": 100,
-        "professor": "Norma Jean Riley"
-      }
+      "biol101",
+      "m100",
+      "wri100"
     ],
     "methods": [
       "flashcards"
@@ -322,6 +234,30 @@ const userSeed = [
     ],
     "photo": "http://www.bdcwire.com/wp-content/uploads/2015/01/Grunky-peep.png",
     "major": "GRUNK"
+  },
+  {
+    "facebook_id": "10",
+    "name": "Bismo Funyuns",
+    "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
+    "schoolCode": "003735",
+    "email": "bfunyuns@vcu.edu",
+    "classStanding": "F",
+    "classes": [
+      "bio:101",
+      "math100"
+    ],
+    "methods": [
+      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
+    ],
+    "times": [
+      "1morning", "2afternoon", "3evening", "4night", "5morning", "5afternoon", "6evening", "7night"
+    ],
+    "locations": [
+      "coffee shop", "library", "commons", "other", "cafe", "home"
+    ],
+    "photo": "https://i.ytimg.com/vi/_nioio-r47k/maxresdefault.jpg",
+    "major": "Women's Studies",
+    blockedUsers: ["5ac945a685ac2a4afc3e1b7c"]
   }
 ]
 

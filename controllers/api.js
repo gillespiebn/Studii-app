@@ -9,18 +9,27 @@ router.get('/allprofiles', (req, res) => {
   .then(data => res.json(data)).catch(err => console.log(err));
 })
 
-router.get('/matches', (req, res) => {
+router.post('/matches', (req, res) => {
   // school code
   // time
   // class
-
+  // console.log(req.body.data)
+  // console.log(req.body.data.times);
   db.Users
-    .where('schoolCode').equals(req.body.schoolCode)
-    .where('times').in(req.body.times)
-    .where('classes').in(req.body.classesQueryString);
-    //change data structure for classes!!!!!! if this comment isn't deleted, then the data structure is still wrong
+    // .where('schoolCode').equals(req.body.data.schoolCode)
+    // .where('times').in(req.body.data.times)
+    // .where('classes').in(req.body.data.classesQueryString)
+    // .then(data => res.json(data)).catch(err => console.log(err));
     //mongodb selecors or query operators
-    // .find({ "times": {$in: req.body.times}, "schoolCode": req.body.schoolScool }).all(data => {
-});
+    .find({ "times": {$in: req.body.data.times}, "schoolCode": req.body.data.schoolScool }).all(data => {
+        console.log(data);
+      })
+  });
+
+router.get('/userprofile/:fbID', (req, res) => {
+  const user = req.params.fbID
+  db.Users.find({ facebook_id: req.params.fbID })
+    .then(data => res.json(data)).catch(err => console.log(err));
+})
 
 module.exports = router;
