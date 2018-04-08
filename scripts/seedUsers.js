@@ -27,7 +27,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
     ],
     "times": [
-      "1morning", "2afternoon", "3evening", "4night", "5morning", "5afternoon", "6evening", "7night"
+      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
     ],
     "locations": [
       "coffee shop", "library", "commons", "other", "cafe", "home"
@@ -51,7 +51,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
     ],
     "times": [
-      "1morning", "2afternoon", "3evening", "4night", "5morning", "5afternoon", "6evening", "7night"
+      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
     ],
     "locations": [
       "coffee shop", "library", "commons", "other", "cafe", "home"
@@ -76,7 +76,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
     ],
     "times": [
-      "1morning", "2afternoon", "4night", "5morning", "5afternoon", "6evening", "7night"
+      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
     ],
     "locations": [
       "coffee shop", "library", "commons", "other", "home"
@@ -102,7 +102,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
     ],
     "times": [
-      "1morning", "2afternoon", "4night", "5morning", "5afternoon", "6evening", "7night"
+      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
     ],
     "locations": [
       "coffee shop", "library", "commons", "other", "home"
@@ -128,7 +128,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
     ],
     "times": [
-      "1morning", "2afternoon", "4night", "5morning", "5afternoon", "6evening", "7night"
+      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
     ],
     "locations": [
       "coffee shop", "library", "commons", "other", "home"
@@ -154,7 +154,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
     ],
     "times": [
-      "1morning", "2afternoon", "4night", "5morning", "5afternoon", "6evening", "7night"
+      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
     ],
     "locations": [
       "coffee shop", "library", "commons", "other", "home"
@@ -179,7 +179,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
     ],
     "times": [
-      "7night"
+      "Saturday Night"
     ],
     "locations": [
       "other", "home"
@@ -202,7 +202,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
     ],
     "times": [
-      "1morning", "2afternoon", "4night", "5morning", "5afternoon", "6evening", "7night"
+      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
     ],
     "locations": [
       "coffee shop", "library", "commons", "other", "home"
@@ -227,7 +227,7 @@ const userSeed = [
       "flashcards"
     ],
     "times": [
-      "1morning"
+      "Sunday Morning"
     ],
     "locations": [
       "coffee shop"
@@ -250,7 +250,7 @@ const userSeed = [
       "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
     ],
     "times": [
-      "1morning", "2afternoon", "3evening", "4night", "5morning", "5afternoon", "6evening", "7night"
+      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
     ],
     "locations": [
       "coffee shop", "library", "commons", "other", "cafe", "home"

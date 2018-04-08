@@ -14,12 +14,15 @@ export default {
     return axios.post('/api/matches', {
       data: obj
     });
+  },
 
-    // axios.get('/user', {
-    //   params: {
-    //     ID: 12345
-    //   }
-    // })
-  
-  }
+  getAllSchools: function() {
+    return axios.get('api/allschools');
+  },
+
+  createUser: function(user) {
+    return axios.post('api/createuser', {
+      data: user
+    });
+  },
 };

@@ -127,7 +127,12 @@ class App extends React.Component {
             <Route exact path="/groups" component={Groups} />
             <Route exact path="/messenger" component={Messenger} />
             <Route exact path="/settings" component={Settings} />
-            <Route exact path="/register" component={Register} />
+            <Route 
+              exact path="/register" 
+              render={(routeProps) => (
+                <Register facebook_id={this.state.facebook_id} test="this should appears somewhere"/>
+              )}
+            />
             <Route component={Page404} />
           </Switch>
         </div>

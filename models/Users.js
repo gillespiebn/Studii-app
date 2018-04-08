@@ -16,7 +16,7 @@ var UsersSchema = new Schema({
     required: true
   },
   schoolCode: { 
-    type: Number,
+    type: String,
     required: true
   },
   email: {

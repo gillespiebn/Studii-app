@@ -16,14 +16,17 @@ router.post('/matches', (req, res) => {
   // console.log(req.body.data)
   // console.log(req.body.data.times);
   db.Users
+    // .where('schoolCode').equals('req.body.data.schoolCode')
     // .where('schoolCode').equals(req.body.data.schoolCode)
-    // .where('times').in(req.body.data.times)
-    // .where('classes').in(req.body.data.classesQueryString)
-    // .then(data => res.json(data)).catch(err => console.log(err));
+    .find( { schoolCode: req.body.data.schoolCode /*, _id: { $ne: req.body.data.blockedUsers} */} )
+    // .where('_id').ne(req.body.data.blockedUsers)
+    .where('times').in(req.body.data.times)
+    .where('classes').in(req.body.data.classes)
+    .then(data => res.json(data)).catch(err => console.log(err));
     //mongodb selecors or query operators
-    .find({ "times": {$in: req.body.data.times}, "schoolCode": req.body.data.schoolScool }).all(data => {
-        console.log(data);
-      })
+    // .find({ "times": {$in: req.body.data.times}, "schoolCode": req.body.data.schoolScool }).all(data => {
+    //     console.log(data);
+    //   })
   });
 
 router.get('/userprofile/:fbID', (req, res) => {
@@ -31,5 +34,17 @@ router.get('/userprofile/:fbID', (req, res) => {
   db.Users.find({ facebook_id: req.params.fbID })
     .then(data => res.json(data)).catch(err => console.log(err));
 })
+
+router.get('/allschools', (req, res) => {
+  db.Schools.find({ })
+    .then(data => res.json(data)).catch(err => console.log(err));
+})
+
+router.post('/createuser', (req, res) => {
+  console.log(req.body.data)
+  db.Users.create(req.body.data).then(data => console.log(data)).catch(err => console.log(err));
+  res.send("we did shit here");
+})
+
 
 module.exports = router;

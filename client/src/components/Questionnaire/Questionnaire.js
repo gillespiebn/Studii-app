@@ -2,110 +2,137 @@ import React, { Component } from "react";
 import "./Questionnaire.css";
 import TeacherInput from "../Teachers";
 import ClassInput from "../Classes";
+import API from '../../utils/API.js'
 
 class Questionnaire extends Component {
     state = {
-        Name: "",
-        Email: "",
-        schoolName: "",
+        facebook_id: this.props.facebook_id,
+        name: "",
+        email: "",
+        school: "",
         classStanding: "",
         classID: "",
         classes: [],
-        studyMethod: [],
-        studyPlace: [],
-        availability: []
+        methods: [],
+        locations: [],
+        times: [],
+        schoolsForAutocomplete: [],
+        //change major and minor when they are created
+        major: '',
+        minor: '',
+        photo: '',
+
        };
 
-       handleInputChange = event => {
-      const { name, value } = event.target;
-      console.log(value);
-
-      this.setState({
-        [name]: value
-        });
+      //this function is good
+      handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+          });
       };
 
       handleAddClass = event => {
         event.preventDefault();
-        var classArray=this.state.classes;
+        let classArray=this.state.classes;
         classArray.push(this.state.classID);
         this.setState({
          classes: classArray,
          classID: ""
         });
-    }
+      }
+
+      //jordan worked on this part...it is working. the objToSave is the data structure that I need...facebook_id will change as it's working with fake data right now
       handleFormSubmit = event => {
         event.preventDefault();
-        alert("Thanks, now let's find your Studdii Buddies.");
-        console.log(this.state.schoolName);
-        console.log(this.state.classStanding);
-        console.log(this.state.availability);
-        console.log(this.state.studyPlace);
-        console.log(this.state.studyMethod);
-        console.log(this.state.teachers);
-        console.log(this.state.classes);
-       };
+        let schoolCode;
+        for (var i = 0; i < this.state.schoolsForAutocomplete.length; i++) {
+          if (this.state.school === this.state.schoolsForAutocomplete[i].name){
+            console.log(this.state.schoolsForAutocomplete[i])
+            schoolCode = this.state.schoolsForAutocomplete[i].code
+          }
+        }
+        const objToSave = {
+          name: this.state.name,
+          email: this.state.email,
+          school: this.state.school,
+          schoolCode: schoolCode,
+          facebook_id: this.state.facebook_id + 1,
+          classStanding: this.state.classStanding,
+          classes: this.state.classes,
+          methods: this.state.methods,
+          times: this.state.times,
+          locations: this.state.locations,
+          photo: "https://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.pnghttps://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.png",
+          major: /*this.state.major*/'math',
+          minor: /*this.state.minor*/'science'
+        }
+        // need to make check functions here. they will set states and if those states exist, they will highlight where something needs to change
+        this.checkFunctions(objToSave);
+      };
 
+      //jordan wrote this and it is good for now but needs to be updated. I can work on this part if you want.
+      checkFunctions = (obj) => {
+        this.setState({  continue: true })
+        console.log("we got here");
+        API.createUser(obj).then(data => console.log(data.data)).catch(err => console.log(err));
+      }
 
-       updateStudyMethods = event => {
-       event.preventDefault();
-        console.log(event.target.dataset.studymethod)
-        var studymethods = this.state.studyMethod
-        studymethods.push(event.target.dataset.studymethod)
-        this.setState({studyMethod: studymethods 
-        })
-          console.log("State " ,this.state.studyMethod);
-       };
-
-       updateStudyPlaces = event => {
+      updateStudyMethods = event => {
         event.preventDefault();
-            console.log(event.target.dataset.studyPlace)
-            var studyplaces = this.state.studyPlace 
-            studyplaces.push(event.target.dataset.studyplace)
-            this.setState({ studyPlace: studyplaces
-            })
-                console.log("State " , this.state.studyPlace);
-            };
+        let studymethods = this.state.methods
+        studymethods.push(event.target.dataset.methods)
+        this.setState({methods: studymethods })
+      };
 
-        updateAvailability = event => {
-            event.preventDefault();
-                console.log(event.target.availability)
-                var availability = this.state.availability
-                availability.push(event.target.dataset.availability)
-                this.setState({ availability: availability 
-                })
-                    console.log("State " , this.state.availability);
-                };
+      updateStudyPlaces = event => {
+        event.preventDefault();
+        let studyplaces = this.state.locations 
+        studyplaces.push(event.target.dataset.locations)
+        this.setState({ locations: studyplaces})
+      };
+
+      updateAvailability = event => {
+        event.preventDefault();
+        let availability = this.state.times
+        availability.push(event.target.dataset.times)
+        this.setState({ times: availability })
+      };
+
+      //this is currently grabbing all the schools for the auto-complete and for grabbing the school code
+      componentDidMount() {
+        API.getAllSchools().then(data => this.setState({schoolsForAutocomplete: data.data})).catch(err => console.log(err));
+      }
 
 
-       render() {
+      render() {
         return (
             <form>
                 <p> Name:
                     <input 
                     type="text"
-                    name="Name"
+                    name="name"
                     onChange={this.handleInputChange}
-                    value={this.state.Name}
-                   />
+                    value={this.state.name}
+                    />
                   </p>
                 <p> Email:
                     <input
                     type="text"
-                    name="Email"
+                    name="email"
                     onChange={this.handleInputChange}
-                    value={this.state.Email}
-                   />
-                 </p>
+                    value={this.state.email}
+                    />
+                  </p>
                 <p>School Name: 
-                 <input 
+                  <input 
                 type="text"
-                name="schoolName"
+                name="school"
                 onChange={this.handleInputChange}
-                value={this.state.schoolName}
-               
-               />
-               </p>
+                value={this.state.school}
+                
+                />
+                </p>
               <label>
                 Class Standing
                 <select value={this.state.classStanding} name="classStanding" onChange={this.handleInputChange}>
@@ -114,75 +141,74 @@ class Questionnaire extends Component {
                     <option value="Sophomore">Sophomore</option>
                     <option value="Junior">Junior</option>
                     <option value="Senior">Senior</option>
-                 </select>
-               </label>
-               <div>
+                  </select>
+                </label>
+                <div>
           
-               {this.state.classes.map((classes,index) => (
+                {this.state.classes.map((classes,index) => (
                 <ClassInput
                     key={index}
                     class={classes}
                     />
                 ))}
             Class ID: 
-                 <input
-                 type="text"
-                 name="classID"
-                 onChange={this.handleInputChange}
-                 value={this.state.classID}
+                  <input
+                  type="text"
+                  name="classID"
+                  onChange={this.handleInputChange}
+                  value={this.state.classID}
                   />
-               <button onClick={this.handleAddClass}>➕</button>
-               </div>
-             
-               <p>Preferred study methods (select all that apply)</p>
-              <button onClick={this.updateStudyMethods} data-studymethod="Flashcards" > Flashcards </button>
-              <button onClick={this.updateStudyMethods} data-studymethod="Quizzes" > Quizzes </button>
-              <button onClick={this.updateStudyMethods} data-studymethod="Rereading" > Rereading </button>
-              <button onClick={this.updateStudyMethods} data-studymethod="Revision Notes" > Revision Notes </button>
-              <button onClick={this.updateStudyMethods} data-studymethod="Mnemonics" > Mnemonics </button>
-              <button onClick={this.updateStudyMethods} data-studymethod="Other" > Other </button>
-               <p>Preferred places to study (select all that apply)</p>
-               <button onClick={this.updateStudyPlaces} data-studyplace="Library" > Library </button>
-               <button onClick={this.updateStudyPlaces} data-studyplace="Coffee Shop" > Coffee Shop </button>
-               <button onClick={this.updateStudyPlaces} data-studyplace="Commons" > Commons </button>
-               <button onClick={this.updateStudyPlaces} data-studyplace="Cafe" > Cafe </button>
-               <button onClick={this.updateStudyPlaces} data-studyplace="Home" > Home </button>
-               <button onClick={this.updateStudyPlaces} data-studyplace="Other" > Other </button>
-               <p>Availability</p>
-               <button onClick={this.updateAvailability} data-availability="Monday Morning" className="Monday"> Monday Morning </button>
-               <button onClick={this.updateAvailability} data-availability="Monday Afternoon" className="Monday" > Monday Afternoon </button>
-               <button onClick={this.updateAvailability} data-availability="Monday Evening" className="Monday" > Monday Evening </button>
-               <button onClick={this.updateAvailability} data-availability="Monday Night" className="Monday" > Monday Night </button>
-               <button onClick={this.updateAvailability} data-availability="Tuesday Morning" className="Tuesday" > Tuesday Morning </button>
-               <button onClick={this.updateAvailability} data-availability="Tuesday Afternoon" className="Tuesday" > Tuesday Afternoon </button>
-               <button onClick={this.updateAvailability} data-availability="Tuesday Evening" className="Tuesday" > Tuesday Evening </button>
-               <button onClick={this.updateAvailability} data-availability="Tuesday Night" className="Tuesday" > Tuesday Night </button>
-               <button onClick={this.updateAvailability} data-availability="Wednesday Morning" className="Wednesday" > Wednesday Morning </button>
-               <button onClick={this.updateAvailability} data-availability="Wednesday Afternoon" className="Wednesday" > Wednesday Afternoon </button>
-               <button onClick={this.updateAvailability} data-availability="Wednesday Evening" className="Wednesday" > Wednesday Evening </button>
-               <button onClick={this.updateAvailability} data-availability="Wednesday Night" className="Wednesday" > Wednesday Night </button>
-               <button onClick={this.updateAvailability} data-availability="Thursday Morning" className="Thursday" > Thursday Morning </button>
-               <button onClick={this.updateAvailability} data-availability="Thursday Afternoon" className="Thursday" > Thursday Afternoon </button>
-               <button onClick={this.updateAvailability} data-availability="Thursday Evening" className="Thursday" > Thursday Evening </button>
-               <button onClick={this.updateAvailability} data-availability="Thursday Night" className="Thursday" > Thursday Night </button>
-               <button onClick={this.updateAvailability} data-availability="Friday Morning" className="Friday" > Friday Morning </button>
-               <button onClick={this.updateAvailability} data-availability="Friday Afternoon" className="Friday" > Friday Afternoon </button>
-               <button onClick={this.updateAvailability} data-availability="Friday Evening" className="Friday" > Friday Night </button>
-               <button onClick={this.updateAvailability} data-availability="Friday Night" className="Friday" > Friday Evening </button>
-               <button onClick={this.updateAvailability} data-availability="Saturday Morning" className="Saturday" > Saturday Morning </button>
-               <button onClick={this.updateAvailability} data-availability="Saturday Afternoon" className="Saturday" > Saturday Afternoon </button>
-               <button onClick={this.updateAvailability} data-availability="Saturday Evening" className="Saturday" > Saturday Evening </button>
-               <button onClick={this.updateAvailability} data-availability="Saturday Night" className="Saturday" > Saturday Night </button>
-               <button onClick={this.updateAvailability} data-availability="Sunday Morning" className="Sunday" > Sunday Morning </button>
-               <button onClick={this.updateAvailability} data-availability="Sunday Afternoon" className="Sunday" > Sunday Afternoon </button>
-               <button onClick={this.updateAvailability} data-availability="Sunday Evening" className="Sunday" > Sunday Evening </button>
-               <button onClick={this.updateAvailability} data-availability="Sunday Night" className="Sunday" > Sunday Night </button>
-               <p>Submit</p>
-               <button onClick={this.handleFormSubmit} className="submit">Submit</button>
+                <button onClick={this.handleAddClass}>➕</button>
+                </div>
+              
+                <p>Preferred study methods (select all that apply)</p>
+              <button onClick={this.updateStudyMethods} data-methods="Flashcards" > Flashcards </button>
+              <button onClick={this.updateStudyMethods} data-methods="Quizzes" > Quizzes </button>
+              <button onClick={this.updateStudyMethods} data-methods="Rereading" > Rereading </button>
+              <button onClick={this.updateStudyMethods} data-methods="Revision Notes" > Revision Notes </button>
+              <button onClick={this.updateStudyMethods} data-methods="Mnemonics" > Mnemonics </button>
+              <button onClick={this.updateStudyMethods} data-methods="Other" > Other </button>
+              <p>Preferred places to study (select all that apply)</p>
+              <button onClick={this.updateStudyPlaces} data-locations="Library" > Library </button>
+              <button onClick={this.updateStudyPlaces} data-locations="Coffee Shop" > Coffee Shop </button>
+              <button onClick={this.updateStudyPlaces} data-locations="Commons" > Commons </button>
+              <button onClick={this.updateStudyPlaces} data-locations="Cafe" > Cafe </button>
+              <button onClick={this.updateStudyPlaces} data-locations="Home" > Home </button>
+              <button onClick={this.updateStudyPlaces} data-locations="Other" > Other </button>
+              <p>Availability</p>
+              <button onClick={this.updateAvailability} data-times="Monday Morning" className="Monday"> Monday Morning </button>
+              <button onClick={this.updateAvailability} data-times="Monday Afternoon" className="Monday" > Monday Afternoon </button>
+              <button onClick={this.updateAvailability} data-times="Monday Evening" className="Monday" > Monday Evening </button>
+              <button onClick={this.updateAvailability} data-times="Monday Night" className="Monday" > Monday Night </button>
+              <button onClick={this.updateAvailability} data-times="Tuesday Morning" className="Tuesday" > Tuesday Morning </button>
+              <button onClick={this.updateAvailability} data-times="Tuesday Afternoon" className="Tuesday" > Tuesday Afternoon </button>
+              <button onClick={this.updateAvailability} data-times="Tuesday Evening" className="Tuesday" > Tuesday Evening </button>
+              <button onClick={this.updateAvailability} data-times="Tuesday Night" className="Tuesday" > Tuesday Night </button>
+              <button onClick={this.updateAvailability} data-times="Wednesday Morning" className="Wednesday" > Wednesday Morning </button>
+              <button onClick={this.updateAvailability} data-times="Wednesday Afternoon" className="Wednesday" > Wednesday Afternoon </button>
+              <button onClick={this.updateAvailability} data-times="Wednesday Evening" className="Wednesday" > Wednesday Evening </button>
+              <button onClick={this.updateAvailability} data-times="Wednesday Night" className="Wednesday" > Wednesday Night </button>
+              <button onClick={this.updateAvailability} data-times="Thursday Morning" className="Thursday" > Thursday Morning </button>
+              <button onClick={this.updateAvailability} data-times="Thursday Afternoon" className="Thursday" > Thursday Afternoon </button>
+              <button onClick={this.updateAvailability} data-times="Thursday Evening" className="Thursday" > Thursday Evening </button>
+              <button onClick={this.updateAvailability} data-times="Thursday Night" className="Thursday" > Thursday Night </button>
+              <button onClick={this.updateAvailability} data-times="Friday Morning" className="Friday" > Friday Morning </button>
+              <button onClick={this.updateAvailability} data-times="Friday Afternoon" className="Friday" > Friday Afternoon </button>
+              <button onClick={this.updateAvailability} data-times="Friday Evening" className="Friday" > Friday Night </button>
+              <button onClick={this.updateAvailability} data-times="Friday Night" className="Friday" > Friday Evening </button>
+              <button onClick={this.updateAvailability} data-times="Saturday Morning" className="Saturday" > Saturday Morning </button>
+              <button onClick={this.updateAvailability} data-times="Saturday Afternoon" className="Saturday" > Saturday Afternoon </button>
+              <button onClick={this.updateAvailability} data-times="Saturday Evening" className="Saturday" > Saturday Evening </button>
+              <button onClick={this.updateAvailability} data-times="Saturday Night" className="Saturday" > Saturday Night </button>
+              <button onClick={this.updateAvailability} data-times="Sunday Morning" className="Sunday" > Sunday Morning </button>
+              <button onClick={this.updateAvailability} data-times="Sunday Afternoon" className="Sunday" > Sunday Afternoon </button>
+              <button onClick={this.updateAvailability} data-times="Sunday Evening" className="Sunday" > Sunday Evening </button>
+              <button onClick={this.updateAvailability} data-times="Sunday Night" className="Sunday" > Sunday Night </button>
+              <p>Submit</p>
+              <button onClick={this.handleFormSubmit} className="submit">Submit</button>
             </form>
-         ) 
-
-       }
+          )
+      }
 
      }
 
