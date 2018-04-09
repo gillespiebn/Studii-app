@@ -42,8 +42,8 @@ router.get('/allschools', (req, res) => {
 
 router.post('/createuser', (req, res) => {
   console.log(req.body.data)
-  db.Users.create(req.body.data).then(data => console.log(data)).catch(err => console.log(err));
-  res.send("we did shit here");
+  // db.Users.create(req.body.data).then(data => console.log(data)).catch(err => console.log(err));
+  // res.send("we did shit here");
 })
 
 
