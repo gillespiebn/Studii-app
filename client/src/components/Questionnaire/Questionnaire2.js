@@ -3,7 +3,7 @@ import "./Questionnaire.css";
 import TeacherInput from "../Teachers";
 import ClassInput from "../Classes";
 import API from '../../utils/API.js';
-import { Segment, Container, Header, Icon, Label, Form, Button, Search } from 'semantic-ui-react';
+import { Segment, Container, Header, Icon, Label, Form, Button, Search, Select, Grid } from 'semantic-ui-react';
 import _ from 'lodash';
 import allSchools from '../../utils/allSchools.js'
 import twoSchools from '../../utils/twoSchools.js'
@@ -18,6 +18,60 @@ const classStandingOptions = [
   { key: 'so', text: 'Sophomore', value: 'sophomore' },
   { key: 'j', text: 'Junior', value: 'junior' },
   { key: 'se', text: 'Senior', value: 'senior' }
+];
+
+const states = [
+  {key: "AL", text:"AL" ,value: "AL"},
+  {key: "AR", text:"AR" ,value: "AR"},
+  {key: "AZ", text:"AZ" ,value: "AZ"},
+  {key: "CA", text:"CA" ,value: "CA"},
+  {key: "AK", text:"AK" ,value: "AK"},
+  {key: "CO", text:"CO" ,value: "CO"},
+  {key: "CT", text:"CT" ,value: "CT"},
+  {key: "DC", text:"DC" ,value: "DC"},
+  {key: "DE", text:"DE" ,value: "DE"},
+  {key: "FL", text:"FL" ,value: "FL"},
+  {key: "GA", text:"GA" ,value: "GA"},
+  {key: "HI", text:"HI" ,value: "HI"},
+  {key: "IA", text:"IA" ,value: "IA"},
+  {key: "ID", text:"ID" ,value: "ID"},
+  {key: "IL", text:"IL" ,value: "IL"},
+  {key: "IN", text:"IN" ,value: "IN"},
+  {key: "KS", text:"KS" ,value: "KS"},
+  {key: "KY", text:"KY" ,value: "KY"},
+  {key: "LA", text:"LA" ,value: "LA"},
+  {key: "MA", text:"MA" ,value: "MA"},
+  {key: "MD", text:"MD" ,value: "MD"},
+  {key: "ME", text:"ME" ,value: "ME"},
+  {key: "MI", text:"MI" ,value: "MI"},
+  {key: "MN", text:"MN" ,value: "MN"},
+  {key: "MO", text:"MO" ,value: "MO"},
+  {key: "MS", text:"MS" ,value: "MS"},
+  {key: "MT", text:"MT" ,value: "MT"},
+  {key: "NC", text:"NC" ,value: "NC"},
+  {key: "ND", text:"ND" ,value: "ND"},
+  {key: "NE", text:"NE" ,value: "NE"},
+  {key: "NH", text:"NH" ,value: "NH"},
+  {key: "NJ", text:"NJ" ,value: "NJ"},
+  {key: "NM", text:"NM" ,value: "NM"},
+  {key: "NV", text:"NV" ,value: "NV"},
+  {key: "NY", text:"NY" ,value: "NY"},
+  {key: "OH", text:"OH" ,value: "OH"},
+  {key: "OK", text:"OK" ,value: "OK"},
+  {key: "OR", text:"OR" ,value: "OR"},
+  {key: "PA", text:"PA" ,value: "PA"},
+  {key: "RI", text:"RI" ,value: "RI"},
+  {key: "SC", text:"SC" ,value: "SC"},
+  {key: "SD", text:"SD" ,value: "SD"},
+  {key: "TN", text:"TN" ,value: "TN"},
+  {key: "TX", text:"TX" ,value: "TX"},
+  {key: "UT", text:"UT" ,value: "UT"},
+  {key: "VA", text:"VA" ,value: "VA"},
+  {key: "VT", text:"VT" ,value: "VT"},
+  {key: "WA", text:"WA" ,value: "WA"},
+  {key: "WI", text:"WI" ,value: "WI"},
+  {key: "WV", text:"WV" ,value: "WV"},
+  {key: "WY", text:"WY" ,value: "WY"}
 ]
 
 class Questionnaire extends Component {
@@ -33,11 +87,12 @@ class Questionnaire extends Component {
         locations: [],
         times: [],
         schoolsForAutocomplete: allSchools,
+        states: states,
         //change major and minor when they are created
         major: '',
         minor: '',
         photo: '',
-
+        state: '',
        };
 
       //this function is good
@@ -93,13 +148,11 @@ class Questionnaire extends Component {
       //jordan wrote this and it is good for now but needs to be updated. I can work on this part if you want.
       checkFunctions = (obj) => {
         this.setState({ 
-          nameEmpty: false, 
-          nameProblem: false, 
-          emailProblem: false, emailEmpty: false, 
-          emailFormatProblem: false, 
-          majorEmpty: false, 
-          majorProblem: false 
-        })
+          nameEmpty: false, nameProblem: false, 
+          emailProblem: false, emailEmpty: false, emailFormatProblem: false, 
+          majorEmpty: false, majorProblem: false 
+        });
+
         let bad = false;
         if (!this.state.name) {
           this.setState({nameEmpty: "Please Enter Your Name", nameProblem: "error"});
@@ -120,10 +173,12 @@ class Questionnaire extends Component {
           this.setState({majorEmpty: "Please Enter Your Major", majorProblem: "error"});
           bad = true;
         }
+
+
         if (bad) {
           return;
         }
-        this.setState({  continue: true })
+        this.setState({ continue: true })
         console.log("we got here");
         API.createUser(obj).then(data => console.log(data.data)).catch(err => console.log(err));
       }
@@ -241,7 +296,7 @@ class Questionnaire extends Component {
                     <input type="text" placeholder="Enter Your Minor (if applicable)" required name="minor" onChange={this.handleInputChange} />
                   </ Form.Field>  
                   <Form.Field className="class-standing" >
-                    <Form.Field control=/*{Select}*/"select" label='Class-Standing' options={classStandingOptions} placeholder='Select Your Class Standing' />                    
+                    <Form.Field control={Select} label='Class-Standing' name="classStanding" onChange={this.handleInputChange} options={classStandingOptions} placeholder='Select Your Class Standing' />   
                   </Form.Field>
                   <Button.Group>
                     <Button onClick={this.updateStudyMethods} data-methods="Flashcards" > Flashcards </Button>
@@ -292,14 +347,36 @@ class Questionnaire extends Component {
                   </Button.Group>  
                 </Form>
               </Container>
-              <SearchForm
-                loading={this.stateisLoading}
-                onResultSelect={this.handleResultSelect}
-                onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                results={this.state.results}
-                value={this.state.value}
-                {...this.props}  
-              />
+
+              
+              {/* <input name="state" onChange={this.handleInputChange}>
+                <Form.Field control={Select} label='state' name="state" options={states} onChange={this.handleInputChange} placeholder='Select Your State' />                    
+              </input> */}
+              {/* <Form.Input label='State' name="state" control={Select} options={states} onChange={this.handleInputChange} placeholder='Select Your State'/> */}
+
+              <Grid>
+                <Grid.Column width={3}>
+                  <Form.Field className={`${this.state.nameProblem}`}>
+                    <Label>
+                      {<Icon name="user" size="large"/>}
+                    </Label>
+                    <input type="text" maxLength="2" placeholder="State" required name="state" onChange={this.handleInputChange} />
+                    {this.state.nameEmpty ?
+                      <Label basic color="red" pointing>{`${this.state.nameEmpty}`}</Label>
+                    : ""}
+                  </ Form.Field>
+                </Grid.Column>
+                <Grid.Column width={13}>
+                  <SearchForm
+                    loading={this.stateisLoading}
+                    onResultSelect={this.handleResultSelect}
+                    onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+                    results={this.state.results}
+                    value={this.state.value}
+                    {...this.props}  
+                  />
+                </Grid.Column>
+              </Grid>
 
               {/* this button is just kind of a placeholder. it works, but probably needs styling */}
               <p>Submit</p>
