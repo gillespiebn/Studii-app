@@ -7,6 +7,7 @@ import { Segment, Container, Header, Icon, Label, Form, Button, Search, Select, 
 import _ from 'lodash';
 import allSchools from '../../utils/allSchools.js'
 import twoSchools from '../../utils/twoSchools.js'
+import vaSchools from '../../utils/vaSchools.js'
 import SearchForm from "../SearchForm";
 // import SearchFormRenderer from "../SearchFormRenderer";
 
@@ -86,7 +87,8 @@ class Questionnaire extends Component {
         methods: [],
         locations: [],
         times: [],
-        schoolsForAutocomplete: allSchools,
+        schoolsForAutocomplete: vaSchools,
+        results: [],
         states: states,
         //change major and minor when they are created
         major: '',
@@ -206,7 +208,7 @@ class Questionnaire extends Component {
 
       //this is currently grabbing all the schools for the auto-complete and for grabbing the school code
       componentDidMount() {
-        API.getAllSchools().then(data => this.setState({schoolsForAutocomplete: data.data})).catch(err => console.log(err));
+        // API.getAllSchools().then(data => this.setState({schoolsForAutocomplete: data.data})).catch(err => console.log(err));
       }
 
       componentWillMount() {
@@ -216,9 +218,10 @@ class Questionnaire extends Component {
       //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
       resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
 
-      handleResultSelect = (e, { result }) => this.setState({ value: result.name })
+      handleResultSelect = (e, { result }) => this.setState({ school: result.name })
     
       handleSearchChange = (e, { value }) => {
+
         this.setState({ isLoading: true, value })
     
         setTimeout(() => {
@@ -226,6 +229,8 @@ class Questionnaire extends Component {
     
           const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
           const isMatch = result => re.test(result.name)
+          // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
+          // this.setState({results: tempResults});
     
           this.setState({
             isLoading: false,
@@ -355,7 +360,7 @@ class Questionnaire extends Component {
               {/* <Form.Input label='State' name="state" control={Select} options={states} onChange={this.handleInputChange} placeholder='Select Your State'/> */}
 
               <Grid>
-                <Grid.Column width={3}>
+                <Grid.Column width={6}>
                   <Form.Field className={`${this.state.nameProblem}`}>
                     <Label>
                       {<Icon name="user" size="large"/>}
@@ -366,7 +371,7 @@ class Questionnaire extends Component {
                     : ""}
                   </ Form.Field>
                 </Grid.Column>
-                <Grid.Column width={13}>
+                <Grid.Column width={10}>
                   <SearchForm
                     loading={this.stateisLoading}
                     onResultSelect={this.handleResultSelect}
