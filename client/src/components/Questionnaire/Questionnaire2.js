@@ -7,8 +7,11 @@ import { Segment, Container, Header, Icon, Label, Form, Button, Search } from 's
 import _ from 'lodash';
 import allSchools from '../../utils/allSchools.js'
 import twoSchools from '../../utils/twoSchools.js'
+import SearchForm from "../SearchForm";
+// import SearchFormRenderer from "../SearchFormRenderer";
 
-const source = twoSchools;
+
+// const source = allSchools;
 
 const classStandingOptions = [
   { key: 'f', text: 'Freshman', value: 'freshman' },
@@ -29,7 +32,7 @@ class Questionnaire extends Component {
         methods: [],
         locations: [],
         times: [],
-        schoolsForAutocomplete: [],
+        schoolsForAutocomplete: allSchools,
         //change major and minor when they are created
         major: '',
         minor: '',
@@ -171,7 +174,7 @@ class Questionnaire extends Component {
     
           this.setState({
             isLoading: false,
-            results: _.filter(source, isMatch),
+            results: _.filter(this.state.schoolsForAutocomplete, isMatch),
           })
         }, 300)
       }
@@ -212,14 +215,14 @@ class Questionnaire extends Component {
                       {<Icon name="university" size="large" />}
                     </Label>
                     <div>     
-                    <Search
+                    {/* <Search
                       loading={this.stateisLoading}
                       onResultSelect={this.handleResultSelect}
                       onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
                       results={this.state.results}
                       value={this.state.value}
                       {...this.props}
-                    />
+                    /> */}
                     </div>
                   </Form.Field>
                   <Form.Field className={`${this.state.majorProblem}`}>
@@ -238,7 +241,7 @@ class Questionnaire extends Component {
                     <input type="text" placeholder="Enter Your Minor (if applicable)" required name="minor" onChange={this.handleInputChange} />
                   </ Form.Field>  
                   <Form.Field className="class-standing" >
-                    <Form.Field control={Select} label='Class-Standing' options={classStandingOptions} placeholder='Select Your Class Standing' />                    
+                    <Form.Field control=/*{Select}*/"select" label='Class-Standing' options={classStandingOptions} placeholder='Select Your Class Standing' />                    
                   </Form.Field>
                   <Button.Group>
                     <Button onClick={this.updateStudyMethods} data-methods="Flashcards" > Flashcards </Button>
@@ -289,6 +292,14 @@ class Questionnaire extends Component {
                   </Button.Group>  
                 </Form>
               </Container>
+              <SearchForm
+                loading={this.stateisLoading}
+                onResultSelect={this.handleResultSelect}
+                onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+                results={this.state.results}
+                value={this.state.value}
+                {...this.props}  
+              />
 
               {/* this button is just kind of a placeholder. it works, but probably needs styling */}
               <p>Submit</p>
