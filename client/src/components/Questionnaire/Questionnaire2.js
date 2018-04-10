@@ -9,6 +9,7 @@ import allSchools from '../../utils/allSchools.js'
 import twoSchools from '../../utils/twoSchools.js'
 import vaSchools from '../../utils/vaSchools.js'
 import SearchForm from "../SearchForm";
+import NavMenu from "../NavMenu";
 
 // import SearchFormRenderer from "../SearchFormRenderer";
 
@@ -251,6 +252,7 @@ class Questionnaire extends Component {
       render() { 
         return(
           <Container>
+            <NavMenu />
             <Segment style={{ marginTop: 20}} raised>
               <Container textAlign="center">
                 <Header as="h2">Find a Studii Buddy</Header>
@@ -380,13 +382,8 @@ class Questionnaire extends Component {
               </input> */}
               {/* <Form.Input label='State' name="state" control={Select} options={states} onChange={this.handleInputChange} placeholder='Select Your State'/> */}
 
-<<<<<<< HEAD
-              {/* <Grid>
-                <Grid.Column width={3}>
-=======
               <Grid>
                 <Grid.Column width={6}>
->>>>>>> e0552380a089991da519b5a20c0ef9790a387dc3
                   <Form.Field className={`${this.state.nameProblem}`}>
                     <Label>
                       {<Icon name="user" size="large"/>}
