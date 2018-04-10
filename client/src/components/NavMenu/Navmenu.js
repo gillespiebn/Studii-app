@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navmenu.css";
+import ProfileHeader from "./ProfileHeader";
+import { Input, Label, Menu } from 'semantic-ui-react'
 
-const NavMenu = () => (
-    <div className="ui top sidebar inverted vertical menu">
-        <div className="ui dropdown icon item">
-            <i className="bars icon"></i>
-            <div className="menu">        
+const NavMenu = () => ( 
+
+    <Menu vertical>
+        <Menu.Item name="home"> //any onclick functions we might need go inside this tag
                 <a className="item">
                     <Link 
                         to="/"
@@ -17,8 +18,10 @@ const NavMenu = () => (
                         Home
                     </Link>
                 </a>
+          </Menu.Item>
+          <Menu.Item name="Profile">
                 <a className="item">
-                    <Link
+                    <Link 
                         to="/profile"
                         className={
                             window.location.pathname === "/profile"
@@ -27,6 +30,8 @@ const NavMenu = () => (
                         Profile
                     </Link>    
                 </a>
+           </Menu.Item>
+           <Menu.Item>
                 <a className="item">
                     <Link
                         to="/groups"
@@ -47,6 +52,8 @@ const NavMenu = () => (
                         Messenger
                     </Link>    
                 </a>
+              </Menu.Item>
+              <Menu.Item>
                 <a className="item">
                     <Link 
                         to="/settings"
@@ -57,9 +64,7 @@ const NavMenu = () => (
                         Settings
                     </Link>
                 </a>
-            </div>    
-        </div>
-    </div>            
+             </Menu.Item>
 );
 
 export default NavMenu;
