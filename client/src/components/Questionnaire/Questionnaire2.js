@@ -314,17 +314,18 @@ class Questionnaire extends Component {
                   <Form.Group>
                     <Form.Select label='Class Standing' options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange}/>
                   </Form.Group>
+                  <p className="label">Preferred Study Methods</p>
                   <Form.Group widths="equal">
-                    <Button toggle active={this.state.active} onClick={this.updateStudyMethods} data-methods="Flashcards" width={5}> Flashcards </Button>
-                    <Button onClick={this.updateStudyMethods} data-methods="Quizzes" width={5}> Quizzes </Button>
-                    <Button onClick={this.updateStudyMethods} data-methods="Rereading" width={5}> Rereading </Button>
+                    <Button toggle active={this.state.active} onClick={this.updateStudyMethods} data-methods="Flashcards"> Flashcards </Button>
+                    <Button onClick={this.updateStudyMethods} data-methods="Quizzes"> Quizzes </Button>
+                    <Button onClick={this.updateStudyMethods} data-methods="Rereading"> Rereading </Button>
                   </Form.Group>
-                  <Form.Group width="equal">  
+                  <Form.Group widths="equal">  
                     <Button onClick={this.updateStudyMethods} data-methods="Revision Notes" > Revision Notes </Button>
                     <Button onClick={this.updateStudyMethods} data-methods="Mnemonics" > Mnemonics </Button>
                     <Button onClick={this.updateStudyMethods} data-methods="Other" > Other </Button>
                   </Form.Group>
-                  <label>Preferred Study Location</label>
+                  <p className="label">Preferred Study Location</p>
                   <Form.Group widths="equal">
                     <Button onClick={this.updateStudyPlaces} data-locations="Library">Library</Button>
                     <Button onClick={this.updateStudyPlaces} data-locations="Coffee Shop">Coffee Shop</Button>
@@ -335,7 +336,7 @@ class Questionnaire extends Component {
                     <Button onClick={this.updateStudyPlaces} data-locations="Home">Home</Button>
                     <Button onClick={this.updateStudyPlaces} data-locations="Other">Other</Button>
                   </Form.Group>
-                  <label>Preferred Study Time</label>
+                  <p className="label">Preferred Study Time</p>
                   <Form.Group widths="equal">
                     <Button onClick={this.updateAvailability} data-times="Sunday Morning" className="Sunday" > Sunday Morning </Button>
                     <Button onClick={this.updateAvailability} data-times="Monday Morning" className="Monday"> Monday Morning </Button>
@@ -403,10 +404,9 @@ class Questionnaire extends Component {
                     {...this.props}  
                   />
                 </Grid.Column>
-              </Grid> */}
+              </Grid> 
 
               {/* this button is just kind of a placeholder. it works, but probably needs styling */}
-              <p>Submit</p>
               <Button onClick={this.handleFormSubmit} className="submit">Submit</Button>
             </Segment>
           </Container>
