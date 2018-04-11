@@ -1,6 +1,6 @@
 import React from "react";
 import "./PracticeProfileLayout.css";
-import { Card, Segment, Image, Container } from 'semantic-ui-react'
+import { Card, Image, Container } from 'semantic-ui-react'
 
 
 

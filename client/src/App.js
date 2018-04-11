@@ -1,11 +1,8 @@
 import React from "react";
-import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import API from "./utils/API";
-import ContainerNonSemantic from "./components/Container/Container";
-import NavMenu from "./components/NavMenu";
+// import NavMenu from "./components/NavMenu";
 import Header from "./components/Header/";
-import Questionnaire from "./components/Questionnaire";
 import Loading from "./components/Loading";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -16,8 +13,7 @@ import Register from "./pages/Register";
 import Page404 from "./pages/404";
 // import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import { Link } from "react-router-dom";
-import { Container, Button } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 
 class App extends React.Component {
@@ -126,11 +122,18 @@ class App extends React.Component {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/groups" component={Groups} />
             <Route exact path="/messenger" component={Messenger} />
-            <Route exact path="/settings" component={Settings} />
+            <Route 
+              exact path="/settings" 
+              render={(routeProps) => (
+                <Settings facebook_id={this.state.facebook_id} 
+                user={this.state.user} />   
+              )}
+            />
             <Route 
               exact path="/register" 
               render={(routeProps) => (
-                <Register facebook_id={this.state.facebook_id} test="this should appears somewhere"/>
+                <Register facebook_id={this.state.facebook_id} 
+                test="this should appears somewhere"/>
               )}
             />
             <Route component={Page404} />

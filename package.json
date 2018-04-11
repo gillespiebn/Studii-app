@@ -11,6 +11,7 @@
     "build": "node scripts/build.js",
     "seedschools": "node scripts/seedSchools.js",
     "seedusers": "node scripts/seedUsers.js",
+    "seedclassnames": "node scripts/seedClassNames.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "installDeps": "yarn && cd client && yarn"
   },

@@ -24,13 +24,13 @@ const userSeed = [
       "math100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes", "other"
     ],
     "times": [
-      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
+      "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
     ],
     "locations": [
-      "coffee shop", "library", "commons", "other", "cafe", "home"
+      "online", "library", "commons", "other", "cafe", "home"
     ],
     "photo": "https://vignette.wikia.nocookie.net/keyandpeele/images/4/4a/IMG_0945.png/revision/latest?cb=20140507072519",
     "major": "Biology"
@@ -48,13 +48,13 @@ const userSeed = [
       "math100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes", "other"
     ],
     "times": [
-      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
+      "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
     ],
     "locations": [
-      "coffee shop", "library", "commons", "other", "cafe", "home"
+      "online", "library", "commons", "other", "cafe", "home"
     ],
     "photo": "https://pbs.twimg.com/profile_images/2841709475/55a923e3bbcab0c4d7a46ca087f02cf4_400x400.jpeg",
     "major": "Biology"
@@ -73,13 +73,13 @@ const userSeed = [
       "eng100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
     ],
     "times": [
-      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
+      "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
     ],
     "locations": [
-      "coffee shop", "library", "commons", "other", "home"
+      "online", "library", "commons", "other", "home"
     ],
     "photo": "https://g.rrrather.com/img/q/168880b.jpg",
     "major": "Math",
@@ -99,13 +99,13 @@ const userSeed = [
       "eng100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
     ],
     "times": [
-      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
+      "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
     ],
     "locations": [
-      "coffee shop", "library", "commons", "other", "home"
+      "online", "library", "commons", "other", "home"
     ],
     "photo": "https://yt3.ggpht.com/a-/AJLlDp3kCOOG1s6rfMZ8B2szunJ1MqgJGA8mAZoYiA=s900-mo-c-c0xffffffff-rj-k-no",
     "major": "Math",
@@ -125,13 +125,13 @@ const userSeed = [
       "eng100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
     ],
     "times": [
-      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
+      "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
     ],
     "locations": [
-      "coffee shop", "library", "commons", "other", "home"
+      "online", "library", "commons", "other", "home"
     ],
     "photo": "https://pbs.twimg.com/profile_images/750730202821431296/Nwj9YKkn_400x400.jpg",
     "major": "Philosophy",
@@ -151,13 +151,13 @@ const userSeed = [
       "eng100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
     ],
     "times": [
-      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
+      "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
     ],
     "locations": [
-      "coffee shop", "library", "commons", "other", "home"
+      "online", "library", "commons", "other", "home"
     ],
     "photo": "https://i.ytimg.com/vi/RV6yPi-6sJg/maxresdefault.jpg",
     "major": "Beer",
@@ -176,10 +176,10 @@ const userSeed = [
       "eng100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
     ],
     "times": [
-      "Saturday Night"
+      "SaturdayNight"
     ],
     "locations": [
       "other", "home"
@@ -199,13 +199,13 @@ const userSeed = [
       "bio101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
     ],
     "times": [
-      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
+      "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
     ],
     "locations": [
-      "coffee shop", "library", "commons", "other", "home"
+      "online", "library", "commons", "other", "home"
     ],
     "photo": "http://s1.totalprosports.com/wp-content/uploads/2015/01/key-peele-eastwest-bowl-3-aaron-rodgers.png",
     "major": "Why Did I make So Many Of These?"
@@ -227,10 +227,10 @@ const userSeed = [
       "flashcards"
     ],
     "times": [
-      "Sunday Morning"
+      "SundayMorning"
     ],
     "locations": [
-      "coffee shop"
+      "online"
     ],
     "photo": "http://www.bdcwire.com/wp-content/uploads/2015/01/Grunky-peep.png",
     "major": "GRUNK"
@@ -247,13 +247,13 @@ const userSeed = [
       "math100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mneumonics", "revision notes", "other"
+      "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes", "other"
     ],
     "times": [
-      "Sunday Morning", "Monday Afternoon", "Tuesday Evening", "Wednesday Night", "Thursday Morning", "Thursday Afternoon", "Friday Evening", "Saturday Night"
+      "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
     ],
     "locations": [
-      "coffee shop", "library", "commons", "other", "cafe", "home"
+      "online", "library", "commons", "other", "cafe", "home"
     ],
     "photo": "https://i.ytimg.com/vi/_nioio-r47k/maxresdefault.jpg",
     "major": "Women's Studies",

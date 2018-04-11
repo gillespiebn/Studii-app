@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./Questionnaire.css";
-import TeacherInput from "../Teachers";
-import ClassInput from "../Classes";
+// import TeacherInput from "../Teachers";
+// import ClassInput from "../Classes";
 import API from '../../utils/API.js';
-import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Select, Grid, Dropdown } from 'semantic-ui-react';
+import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown } from 'semantic-ui-react';
 import _ from 'lodash';
-import allSchools from '../../utils/allSchools.js'
-import twoSchools from '../../utils/twoSchools.js'
+// import allSchools from '../../utils/allSchools.js'
+// import twoSchools from '../../utils/twoSchools.js'
 import vaSchools from '../../utils/vaSchools.js'
 import SearchForm from "../SearchForm";
 
@@ -31,7 +31,6 @@ class Questionnaire extends Component {
         classStanding: "",
         classID: "",
         classes: [],
-        methods: [],
         locations: [],
         times: [],
         schoolsForAutocomplete: vaSchools,

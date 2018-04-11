@@ -1,7 +1,5 @@
 import React from 'react'
-import { Container, Header, Icon } from 'semantic-ui-react'
-import PracticeProfileLayout from "../../components/PracticeProfileLayout"
-import API from "../../utils/API";
+import {  } from 'semantic-ui-react'
 import Questionnaire from "../../components/Questionnaire"
 
 
