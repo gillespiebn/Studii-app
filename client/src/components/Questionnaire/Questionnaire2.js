@@ -22,60 +22,6 @@ const classStandingOptions = [
   { key: 'se', text: 'Senior', value: 'senior' }
 ];
 
-const states = [
-  {key: "AL", text:"AL" ,value: "AL"},
-  {key: "AR", text:"AR" ,value: "AR"},
-  {key: "AZ", text:"AZ" ,value: "AZ"},
-  {key: "CA", text:"CA" ,value: "CA"},
-  {key: "AK", text:"AK" ,value: "AK"},
-  {key: "CO", text:"CO" ,value: "CO"},
-  {key: "CT", text:"CT" ,value: "CT"},
-  {key: "DC", text:"DC" ,value: "DC"},
-  {key: "DE", text:"DE" ,value: "DE"},
-  {key: "FL", text:"FL" ,value: "FL"},
-  {key: "GA", text:"GA" ,value: "GA"},
-  {key: "HI", text:"HI" ,value: "HI"},
-  {key: "IA", text:"IA" ,value: "IA"},
-  {key: "ID", text:"ID" ,value: "ID"},
-  {key: "IL", text:"IL" ,value: "IL"},
-  {key: "IN", text:"IN" ,value: "IN"},
-  {key: "KS", text:"KS" ,value: "KS"},
-  {key: "KY", text:"KY" ,value: "KY"},
-  {key: "LA", text:"LA" ,value: "LA"},
-  {key: "MA", text:"MA" ,value: "MA"},
-  {key: "MD", text:"MD" ,value: "MD"},
-  {key: "ME", text:"ME" ,value: "ME"},
-  {key: "MI", text:"MI" ,value: "MI"},
-  {key: "MN", text:"MN" ,value: "MN"},
-  {key: "MO", text:"MO" ,value: "MO"},
-  {key: "MS", text:"MS" ,value: "MS"},
-  {key: "MT", text:"MT" ,value: "MT"},
-  {key: "NC", text:"NC" ,value: "NC"},
-  {key: "ND", text:"ND" ,value: "ND"},
-  {key: "NE", text:"NE" ,value: "NE"},
-  {key: "NH", text:"NH" ,value: "NH"},
-  {key: "NJ", text:"NJ" ,value: "NJ"},
-  {key: "NM", text:"NM" ,value: "NM"},
-  {key: "NV", text:"NV" ,value: "NV"},
-  {key: "NY", text:"NY" ,value: "NY"},
-  {key: "OH", text:"OH" ,value: "OH"},
-  {key: "OK", text:"OK" ,value: "OK"},
-  {key: "OR", text:"OR" ,value: "OR"},
-  {key: "PA", text:"PA" ,value: "PA"},
-  {key: "RI", text:"RI" ,value: "RI"},
-  {key: "SC", text:"SC" ,value: "SC"},
-  {key: "SD", text:"SD" ,value: "SD"},
-  {key: "TN", text:"TN" ,value: "TN"},
-  {key: "TX", text:"TX" ,value: "TX"},
-  {key: "UT", text:"UT" ,value: "UT"},
-  {key: "VA", text:"VA" ,value: "VA"},
-  {key: "VT", text:"VT" ,value: "VT"},
-  {key: "WA", text:"WA" ,value: "WA"},
-  {key: "WI", text:"WI" ,value: "WI"},
-  {key: "WV", text:"WV" ,value: "WV"},
-  {key: "WY", text:"WY" ,value: "WY"}
-]
-
 class Questionnaire extends Component {
     state = {
         facebook_id: this.props.facebook_id,
@@ -90,12 +36,19 @@ class Questionnaire extends Component {
         times: [],
         schoolsForAutocomplete: vaSchools,
         results: [],
-        states: states,
         //change major and minor when they are created
         major: '',
         minor: '',
         photo: '',
         state: '',
+        methods: {
+          flashcards: false,
+          quizzes: false,
+          rereading: false,
+          revisionNotes: false,
+          mneumonics: false,
+          other: false
+        }
        };
 
       //this function is good
@@ -142,7 +95,9 @@ class Questionnaire extends Component {
           locations: this.state.locations,
           photo: "https://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.pnghttps://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.png",
           major: this.state.major,
-          minor: this.state.minor
+          minor: this.state.minor,
+
+          flashcardActive: false,
         }
         // need to make check functions here. they will set states and if those states exist, they will highlight where something needs to change
         this.checkFunctions(objToSave);
@@ -194,10 +149,11 @@ class Questionnaire extends Component {
       };
 
       updateStudyMethods = event => {
+        console.log(event);
         event.preventDefault();
         let studymethods = this.state.methods
         studymethods.push(event.target.dataset.methods)
-        this.setState({methods: studymethods })
+        this.setState({methods: studymethods, stateToChange: !this.state.active })
       };
 
       updateStudyPlaces = event => {
@@ -221,6 +177,19 @@ class Questionnaire extends Component {
 
       componentWillMount() {
         this.resetComponent()
+      }
+
+      handleMethodToggle = event => {
+        const { name } = event.target;
+
+        const methods = {...this.state.methods, [name]: !this.state.methods[name]};
+        this.setState({
+          methods
+        });
+      }
+
+      filterOptions = () => {
+        return Object.keys(this.state.methods).filter((option, index) => this.state.methods[option]);
       }
 
       //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
@@ -249,6 +218,8 @@ class Questionnaire extends Component {
       //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
       render() { 
+
+        console.log(this.filterOptions());
         return(
           <Container>
             <Segment style={{ marginTop: 20}} raised>
@@ -310,13 +281,13 @@ class Questionnaire extends Component {
                     </ Form.Field>  
                   </Form.Group>
                   <Form.Group>
-                    <Form.Select label='Class Standing' options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange}/>
+                    <Form.Select label='Class Standing' name="classStanding" options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange} onClick={this.handleInputChange}/>
                   </Form.Group>
                   <Form.Group widths="equal">
                   <p>Preferred Method of Study</p>
-                    <Button onClick={this.updateStudyMethods} data-methods="Flashcards" width={5}> Flashcards </Button>
-                    <Button onClick={this.updateStudyMethods} data-methods="Quizzes" width={5}> Quizzes </Button>
-                    <Button onClick={this.updateStudyMethods} data-methods="Rereading" width={5}> Rereading </Button>
+                    <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" width={5}> Flashcards </Button>
+                    <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" width={5}> Quizzes </Button>
+                    <Button  onClick={this.updateStudyMethods} data-methods="Rereading" width={5}> Rereading </Button>
                   </Form.Group>
                   <Form.Group width="equal">  
                     <Button onClick={this.updateStudyMethods} data-methods="Revision Notes" > Revision Notes </Button>
@@ -374,43 +345,17 @@ class Questionnaire extends Component {
                 </Form>
               </Container>
 
-              
-              {/* <input name="state" onChange={this.handleInputChange}>
-                <Form.Field control={Select} label='state' name="state" options={states} onChange={this.handleInputChange} placeholder='Select Your State' />                    
-              </input> */}
-              {/* <Form.Input label='State' name="state" control={Select} options={states} onChange={this.handleInputChange} placeholder='Select Your State'/> */}
-
-<<<<<<< HEAD
-              {/* <Grid>
-                <Grid.Column width={3}>
-=======
-              <Grid>
-                <Grid.Column width={6}>
->>>>>>> e0552380a089991da519b5a20c0ef9790a387dc3
-                  <Form.Field className={`${this.state.nameProblem}`}>
-                    <Label>
-                      {<Icon name="user" size="large"/>}
-                    </Label>
-                    <input type="text" maxLength="2" placeholder="State" required name="state" onChange={this.handleInputChange} />
-                    {this.state.nameEmpty ?
-                      <Label basic color="red" pointing>{`${this.state.nameEmpty}`}</Label>
-                    : ""}
-                  </ Form.Field>
-                </Grid.Column>
-                <Grid.Column width={10}>
-                  <SearchForm
-                    loading={this.stateisLoading}
-                    onResultSelect={this.handleResultSelect}
-                    onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                    results={this.state.results}
-                    value={this.state.value}
-                    {...this.props}  
-                  />
-                </Grid.Column>
-              </Grid> */}
+              <SearchForm
+                placeholder="Enter School Name"
+                loading={this.stateisLoading}
+                onResultSelect={this.handleResultSelect}
+                onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+                results={this.state.results}
+                value={this.state.value}
+                {...this.props}  
+              />
 
               {/* this button is just kind of a placeholder. it works, but probably needs styling */}
-              <p>Submit</p>
               <Button onClick={this.handleFormSubmit} className="submit">Submit</Button>
             </Segment>
           </Container>
