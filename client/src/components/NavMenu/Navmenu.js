@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navmenu.css";
-import ProfileHeader from "./ProfileHeader";
+// import ProfileHeader from "../ProfileHeader";
 import { Input, Label, Menu } from 'semantic-ui-react'
 
 const NavMenu = () => ( 
@@ -65,6 +65,7 @@ const NavMenu = () => (
                     </Link>
                 </a>
              </Menu.Item>
+        </Menu>
 );
 
 export default NavMenu;
