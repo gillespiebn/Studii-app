@@ -187,18 +187,18 @@ class Questionnaire extends Component {
         API.createUser(obj).then(data => console.log(data.data)).catch(err => console.log(err));
       }
 
-      updateClassStanding = event => {
-        event.preventDefault();
-        let standing = this.state.classStanding
-        standing.push(EventTarget.dataset.classStanding)
-        this.setState({ classStanding: standing })
-      };
+      // updateClassStanding = event => {
+      //   event.preventDefault();
+      //   let standing = this.state.classStanding
+      //   standing.push(event.target.dataset.classStanding)
+      //   this.setState({ classStanding: standing })
+      // };
 
       updateStudyMethods = event => {
         event.preventDefault();
         let studymethods = this.state.methods
         studymethods.push(event.target.dataset.methods)
-        this.setState({methods: studymethods })
+        this.setState({methods: studymethods, active: !this.state.active })
       };
 
       updateStudyPlaces = event => {
@@ -315,8 +315,7 @@ class Questionnaire extends Component {
                     <Form.Select label='Class Standing' options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange}/>
                   </Form.Group>
                   <Form.Group widths="equal">
-                  <p>Preferred Method of Study</p>
-                    <Button onClick={this.updateStudyMethods} data-methods="Flashcards" width={5}> Flashcards </Button>
+                    <Button toggle active={this.state.active} onClick={this.updateStudyMethods} data-methods="Flashcards" width={5}> Flashcards </Button>
                     <Button onClick={this.updateStudyMethods} data-methods="Quizzes" width={5}> Quizzes </Button>
                     <Button onClick={this.updateStudyMethods} data-methods="Rereading" width={5}> Rereading </Button>
                   </Form.Group>
