@@ -153,7 +153,7 @@ class Questionnaire extends Component {
         event.preventDefault();
         let studymethods = this.state.methods
         studymethods.push(event.target.dataset.methods)
-        this.setState({methods: studymethods, stateToChange: !this.state.active })
+        this.setState({methods: studymethods })
       };
 
       updateStudyPlaces = event => {
@@ -180,6 +180,7 @@ class Questionnaire extends Component {
       }
 
       handleMethodToggle = event => {
+        event.preventDefault();
         const { name } = event.target;
 
         const methods = {...this.state.methods, [name]: !this.state.methods[name]};
@@ -288,7 +289,7 @@ class Questionnaire extends Component {
                   <p>Preferred Method of Study</p>
                     <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" width={5}> Flashcards </Button>
                     <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" width={5}> Quizzes </Button>
-                    <Button  onClick={this.updateStudyMethods} data-methods="Rereading" width={5}> Rereading </Button>
+                    <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" width={5}> Rereading </Button>
                   </Form.Group>
                   <Form.Group widths="equal">  
                     <Button onClick={this.updateStudyMethods} data-methods="Revision Notes" > Revision Notes </Button>
