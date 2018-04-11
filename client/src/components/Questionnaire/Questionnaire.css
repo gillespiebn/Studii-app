@@ -1,3 +1,32 @@
-body {
-  color: white;
+/* 
+MAIN COLORS
+ Pink = #F4AE9F
+ Dark Blue = #22223B
+ Light Blue = #194584
+ Light Grey = #E4E3E5
+ White = #FFFFFF
+
+ ACCENT COLORS
+Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = #282840
+ */
+.ui.segment {
+  background: #E4E3E5;
+}
+
+.ui.button {
+  background: #194584;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #FFFFFF;
+  font-size: 15px;
+  border-radius: 4px;
+  border-style: none;
+  width: 150px;
+  height: 60px;
+}
+
+.ui.form>p {
+  color: #22223B;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:20px;
+  padding:0px 5px 0px 0px;
 }
