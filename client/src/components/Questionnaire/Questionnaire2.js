@@ -41,6 +41,14 @@ class Questionnaire extends Component {
         minor: '',
         photo: '',
         state: '',
+        methods: {
+          flashcards: false,
+          quizzes: false,
+          rereading: false,
+          revisionNotes: false,
+          mneumonics: false,
+          other: false
+        }
        };
 
       //this function is good
@@ -87,7 +95,9 @@ class Questionnaire extends Component {
           locations: this.state.locations,
           photo: "https://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.pnghttps://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.png",
           major: this.state.major,
-          minor: this.state.minor
+          minor: this.state.minor,
+
+          flashcardActive: false,
         }
         // need to make check functions here. they will set states and if those states exist, they will highlight where something needs to change
         this.checkFunctions(objToSave);
@@ -139,10 +149,11 @@ class Questionnaire extends Component {
       };
 
       updateStudyMethods = event => {
+        console.log(event);
         event.preventDefault();
         let studymethods = this.state.methods
         studymethods.push(event.target.dataset.methods)
-        this.setState({methods: studymethods })
+        this.setState({methods: studymethods, stateToChange: !this.state.active })
       };
 
       updateStudyPlaces = event => {
@@ -166,6 +177,19 @@ class Questionnaire extends Component {
 
       componentWillMount() {
         this.resetComponent()
+      }
+
+      handleMethodToggle = event => {
+        const { name } = event.target;
+
+        const methods = {...this.state.methods, [name]: !this.state.methods[name]};
+        this.setState({
+          methods
+        });
+      }
+
+      filterOptions = () => {
+        return Object.keys(this.state.methods).filter((option, index) => this.state.methods[option]);
       }
 
       //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
@@ -194,6 +218,8 @@ class Questionnaire extends Component {
       //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
       render() { 
+
+        console.log(this.filterOptions());
         return(
           <Container>
             <Segment style={{ marginTop: 20}} raised>
@@ -259,9 +285,9 @@ class Questionnaire extends Component {
                   </Form.Group>
                   <Form.Group widths="equal">
                   <p>Preferred Method of Study</p>
-                    <Button onClick={this.updateStudyMethods} data-methods="Flashcards" width={5}> Flashcards </Button>
-                    <Button onClick={this.updateStudyMethods} data-methods="Quizzes" width={5}> Quizzes </Button>
-                    <Button onClick={this.updateStudyMethods} data-methods="Rereading" width={5}> Rereading </Button>
+                    <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" width={5}> Flashcards </Button>
+                    <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" width={5}> Quizzes </Button>
+                    <Button  onClick={this.updateStudyMethods} data-methods="Rereading" width={5}> Rereading </Button>
                   </Form.Group>
                   <Form.Group width="equal">  
                     <Button onClick={this.updateStudyMethods} data-methods="Revision Notes" > Revision Notes </Button>
