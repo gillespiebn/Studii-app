@@ -1,7 +1,10 @@
 import React from "react";
 import "./PracticeProfileLayout.css";
+
 import API from "../../utils/API";
-import { Card, Image, Container, Buttom, List, Transition } from 'semantic-ui-react';
+
+import { Card, Image, Container, Button, List, Transition } from 'semantic-ui-react'
+
 
 class Profiles extends React.Component {  
 
