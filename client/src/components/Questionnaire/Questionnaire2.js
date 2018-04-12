@@ -48,6 +48,9 @@ class Questionnaire extends Component {
           revisionNotes: false,
           mneumonics: false,
           other: false
+        },
+        locations: {
+          
         }
        };
 
@@ -188,7 +191,7 @@ class Questionnaire extends Component {
         });
       }
 
-      filterOptions = () => {
+      filterMethods = () => {
         return Object.keys(this.state.methods).filter((option, index) => this.state.methods[option]);
       }
 
@@ -219,7 +222,7 @@ class Questionnaire extends Component {
 
       render() { 
 
-        console.log(this.filterOptions());
+        console.log(this.filterMethods());
         return(
           <Container>
             <Segment style={{ marginTop: 20}} raised>
