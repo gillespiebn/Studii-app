@@ -1,6 +1,7 @@
 import React from 'react'
-import {  } from 'semantic-ui-react'
-import PracticeProfileLayout from "../../components/PracticeProfileLayout"
+// import {  } from 'semantic-ui-react'
+import { Form, Grid, Image, Transition } from 'semantic-ui-react'
+import PracticeProfileLayout from "../../components/PracticeProfileLayout";
 import API from "../../utils/API";
 
 
