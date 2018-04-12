@@ -14,13 +14,16 @@ class Calendar extends Component {
     };
     
     morningAvail = () => {
+        event.preventDefault();
         if(this.state.src === "/images/pinkMor.png") {
             this.setState({src:"/images/blueMor.png"})
         } else {
             this.setState({src:"/images/pinkMor.png"})
         }
+        
     };
     afternoonAvail = () => {
+        event.preventDefault();
         if(this.state.src === "/images/pinkAft.png") {
             this.setState({src:"/images/blueAft.png"})
         } else {
@@ -28,6 +31,7 @@ class Calendar extends Component {
         }
     };
     eveningAvail = () => {
+        event.preventDefault();
         if(this.state.src === "/images/pinkEve.png") {
             this.setState({src:"/images/blueEve.png"})
         } else {
@@ -35,6 +39,7 @@ class Calendar extends Component {
         }
     };
     nightAvail = () => {
+        event.preventDefault();
         if(this.state.src === "/images/pinkNi.png") {
             this.setState({src:"/images/blueNi.png"})
         } else {
