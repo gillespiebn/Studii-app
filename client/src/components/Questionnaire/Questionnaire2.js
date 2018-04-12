@@ -8,9 +8,11 @@ import _ from 'lodash';
 // import allSchools from '../../utils/allSchools.js'
 // import twoSchools from '../../utils/twoSchools.js'
 import vaSchools from '../../utils/vaSchools.js'
-import SearchForm from "../SearchForm";
+import classNamesSeed from '../../utils/classNames.js'
+import SearchFormSchools from "../SearchFormSchools";
+import SearchFormClasses from "../SearchFormClasses";
 
-// import SearchFormRenderer from "../SearchFormRenderer";
+// import SearchFormSchoolsRenderer from "../SearchFormSchoolsRenderer";
 
 
 // const source = allSchools;
@@ -25,16 +27,19 @@ const classStandingOptions = [
 class Questionnaire extends Component {
     state = {
         facebook_id: this.props.facebook_id,
+        schoolsForAutocomplete: vaSchools,
+        classNamesForAutocomplete: classNamesSeed,
         name: "",
         email: "",
         school: "",
         classStanding: "",
         classID: "",
+        classIDNumber: '',
         classes: [],
         // locations: [],
         // times: [],
-        schoolsForAutocomplete: vaSchools,
         results: [],
+        resultsClasses: [],
         //change major and minor when they are created
         major: '',
         minor: '',
@@ -109,7 +114,33 @@ class Questionnaire extends Component {
         });
       }
 
-      //jordan worked on this part...it is working. the objToSave is the data structure that I need...facebook_id will change as it's working with fake data right now
+      createClass = event => {
+        event.preventDefault();
+        this.setState({prefixEmpty: null, prefixProblem: null, numberEmpty: null, numberProblem: null, numberWrong: null})
+        let bad = false;
+        if (!this.state.classID) {
+          bad = true
+          this.setState({prefixEmpty: "Please Enter Your Class Prefix", prefixProblem: "error"});
+          bad = true;
+        }
+        if (!this.state.classIDNumber) {
+          bad = true
+          this.setState({numberEmpty: "Please Enter Your Class Number", numberProblem: "error"});
+          bad = true;
+        } else if (this.state.classIDNumber.length !== 3) {
+          bad = true;
+          this.setState({numberWrong: "Please Enter a 3 Digit Number", numberProblem: "error"})
+        }
+        if (bad) {
+          return;
+        }
+        let nameArray = this.state.classID.split(" ");
+        let stringToPush = nameArray.join("*") + ":" + this.state.classIDNumber;
+        let newClasses = this.state.classes;
+        newClasses.push(stringToPush);
+        this.setState({classes: newClasses, classID: null, classIDNumber: null})
+      }
+
       handleFormSubmit = event => {
         event.preventDefault();
         let schoolCode;
@@ -119,10 +150,6 @@ class Questionnaire extends Component {
           }
         }
         const objToSave = {
-          isLoading: '',
-          results: [],
-          value: '',
-
           name: this.state.name,
           email: this.state.email,
           school: this.state.school,
@@ -130,14 +157,12 @@ class Questionnaire extends Component {
           facebook_id: this.state.facebook_id + 1,
           classStanding: this.state.classStanding,
           classes: this.state.classes,
-          methods: this.state.methods,
-          times: this.state.times,
-          locations: this.state.locations,
+          methods: this.filterMethods(),
+          times: this.filterTime(),
+          locations: this.filterLocations(),
           photo: "https://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.pnghttps://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.png",
           major: this.state.major,
           minor: this.state.minor,
-
-          flashcardActive: false,
         }
         // need to make check functions here. they will set states and if those states exist, they will highlight where something needs to change
         this.checkFunctions(objToSave);
@@ -148,7 +173,8 @@ class Questionnaire extends Component {
         this.setState({ 
           nameEmpty: false, nameProblem: false, 
           emailProblem: false, emailEmpty: false, emailFormatProblem: false, 
-          majorEmpty: false, majorProblem: false 
+          majorEmpty: false, majorProblem: false,
+          schoolEmpty: false, schoolProblem: false, schoolWrong: false
         });
 
         let bad = false;
@@ -170,6 +196,21 @@ class Questionnaire extends Component {
         if (!this.state.major) {
           this.setState({majorEmpty: "Please Enter Your Major", majorProblem: "error"});
           bad = true;
+        }
+        if (!this.state.school) {
+          this.setState({schoolEmpty: "Please Enter School Name", schoolProblem: "error"});
+          bad = true;
+        } else {
+          let good = false;
+          for (let i = 0; i < this.state.schoolsForAutocomplete.length; i++) {
+            if (this.state.schoolsForAutocomplete[i].name === this.state.school) {
+              good = true;
+            }
+          }
+          if (!good) {
+            this.setState({schoolWrong: "Please Select From the List", schoolProblem: "error"})
+            bad = true;
+          }
         }
 
 
@@ -264,9 +305,33 @@ class Questionnaire extends Component {
       }
       //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
-      render() { 
+      //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
+      resetComponentClass = () => this.setState({ isLoading: false, results: [], valueClass: '' })
 
-        console.log(this.filterMethods());
+      handleResultSelectClass = (e, { result }) => this.setState({ classID: result.fullName })
+    
+      handleSearchChangeClass = (e, { value }) => {
+
+        this.setState({ isLoading: true, value })
+    
+        setTimeout(() => {
+          if (value.length < 1) return this.resetComponent()
+    
+          const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+          const isMatch = result => re.test(result.fullName)
+          // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
+          // this.setState({results: tempResults});
+    
+          this.setState({
+            isLoading: false,
+            results: _.filter(this.state.classNamesForAutocomplete, isMatch),
+          })
+        }, 300)
+      }
+      //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+      render() { 
         return(
           <Container>
             <Segment style={{ marginTop: 20}} raised>
@@ -276,11 +341,11 @@ class Questionnaire extends Component {
               <Container>
                 <Form>
                   <Form.Group>
-                    <Form.Field control={Input} label='First and Last Name' className={`${this.state.nameProblem}`} width={16}>
+                    <Form.Field control={Input} label='First and Last Name'  width={16} className={`${this.state.nameProblem}`}>
                     <input type="text" placeholder="Enter First and Last Name Here" required name="name" onChange={this.handleInputChange} />
                     {this.state.nameEmpty ?
-                        <Label basic color="red" pointing>{`${this.state.nameEmpty}`}</Label>
-                      : ""}
+                      <Label basic color="red" pointing="left">{`${this.state.nameEmpty}`}</Label>
+                    : ""}
 
                       {/* <Label>
                         {<Icon name="user" size="large"/>}
@@ -292,10 +357,10 @@ class Questionnaire extends Component {
                     <Form.Field control={Input} label="Email Address" placeholder="Enter School (.edu) Email Address" className={`${this.state.emailProblem}`} width={16}>
                       <input type="email" required name="email" onChange={this.handleInputChange} />
                       {this.state.emailEmpty ?
-                        <Label basic color="red" pointing>{`${this.state.emailEmpty}`}</Label>
+                        <Label basic color="red" pointing="left">{`${this.state.emailEmpty}`}</Label>
                       : ""}
                       {this.state.emailFormatProblem ?
-                        <Label basic color="red" pointing>{`${this.state.emailFormatProblem}`}</Label>
+                        <Label basic color="red" pointing="left">{`${this.state.emailFormatProblem}`}</Label>
                       : ""}
                     </Form.Field>
                   </Form.Group>
@@ -304,23 +369,13 @@ class Questionnaire extends Component {
                       <Label>
                         {<Icon name="university" size="large" />}
                       </Label>
-                      <div>     
-                      {/* <Search
-                        loading={this.stateisLoading}
-                        onResultSelect={this.handleResultSelect}
-                        onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                        results={this.state.results}
-                        value={this.state.value}
-                        {...this.props}
-                      /> */}
-                      </div>
                     </Form.Field>  
                   </Form.Group>
                   <Form.Group widths='equal'>  
                     <Form.Field control={Input} label="Major" className={`${this.state.majorProblem}`}>
                       <input type="text" placeholder="Enter Your Major" required name="major" onChange={this.handleInputChange} />
                       {this.state.majorEmpty ?
-                        <Label basic color="red" pointing>{`${this.state.majorEmpty}`}</Label>
+                        <Label basic color="red" pointing="left">{`${this.state.majorEmpty}`}</Label>
                       : ""}
                     </ Form.Field>
                     <Form.Field control={Input} label="Minor" className="minor">
@@ -328,11 +383,44 @@ class Questionnaire extends Component {
                     </ Form.Field>  
                   </Form.Group>
                   <Form.Group>
-                    <Form.Select label='Class Standing' name="classStanding" options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange}/>
+                    {/* <Form.Select label='Class Standing' name="classStanding" options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange}/> */}
+                    <Form.Field control={Input} label="Class Standing" className="classStanding">
+                      <input type="text" placeholder="i.e. Senior" required name="classStanding" onChange={this.handleInputChange} />
+                    </ Form.Field>  
+                  </Form.Group>
+                  <p className="label">Add Classes</p>
+                  <div>
+                    <h5>Class Prefix</h5>
+                    {this.state.prefixEmpty ?
+                      <Label basic color="red" pointing="below">{`${this.state.prefixEmpty}`}</Label>
+                    : ""}
+                    <SearchFormClasses
+                      fluid
+                      className={`${this.state.prefixProblem}`}
+                      style={{overflow: "auto", height: 100, minWidth: "30%"}}
+                      placeholder="Enter Class Prefix"
+                      loading={this.stateisLoadingClass}
+                      onResultSelect={this.handleResultSelectClass}
+                      onSearchChange={_.debounce(this.handleSearchChangeClass, 500, { leading: true })}
+                      results={this.state.results}
+                      value={this.state.valueClass}
+                      {...this.props}  
+                    />
+                  </div>
+                  <Form.Group>
+                    <Form.Field className={`${this.state.numberProblem}`} control={Input} label="Class Number" className="classNumber">
+                      <input type="text" placeholder="Enter Class Number" required name="classIDNumber" onChange={this.handleInputChange} />
+                      {this.state.numberEmpty ?
+                        <Label basic color="red" pointing="left">{`${this.state.numberEmpty}`}</Label>
+                      : ""}
+                      {this.state.numberWrong ?
+                        <Label basic color="red" pointing="left">{`${this.state.numberWrong}`}</Label>
+                      : ""}
+                    </ Form.Field>
+                    <Button toggle name="createClass" id="smallerButton"  onClick={this.createClass} width={5}> Add Class </Button>
                   </Form.Group>
                   <p className="label">Preferred Study Methods</p>
                   <Form.Group widths="equal">
-                  <p>Preferred Method of Study</p>
                     <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" width={5}> Flashcards </Button>
                     <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" width={5}> Quizzes </Button>
                     <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" width={5}> Rereading </Button>
@@ -367,7 +455,7 @@ class Questionnaire extends Component {
                     <Button toggle active={this.state.times.SundayAfternoon} name="SundayAfternoon" onClick={this.handleTimeToggle} data-times="SundayAfternoon" className="Sunday" > Sunday Afternoon </Button>
                     <Button toggle active={this.state.times.MondayAfternoon} name="MondayAfternoon" onClick={this.handleTimeToggle} data-times="MondayAfternoon" className="Monday" > Monday Afternoon </Button>
                     <Button toggle active={this.state.times.TuesdayAfternoon} name="TuesdayAfternoon" onClick={this.handleTimeToggle} data-times="TuesdayAfternoon" className="Tuesday" > Tuesday Afternoon </Button> 
-                    <Button toggle active={this.state.times.WednesdayAfternoon} name="WednesdaAfternoon" onClick={this.handleTimeToggle} data-times="WednesdayAfternoon" className="Wednesday" > Wednesday Afternoon </Button>
+                    <Button toggle active={this.state.times.WednesdayAfternoon} name="WednesdayAfternoon" onClick={this.handleTimeToggle} data-times="WednesdayAfternoon" className="Wednesday" > Wednesday Afternoon </Button>
                     <Button toggle active={this.state.times.ThursdayAfternoon} name="ThursdayAfternoon" onClick={this.handleTimeToggle} data-times="ThursdayAfternoon" className="Thursday" > Thursday Afternoon </Button>
                     <Button toggle active={this.state.times.FridayAfternoon} name="FridayAfternoon" onClick={this.handleTimeToggle} data-times="FridayAfternoon" className="Friday" > Friday Afternoon </Button>
                     <Button toggle active={this.state.times.SaturdayAfternoon} name="SaturdayAfternoon" onClick={this.handleTimeToggle} data-times="SaturdayAfternoon" className="Saturday" > Saturday Afternoon </Button>
@@ -387,21 +475,29 @@ class Questionnaire extends Component {
                     <Button toggle active={this.state.times.TuesdayNight} name="TuesdayNight" onClick={this.handleTimeToggle} data-times="TuesdayNight" className="Tuesday" > Tuesday Night </Button>
                     <Button toggle active={this.state.times.WednesdayNight} name="WednesdayNight" onClick={this.handleTimeToggle} data-times="WednesdayNight" className="Wednesday" > Wednesday Night </Button>
                     <Button toggle active={this.state.times.ThursdayNight} name="ThursdayNight" onClick={this.handleTimeToggle} data-times="ThursdayNight" className="Thursday" > Thursday Night </Button>
-                    <Button toggle active={this.state.times.FridayNight} name="FridaNight" onClick={this.handleTimeToggle} data-times="FridayNight" className="Friday" > Friday Night </Button>
+                    <Button toggle active={this.state.times.FridayNight} name="FridayNight" onClick={this.handleTimeToggle} data-times="FridayNight" className="Friday" > Friday Night </Button>
                     <Button toggle active={this.state.times.SaturdayNight} name="SaturdayNight" onClick={this.handleTimeToggle} data-times="SaturdayNight" className="Saturday" > Saturday Night </Button>
                   </Form.Group>  
                 </Form>
               </Container>
-
-              <SearchForm
-                placeholder="Enter School Name"
-                loading={this.stateisLoading}
-                onResultSelect={this.handleResultSelect}
-                onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                results={this.state.results}
-                value={this.state.value}
-                {...this.props}  
-              />
+              <div> 
+                {this.state.schoolEmpty ?
+                  <Label basic color="red" pointing="below">{`${this.state.schoolEmpty}`}</Label>
+                : ""}
+                {this.state.schoolWrong ?
+                  <Label basic color="red" pointing="below">{`${this.state.schoolWrong}`}</Label>
+                : ""}
+                <SearchFormSchools
+                  style={{overflow: "auto", height: 100}}
+                  placeholder="Enter School Name"
+                  loading={this.stateisLoading}
+                  onResultSelect={this.handleResultSelect}
+                  onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+                  results={this.state.results}
+                  value={this.state.value}
+                  {...this.props}  
+                />
+              </div>
 
               {/* this button is just kind of a placeholder. it works, but probably needs styling */}
               <Button onClick={this.handleFormSubmit} className="submit">Submit</Button>
