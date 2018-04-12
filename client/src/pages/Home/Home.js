@@ -15,7 +15,7 @@ class Login extends React.Component {
 
   componentDidMount() {
     API.retrieveProfiles().then(data => {
-      // console.log(data.data[0]);
+       console.log(data.data[0]);
       this.setState({profiles: data})
     })
   }
