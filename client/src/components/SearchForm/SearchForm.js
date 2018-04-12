@@ -1,13 +1,10 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Search, Grid, Header, Label } from 'semantic-ui-react'
-import twoSchools from '../../utils/twoSchools.js'
-import allSchools from '../../utils/allSchools.js'
+import { Search, Grid, Label } from 'semantic-ui-react'
 // import SearchExampleStandard from './SearchExampleStandard';
 import PropTypes from 'prop-types';
 
 
-const source = allSchools;
 
 const resultRenderer = ({ name, code }) => <Label key={code} content={name} />
 
@@ -17,7 +14,7 @@ resultRenderer.propTypes = {
 }
 
 const SearchExampleStandardCustom = () => (
-  <SearchExampleStandard resultRenderer={resultRenderer} />
+  <Search resultRenderer={resultRenderer} />
 )
 
 
@@ -70,11 +67,11 @@ export default class SearchExampleStandard extends Component {
             noResultsMessage ={"No Results Found"}
             minCharacters= {3}
             resultRenderer={resultRenderer}
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-            results={results}
-            value={value}
+            // loading={isLoading}
+            // onResultSelect={this.handleResultSelect}
+            // onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+            // results={results}
+            // value={value}
             {...this.props}
           />
         </Grid.Column>

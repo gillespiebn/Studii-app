@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./Questionnaire.css";
-import TeacherInput from "../Teachers";
-import ClassInput from "../Classes";
+// import TeacherInput from "../Teachers";
+// import ClassInput from "../Classes";
 import API from '../../utils/API.js';
-import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Select, Grid, Dropdown } from 'semantic-ui-react';
+import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown } from 'semantic-ui-react';
 import _ from 'lodash';
-import allSchools from '../../utils/allSchools.js'
-import twoSchools from '../../utils/twoSchools.js'
+// import allSchools from '../../utils/allSchools.js'
+// import twoSchools from '../../utils/twoSchools.js'
 import vaSchools from '../../utils/vaSchools.js'
 import SearchForm from "../SearchForm";
 
@@ -31,7 +31,6 @@ class Questionnaire extends Component {
         classStanding: "",
         classID: "",
         classes: [],
-        methods: [],
         locations: [],
         times: [],
         schoolsForAutocomplete: vaSchools,
@@ -156,7 +155,7 @@ class Questionnaire extends Component {
         event.preventDefault();
         let studymethods = this.state.methods
         studymethods.push(event.target.dataset.methods)
-        this.setState({methods: studymethods, stateToChange: !this.state.active })
+        this.setState({methods: studymethods })
       };
 
       updateStudyPlaces = event => {
@@ -183,6 +182,7 @@ class Questionnaire extends Component {
       }
 
       handleMethodToggle = event => {
+        event.preventDefault();
         const { name } = event.target;
 
         const methods = {...this.state.methods, [name]: !this.state.methods[name]};
@@ -291,7 +291,7 @@ class Questionnaire extends Component {
                   <p>Preferred Method of Study</p>
                     <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" width={5}> Flashcards </Button>
                     <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" width={5}> Quizzes </Button>
-                    <Button  onClick={this.updateStudyMethods} data-methods="Rereading" width={5}> Rereading </Button>
+                    <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" width={5}> Rereading </Button>
                   </Form.Group>
                   <Form.Group widths="equal">  
                     <Button onClick={this.updateStudyMethods} data-methods="Revision Notes" > Revision Notes </Button>

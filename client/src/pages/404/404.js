@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Header, Icon } from 'semantic-ui-react'
+import {  } from 'semantic-ui-react'
 
 
 const HeaderComponent = () => (
