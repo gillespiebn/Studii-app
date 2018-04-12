@@ -31,8 +31,8 @@ class Questionnaire extends Component {
         classStanding: "",
         classID: "",
         classes: [],
-        locations: [],
-        times: [],
+        // locations: [],
+        // times: [],
         schoolsForAutocomplete: vaSchools,
         results: [],
         //change major and minor when they are created
@@ -49,8 +49,46 @@ class Questionnaire extends Component {
           other: false
         },
         locations: {
-          
-        }
+          library: false,
+          online: false,
+          commons: false,
+          cafe: false,
+          home: false,
+          other: false
+        },
+        times: {
+          SundayMorning: false,
+          MondayMorning: false,
+          TuesdayMorning: false,
+          WednesdayMorning: false,
+          ThursdayMorning: false,
+          FridayMorning: false,
+          SaturdayMorning: false,
+          SundayAfternoon: false,
+          MondayAfternoon: false,
+          TuesdayAfternoon: false,
+          WednesdayAfternoon: false,
+          ThursdayAfternoon: false,
+          FridayAfternoon: false,
+          SaturdayAfternoon: false,
+          SundayAfternoon: false,
+          SundayEvening: false,
+          MondayEvening: false,
+          TuesdayEvening: false,
+          WednesdayEvening: false,
+          ThursdayEvening: false,
+          FridayEvening: false,
+          SaturdayEvening: false,
+          SundayEvening: false,
+          SundayNight: false,
+          MondayNight: false,
+          TuesdayNight: false,
+          WednesdayNight: false,
+          ThursdayNight: false,
+          FridayNight: false,
+          SaturdayNight: false,
+          SundayNight: false
+        } 
        };
 
       //this function is good
@@ -141,35 +179,13 @@ class Questionnaire extends Component {
         this.setState({ continue: true })
         console.log("we got here");
         API.createUser(obj).then(data => console.log(data.data)).catch(err => console.log(err));
-      }
+      };
 
       updateClassStanding = event => {
         event.preventDefault();
         let standing = this.state.classStanding
         standing.push(EventTarget.dataset.classStanding)
         this.setState({ classStanding: standing })
-      };
-
-      updateStudyMethods = event => {
-        console.log(event);
-        event.preventDefault();
-        let studymethods = this.state.methods
-        studymethods.push(event.target.dataset.methods)
-        this.setState({methods: studymethods })
-      };
-
-      updateStudyPlaces = event => {
-        event.preventDefault();
-        let studyplaces = this.state.locations 
-        studyplaces.push(event.target.dataset.locations)
-        this.setState({ locations: studyplaces})
-      };
-
-      updateAvailability = event => {
-        event.preventDefault();
-        let availability = this.state.times
-        availability.push(event.target.dataset.times)
-        this.setState({ times: availability })
       };
 
       //this is currently grabbing all the schools for the auto-complete and for grabbing the school code
@@ -191,8 +207,36 @@ class Questionnaire extends Component {
         });
       }
 
+      handleLocationToggle = event => {
+        event.preventDefault();
+        const { name } = event.target;
+
+        const locations = {...this.state.locations, [name]: !this.state.locations[name]};
+        this.setState({
+          locations
+        });
+      }
+
+      handleTimeToggle = event => {
+        event.preventDefault();
+        const { name } = event.target;
+
+        const times = {...this.state.times, [name]: !this.state.times[name]};
+        this.setState({
+          times
+        });
+      }
+
       filterMethods = () => {
         return Object.keys(this.state.methods).filter((option, index) => this.state.methods[option]);
+      }
+
+      filterLocations = () => {
+        return Object.keys(this.state.locations).filter((option, index) => this.state.locations[option]);
+      }
+
+      filterTime = () => {
+        return Object.keys(this.state.times).filter((option, index) => this.state.times[option]);
       }
 
       //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
@@ -284,7 +328,7 @@ class Questionnaire extends Component {
                     </ Form.Field>  
                   </Form.Group>
                   <Form.Group>
-                    <Form.Select label='Class Standing' name="classStanding" options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange} onClick={this.handleInputChange}/>
+                    <Form.Select label='Class Standing' name="classStanding" options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange}/>
                   </Form.Group>
                   <p className="label">Preferred Study Methods</p>
                   <Form.Group widths="equal">
@@ -294,57 +338,57 @@ class Questionnaire extends Component {
                     <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" width={5}> Rereading </Button>
                   </Form.Group>
                   <Form.Group widths="equal">  
-                    <Button onClick={this.updateStudyMethods} data-methods="Revision Notes" > Revision Notes </Button>
-                    <Button onClick={this.updateStudyMethods} data-methods="Mnemonics" > Mnemonics </Button>
-                    <Button onClick={this.updateStudyMethods} data-methods="Other" > Other </Button>
+                    <Button toggle active={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
+                    <Button toggle active={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
+                    <Button toggle active={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
                   </Form.Group>
                   <p className="label">Preferred Study Location</p>
                   <Form.Group widths="equal">
-                    <Button onClick={this.updateStudyPlaces} data-locations="Library">Library</Button>
-                    <Button onClick={this.updateStudyPlaces} data-locations="Coffee Shop">Coffee Shop</Button>
-                    <Button onClick={this.updateStudyPlaces} data-locations="Commons">Commons</Button>
+                    <Button toggle active={this.state.locations.library}name="library"  onClick={this.handleLocationToggle}data-locations="Library">Library</Button>
+                    <Button toggle active={this.state.locations.online} name="online" onClick={this.handleLocationToggle}data-locations="Online">Online</Button>
+                    <Button toggle active={this.state.locations.commons}name="commons"  onClick={this.handleLocationToggle}data-locations="Commons">Commons</Button>
                   </Form.Group>
                   <Form.Group widths="equal">  
-                    <Button onClick={this.updateStudyPlaces} data-locations="Cafe">Cafe</Button>
-                    <Button onClick={this.updateStudyPlaces} data-locations="Home">Home</Button>
-                    <Button onClick={this.updateStudyPlaces} data-locations="Other">Other</Button>
+                    <Button toggle active={this.state.locations.cafe} name="cafe" onClick={this.handleLocationToggle}data-locations="Cafe">Cafe</Button>
+                    <Button toggle active={this.state.locations.home} name="home" onClick={this.handleLocationToggle}data-locations="Home">Home</Button>
+                    <Button toggle active={this.state.locations.other} name="other" onClick={this.handleLocationToggle}data-locations="Other">Other</Button>
                   </Form.Group>
                   <p className="label">Preferred Study Time</p>
                   <Form.Group widths="equal">
-                    <Button onClick={this.updateAvailability} data-times="Sunday Morning" className="Sunday" > Sunday Morning </Button>
-                    <Button onClick={this.updateAvailability} data-times="Monday Morning" className="Monday"> Monday Morning </Button>
-                    <Button onClick={this.updateAvailability} data-times="Tuesday Morning" className="Tuesday" > Tuesday Morning </Button>
-                    <Button onClick={this.updateAvailability} data-times="Wednesday Morning" className="Wednesday" > Wednesday Morning </Button> 
-                    <Button onClick={this.updateAvailability} data-times="Thursday Morning" className="Thursday" > Thursday Morning </Button>
-                    <Button onClick={this.updateAvailability} data-times="Friday Morning" className="Friday" > Friday Morning </Button>
-                    <Button onClick={this.updateAvailability} data-times="Saturday Morning" className="Saturday" > Saturday Morning </Button>
+                    <Button toggle active={this.state.times.SundayMorning} name="SundayMorning" onClick={this.handleTimeToggle} data-times="SundayMorning" className="Sunday" > Sunday Morning </Button>
+                    <Button toggle active={this.state.times.MondayMorning} name="MondayMorning" onClick={this.handleTimeToggle} data-times="MondayMorning" className="Monday"> Monday Morning </Button>
+                    <Button toggle active={this.state.times.TuesdayMorning} name="TuesdayMorning" onClick={this.handleTimeToggle} data-times="TuesdayMorning" className="Tuesday" > Tuesday Morning </Button>
+                    <Button toggle active={this.state.times.WednesdayMorning} name="WednesdayMorning" onClick={this.handleTimeToggle} data-times="WednesdayMorning" className="Wednesday" > Wednesday Morning </Button> 
+                    <Button toggle active={this.state.times.ThursdayMorning} name="ThursdayMorning" onClick={this.handleTimeToggle} data-times="ThursdayMorning" className="Thursday" > Thursday Morning </Button>
+                    <Button toggle active={this.state.times.FridayMorning} name="FridayMorning" onClick={this.handleTimeToggle} data-times="FridayMorning" className="Friday" > Friday Morning </Button>
+                    <Button toggle active={this.state.times.SaturdayMorning} name="SaturdayMorning" onClick={this.handleTimeToggle} data-times="SaturdayMorning" className="Saturday" > Saturday Morning </Button>
                   </Form.Group>
                   <Form.Group widths="equal"> 
-                    <Button onClick={this.updateAvailability} data-times="Sunday Afternoon" className="Sunday" > Sunday Afternoon </Button>
-                    <Button onClick={this.updateAvailability} data-times="Monday Afternoon" className="Monday" > Monday Afternoon </Button>
-                    <Button onClick={this.updateAvailability} data-times="Tuesday Afternoon" className="Tuesday" > Tuesday Afternoon </Button> 
-                    <Button onClick={this.updateAvailability} data-times="Wednesday Afternoon" className="Wednesday" > Wednesday Afternoon </Button>
-                    <Button onClick={this.updateAvailability} data-times="Thursday Afternoon" className="Thursday" > Thursday Afternoon </Button>
-                    <Button onClick={this.updateAvailability} data-times="Friday Afternoon" className="Friday" > Friday Afternoon </Button>
-                    <Button onClick={this.updateAvailability} data-times="Saturday Afternoon" className="Saturday" > Saturday Afternoon </Button>
+                    <Button toggle active={this.state.times.SundayAfternoon} name="SundayAfternoon" onClick={this.handleTimeToggle} data-times="SundayAfternoon" className="Sunday" > Sunday Afternoon </Button>
+                    <Button toggle active={this.state.times.MondayAfternoon} name="MondayAfternoon" onClick={this.handleTimeToggle} data-times="MondayAfternoon" className="Monday" > Monday Afternoon </Button>
+                    <Button toggle active={this.state.times.TuesdayAfternoon} name="TuesdayAfternoon" onClick={this.handleTimeToggle} data-times="TuesdayAfternoon" className="Tuesday" > Tuesday Afternoon </Button> 
+                    <Button toggle active={this.state.times.WednesdayAfternoon} name="WednesdaAfternoon" onClick={this.handleTimeToggle} data-times="WednesdayAfternoon" className="Wednesday" > Wednesday Afternoon </Button>
+                    <Button toggle active={this.state.times.ThursdayAfternoon} name="ThursdayAfternoon" onClick={this.handleTimeToggle} data-times="ThursdayAfternoon" className="Thursday" > Thursday Afternoon </Button>
+                    <Button toggle active={this.state.times.FridayAfternoon} name="FridayAfternoon" onClick={this.handleTimeToggle} data-times="FridayAfternoon" className="Friday" > Friday Afternoon </Button>
+                    <Button toggle active={this.state.times.SaturdayAfternoon} name="SaturdayAfternoon" onClick={this.handleTimeToggle} data-times="SaturdayAfternoon" className="Saturday" > Saturday Afternoon </Button>
                   </Form.Group>
                   <Form.Group widths="equal">
-                    <Button onClick={this.updateAvailability} data-times="Sunday Evening" className="Sunday" > Sunday Evening </Button> 
-                    <Button onClick={this.updateAvailability} data-times="Monday Evening" className="Monday" > Monday Evening </Button>   
-                    <Button onClick={this.updateAvailability} data-times="Tuesday Evening" className="Tuesday" > Tuesday Evening </Button>
-                    <Button onClick={this.updateAvailability} data-times="Wednesday Evening" className="Wednesday" > Wednesday Evening </Button>
-                    <Button onClick={this.updateAvailability} data-times="Thursday Evening" className="Thursday" > Thursday Evening </Button>
-                    <Button onClick={this.updateAvailability} data-times="Friday Evening" className="Friday" > Friday Evening </Button>
-                    <Button onClick={this.updateAvailability} data-times="Saturday Evening" className="Saturday" > Saturday Evening </Button>
+                    <Button toggle active={this.state.times.SundayEvening} name="SundayEvening" onClick={this.handleTimeToggle} data-times="SundayEvening" className="Sunday" > Sunday Evening </Button> 
+                    <Button toggle active={this.state.times.MondayEvening} name="MondayEvening" onClick={this.handleTimeToggle} data-times="MondayEvening" className="Monday" > Monday Evening </Button>   
+                    <Button toggle active={this.state.times.TuesdayEvening} name="TuesdayEvening" onClick={this.handleTimeToggle} data-times="TuesdayEvening" className="Tuesday" > Tuesday Evening </Button>
+                    <Button toggle active={this.state.times.WednesdayEvening} name="WednesdayEvening" onClick={this.handleTimeToggle} data-times="WednesdayEvening" className="Wednesday" > Wednesday Evening </Button>
+                    <Button toggle active={this.state.times.ThursdayEvening} name="ThursdayEvening" onClick={this.handleTimeToggle} data-times="ThursdayEvening" className="Thursday" > Thursday Evening </Button>
+                    <Button toggle active={this.state.times.FridayEvening} name="FridayEvening" onClick={this.handleTimeToggle} data-times="FridayEvening" className="Friday" > Friday Evening </Button>
+                    <Button toggle active={this.state.times.SaturdayEvening} name="SaturdayEvening" onClick={this.handleTimeToggle} data-times="SaturdayEvening" className="Saturday" > Saturday Evening </Button>
                   </Form.Group>
                   <Form.Group widths="equal">   
-                    <Button onClick={this.updateAvailability} data-times="Sunday Night" className="Sunday" > Sunday Night </Button>
-                    <Button onClick={this.updateAvailability} data-times="Monday Night" className="Monday" > Monday Night </Button>
-                    <Button onClick={this.updateAvailability} data-times="Tuesday Night" className="Tuesday" > Tuesday Night </Button>
-                    <Button onClick={this.updateAvailability} data-times="Wednesday Night" className="Wednesday" > Wednesday Night </Button>
-                    <Button onClick={this.updateAvailability} data-times="Thursday Night" className="Thursday" > Thursday Night </Button>
-                    <Button onClick={this.updateAvailability} data-times="Friday Night" className="Friday" > Friday Night </Button>
-                    <Button onClick={this.updateAvailability} data-times="Saturday Night" className="Saturday" > Saturday Night </Button>
+                    <Button toggle active={this.state.times.SundayNight}name="SundayNight" onClick={this.handleTimeToggle}  data-times="SundayNight" className="Sunday" > Sunday Night </Button>
+                    <Button toggle active={this.state.times.MondayNight} name="MondayNight" onClick={this.handleTimeToggle} data-times="MondayNight" className="Monday" > Monday Night </Button>
+                    <Button toggle active={this.state.times.TuesdayNight} name="TuesdayNight" onClick={this.handleTimeToggle} data-times="TuesdayNight" className="Tuesday" > Tuesday Night </Button>
+                    <Button toggle active={this.state.times.WednesdayNight} name="WednesdayNight" onClick={this.handleTimeToggle} data-times="WednesdayNight" className="Wednesday" > Wednesday Night </Button>
+                    <Button toggle active={this.state.times.ThursdayNight} name="ThursdayNight" onClick={this.handleTimeToggle} data-times="ThursdayNight" className="Thursday" > Thursday Night </Button>
+                    <Button toggle active={this.state.times.FridayNight} name="FridaNight" onClick={this.handleTimeToggle} data-times="FridayNight" className="Friday" > Friday Night </Button>
+                    <Button toggle active={this.state.times.SaturdayNight} name="SaturdayNight" onClick={this.handleTimeToggle} data-times="SaturdayNight" className="Saturday" > Saturday Night </Button>
                   </Form.Group>  
                 </Form>
               </Container>
