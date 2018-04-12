@@ -117,7 +117,13 @@ class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/home" 
+               render={(routeProps) => (
+                <Home  
+                    facebook_id={this.state.facebook_id}
+                    />
+                   )} 
+                />
             {/* <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/groups" component={Groups} />
