@@ -154,7 +154,7 @@ class Questionnaire extends Component {
           email: this.state.email,
           school: this.state.school,
           schoolCode: schoolCode,
-          facebook_id: this.state.facebook_id + 1,
+          facebook_id: this.state.facebook_id,
           classStanding: this.state.classStanding,
           classes: this.state.classes,
           methods: this.filterMethods(),

@@ -13,7 +13,7 @@ router.post('/matches', (req, res) => {
   // school code
   // time
   // class
-  // console.log(req.body.data)
+  console.log(req.body.data)
   // console.log(req.body.data.times);
   db.Users
     // .where('schoolCode').equals('req.body.data.schoolCode')
@@ -31,10 +31,12 @@ router.post('/matches', (req, res) => {
   });
 
 router.get('/userprofile/:fbID', (req, res) => {
-  const user = req.params.fbID
-  db.Users.find({ facebook_id: req.params.fbID })
+  const user = req.params.fbID.toString();
+  console.log("/userprofile/:fbID " + req.params.fbID);
+  db.Users.findOne({ facebook_id: req.params.fbID })
     .then(data => {
-      let returnObject = {}
+      let returnObject = data
+      // console.log(data);
       if (!data) {
         returnObject.string = "no data";
       } else {
