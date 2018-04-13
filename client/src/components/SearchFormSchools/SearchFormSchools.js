@@ -11,11 +11,8 @@ const resultRenderer = ({ name, code }) => <Label key={code} content={name} />
 resultRenderer.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
+  code: PropTypes.string,
 }
-
-const SearchExampleStandardCustom = () => (
-  <Search resultRenderer={resultRenderer} />
-)
 
 
 export default class SearchExampleStandard extends Component {
@@ -40,13 +37,7 @@ export default class SearchExampleStandard extends Component {
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = result => {
-        if (this.state.count < 10){
-          re.test(result.name)
           this.setState({count: this.state.count + 1})
-        } else { 
-          this.setState({count: 0})
-          return
-        }
       }
 
       this.setState({
@@ -64,14 +55,10 @@ export default class SearchExampleStandard extends Component {
         <Grid.Column width={8}>
           <Search
             fluid
+            key={this.resultRenderer}
             noResultsMessage ={"No Results Found"}
             minCharacters= {3}
             resultRenderer={resultRenderer}
-            // loading={isLoading}
-            // onResultSelect={this.handleResultSelect}
-            // onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-            // results={results}
-            // value={value}
             {...this.props}
           />
         </Grid.Column>

@@ -142,6 +142,9 @@ class SettingsCard extends Component {
   componentDidMount() {
     API.getUser(this.state.facebook_id)
       .then(data => {
+        console.log("underthisisthecardshit");
+        console.log(this.state.facebook_id);
+        console.log(data);
         this.setState({user: data.data[0], name: data.data[0].name, email: data.data[0].email, school: data.data[0].school, classStanding: data.data[0].classStanding, classes: data.data[0].classes, objMethods: data.data[0].methods, objLocations: data.data[0].locations, objTimes: data.data[0].times, major: data.data[0].major, minor: data.data[0].minor, photo: data.data[0].photo});
         for (var i = 0; i < this.state.objMethods.length; i++) {
           console.log("this ran")

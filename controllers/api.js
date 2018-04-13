@@ -13,7 +13,7 @@ router.post('/matches', (req, res) => {
   // school code
   // time
   // class
-  // console.log(req.body.data)
+  console.log(req.body.data)
   // console.log(req.body.data.times);
   db.Users
     // .where('schoolCode').equals('req.body.data.schoolCode')
@@ -31,9 +31,19 @@ router.post('/matches', (req, res) => {
   });
 
 router.get('/userprofile/:fbID', (req, res) => {
-  const user = req.params.fbID
-  db.Users.find({ facebook_id: req.params.fbID })
-    .then(data => res.json(data)).catch(err => console.log(err));
+  const user = req.params.fbID.toString();
+  console.log("/userprofile/:fbID " + req.params.fbID);
+  db.Users.findOne({ facebook_id: req.params.fbID })
+    .then(data => {
+      let returnObject = data
+      // console.log(data);
+      if (!data) {
+        returnObject.string = "no data";
+      } else {
+        returnObject = data;
+      }
+      res.json(returnObject)
+    }).catch(err => console.log(err));
 })
 
 router.get('/allschools', (req, res) => {
@@ -43,8 +53,8 @@ router.get('/allschools', (req, res) => {
 
 router.post('/createuser', (req, res) => {
   console.log(req.body.data)
-  // db.Users.create(req.body.data).then(data => console.log(data)).catch(err => console.log(err));
-  // res.send("we did shit here");
+  db.Users.create(req.body.data).then(data => console.log(data)).catch(err => console.log(err));
+  res.send("we did shit here");
 })
 
 

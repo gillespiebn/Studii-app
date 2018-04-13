@@ -37,6 +37,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
+    "deps": "^0.1.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "mongoose": "^5.0.12",
