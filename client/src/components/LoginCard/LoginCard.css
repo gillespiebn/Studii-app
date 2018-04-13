@@ -1,0 +1,29 @@
+/* 
+MAIN COLORS
+ Pink = #F4AE9F
+ Dark Blue = #22223B
+ Light Blue = #194584
+ Light Grey = #E4E3E5
+ White = #FFFFFF
+
+ ACCENT COLORS
+Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = #282840
+ */
+.login-image {
+    background: #22223B;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+}
+
+p {
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Baloo Bhaijaan', cursive;
+    color: #FFFFFF;
+    text-align: center;
+}

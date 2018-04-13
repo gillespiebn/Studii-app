@@ -5,6 +5,8 @@ import API from "./utils/API";
 import Header from "./components/Header/";
 import Questionnaire from "./components/Questionnaire/";
 import Loading from "./components/Loading";
+import Footer from "./components/Footer";
+import LoginCard from "./components/LoginCard";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Groups from "./pages/Groups";
@@ -104,13 +106,25 @@ class App extends React.Component {
     return (
       <Container textAlign="center">
         <h1 style={{color: "white"}}>Login page</h1>
-
         <FacebookLogin
           appId="432818630486037"
           autoLoad
           callback={this.responseFacebook}
           render={renderProps => (
-            <button onClick={renderProps.onClick}>This is my custom FB button</button>
+            <button 
+              style={{
+                height: 60, 
+                width:300, 
+                borderRadius: 10, 
+                borderColor: "white",
+                borderStyle: "solid",
+                borderWidth: 3,
+                background: "#22223B", 
+                color: "white",
+                fontFamily: "Arial",
+                fontSize: 24
+              }} 
+              onClick={renderProps.onClick}>Continue with Facebook</button>
           )}
         />
       </Container>
