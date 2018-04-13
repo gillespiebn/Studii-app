@@ -53,10 +53,13 @@ class App extends React.Component {
         this.setState({checked: true})
       } else {
         // For production, the two commented out lines below will be the ones used. currently using the other ones for production
-        this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+
+        //this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
         console.log(window.fbToken.authResponse.userID);
-        this.getUser(window.fbToken.authResponse.userID);
-        // this.setState({checked: true, facebook_id: 10})
+
+        //this.getUser(window.fbToken.authResponse.userID);
+         this.setState({checked: true, facebook_id: 10})
+ 
         // this.getUser(10);
       }
 		}
@@ -71,7 +74,7 @@ class App extends React.Component {
           this.setState({newUser: true})
         } else {
           this.setState({user: data.data[0]})
-          this.getMatches()
+          // this.getMatches()
         }
       }
     )
@@ -138,7 +141,13 @@ class App extends React.Component {
           {/* <NavMenu /> */}
           <Header />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" 
+              render={(routeProps) => (
+                <Home  
+                  facebook_id={this.state.facebook_id}
+                />
+              )} 
+            />
             <Route exact path="/home" 
                render={(routeProps) => (
                 <Home  
@@ -195,7 +204,7 @@ class App extends React.Component {
           </div>
         )
       } else {
-        if (!this.state.newUser) {
+        if (this.state.newUser) {
           return(
           <div>
             <Header />

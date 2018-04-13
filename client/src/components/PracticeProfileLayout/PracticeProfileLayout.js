@@ -9,12 +9,13 @@ import { Card, Image, Container, Button, List, Transition } from 'semantic-ui-re
 class Profiles extends React.Component {  
 
     state = {
-       user: null
+       user: this.props.user,
+       matches: this.props.matches
      }
 
      componentDidMount() {
-        this.getUser();
-        this.getMatches();
+       // this.getUser();
+        //this.getMatches();
 
     }
  
@@ -42,10 +43,11 @@ class Profiles extends React.Component {
  };
 
     render() {
+        console.log("at render " + this.state.matches.length)
         return(
       <div>
         <Container>
-        {this.props.profiles.data.map(profile => (
+        {this.state.matches.data.map(profile => (
             <Card fluid style={{marginTop: 20}} align="center" key={profile._id}>
               {/* <Segment align="center"> */}
                 <Image src={profile.photo} size='small' />
@@ -61,7 +63,7 @@ class Profiles extends React.Component {
         /*
             <div>
                 <Button.Group>
-                    <Button={items.length === profiles.length} icon='plus' onClick={this.handleNext} />
+                    <Button= icon='plus' onClick={this.handleNext} />
                  </Button.Group>
              </div>
 
