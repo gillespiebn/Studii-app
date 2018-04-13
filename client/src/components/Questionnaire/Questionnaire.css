@@ -39,3 +39,24 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
   font-size:20px;
   padding:0px 5px 0px 0px;
 }
+
+img {
+  width: 75px;
+  margin: 5px;
+}
+
+.Morning {
+
+}
+
+.Afternoon {
+  margin-top: -85px;
+}
+
+.Evening{
+  margin-top: -85px;
+}
+
+.Night {
+  margin-top: -85px;
+}
