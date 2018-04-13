@@ -12,31 +12,28 @@ class Profiles extends React.Component {
        user: null
      }
 
-     componentDidMount() {
-        this.getUser();
-        this.getMatches();
-
+    componentDidMount() {
+      this.getUser();
     }
  
-
-       getUser = () => {
-         API.getUser(this.props.facebook_id)
-            .then(data => {
-                this.setState({user: data.data[0]})
-                console.log(data)
-                this.getMatches()
-          
-
+    getUser = () => {
+      console.log("get user id: " + this.props.facebook_id)
+      API.getUser(this.props.facebook_id)
+        .then(data => {
+            console.log(data.data)
+            this.setState({user: data.data})
+            console.log(this.state.user)
+            this.getMatches();
         }
-        )
+      )
     };
 
     getMatches = () => {
-     API.getMatches(this.state.user)
-     .then(data => {
-       console.log("the line under this is matches")
-       console.log(data)
-      
+      API.getMatches(this.state.user)
+        .then(data => {
+        console.log("the line under this is matches")
+        console.log(data)
+        this.setState({matches: data.data})
      }
    )
  };

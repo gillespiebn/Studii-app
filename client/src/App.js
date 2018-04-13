@@ -54,8 +54,10 @@ class App extends React.Component {
 
         //this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
         console.log(window.fbToken.authResponse.userID);
+
         //this.getUser(window.fbToken.authResponse.userID);
          this.setState({checked: true, facebook_id: 10})
+ 
         // this.getUser(10);
       }
 		}
@@ -125,7 +127,13 @@ class App extends React.Component {
           {/* <NavMenu /> */}
           <Header />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" 
+              render={(routeProps) => (
+                <Home  
+                  facebook_id={this.state.facebook_id}
+                />
+              )} 
+            />
             <Route exact path="/home" 
                render={(routeProps) => (
                 <Home  
