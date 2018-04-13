@@ -124,7 +124,13 @@ class App extends React.Component {
           {/* <NavMenu /> */}
           <Header />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" 
+              render={(routeProps) => (
+                <Home  
+                  facebook_id={this.state.facebook_id}
+                />
+              )} 
+            />
             <Route exact path="/home" 
                render={(routeProps) => (
                 <Home  
