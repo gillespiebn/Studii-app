@@ -9,7 +9,8 @@ import API from "../../utils/API";
 
 class Profiles extends React.Component {
     state = {
-       user: null
+       user: null,
+       matches: null
      }
 
     componentDidMount() {
@@ -52,7 +53,7 @@ class Profiles extends React.Component {
     return(
     <div>
       {this.state.profiles ? 
-        <PracticeProfileLayout profiles={this.state.user} facebook_id={this.props.facebook_id } />
+        <PracticeProfileLayout profiles={this.state.matches} user={this.state.user} facebook_id={this.props.facebook_id } />
         : <h1>This is the home page</h1> 
       }
     </div>
