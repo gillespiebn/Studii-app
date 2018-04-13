@@ -51,10 +51,10 @@ class App extends React.Component {
         this.setState({checked: true})
       } else {
         // For production, the two commented out lines below will be the ones used. currently using the other ones for production
-        this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+        //this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
         console.log(window.fbToken.authResponse.userID);
         this.getUser(window.fbToken.authResponse.userID);
-        // this.setState({checked: true, facebook_id: 10})
+         this.setState({checked: true, facebook_id: 10})
         // this.getUser(10);
       }
 		}

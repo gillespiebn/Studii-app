@@ -61,7 +61,7 @@ class Profiles extends React.Component {
         /*
             <div>
                 <Button.Group>
-                    <Button={items.length === profiles.length} icon='plus' onClick={this.handleNext} />
+                    <Button= icon='plus' onClick={this.handleNext} />
                  </Button.Group>
              </div>
 
