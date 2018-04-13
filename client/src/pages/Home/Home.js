@@ -5,6 +5,8 @@ import PracticeProfileLayout from "../../components/PracticeProfileLayout";
 import API from "../../utils/API";
 
 
+
+
 class Login extends React.Component {
   state = {
     default: "",
@@ -12,8 +14,8 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
-    API.retrieveProiles().then(data => {
-      // console.log(data.data[0]);
+    API.retrieveProfiles().then(data => {
+       console.log(data.data[0]);
       this.setState({profiles: data})
     })
   }
@@ -33,7 +35,7 @@ class Login extends React.Component {
     return(
     <div>
       {this.state.profiles ? 
-        <PracticeProfileLayout profiles={this.state.profiles} />
+        <PracticeProfileLayout profiles={this.state.profiles} facebook_id={this.props.facebook_id } />
         : <h1>This is the home page</h1> 
       }
     </div>

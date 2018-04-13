@@ -14,15 +14,7 @@ import SearchFormClasses from "../SearchFormClasses";
 
 // import SearchFormSchoolsRenderer from "../SearchFormSchoolsRenderer";
 
-
 // const source = allSchools;
-
-const classStandingOptions = [
-  { key: 'f', text: 'Freshman', value: 'freshman' },
-  { key: 'so', text: 'Sophomore', value: 'sophomore' },
-  { key: 'j', text: 'Junior', value: 'junior' },
-  { key: 'se', text: 'Senior', value: 'senior' }
-];
 
 class Questionnaire extends Component {
     state = {
@@ -36,11 +28,8 @@ class Questionnaire extends Component {
         classID: "",
         classIDNumber: '',
         classes: [],
-        // locations: [],
-        // times: [],
         results: [],
         resultsClasses: [],
-        //change major and minor when they are created
         major: '',
         minor: '',
         photo: '',
@@ -96,8 +85,7 @@ class Questionnaire extends Component {
         } 
        };
 
-      //this function is good
-      handleInputChange = event => {
+       handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
           [name]: value
@@ -213,7 +201,6 @@ class Questionnaire extends Component {
           }
         }
 
-
         if (bad) {
           return;
         }
@@ -280,7 +267,7 @@ class Questionnaire extends Component {
         return Object.keys(this.state.times).filter((option, index) => this.state.times[option]);
       }
 
-      //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
+      //AUTOCOMPLETE for University Search
       resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
 
       handleResultSelect = (e, { result }) => this.setState({ school: result.name })
@@ -303,9 +290,9 @@ class Questionnaire extends Component {
           })
         }, 300)
       }
-      //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
+      //END AUTOCOMPLETE for Universities
 
-      //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
+      //AUTCOMPLETE for classes
       resetComponentClass = () => this.setState({ isLoading: false, results: [], valueClass: '' })
 
       handleResultSelectClass = (e, { result }) => this.setState({ classID: result.fullName })
@@ -341,20 +328,15 @@ class Questionnaire extends Component {
               <Container>
                 <Form>
                   <Form.Group>
-                    <Form.Field control={Input} label='First and Last Name'  width={16} className={`${this.state.nameProblem}`}>
+                    <Form.Field control={Input} label='Your First and Last Name'  width={16} className={`${this.state.nameProblem}`}>
                     <input type="text" placeholder="Enter First and Last Name Here" required name="name" onChange={this.handleInputChange} />
                     {this.state.nameEmpty ?
                       <Label basic color="red" pointing="left">{`${this.state.nameEmpty}`}</Label>
-                    : ""}
-
-                      {/* <Label>
-                        {<Icon name="user" size="large"/>}
-                      </Label> */}
-                      
+                    : ""}                      
                     </ Form.Field>
                   </Form.Group>
                   <Form.Group>  
-                    <Form.Field control={Input} label="Email Address" placeholder="Enter School (.edu) Email Address" className={`${this.state.emailProblem}`} width={16}>
+                    <Form.Field control={Input} label="Your University Email Address (must be include .edu)" placeholder="Enter School (.edu) Email Address" className={`${this.state.emailProblem}`} width={16}>
                       <input type="email" required name="email" onChange={this.handleInputChange} />
                       {this.state.emailEmpty ?
                         <Label basic color="red" pointing="left">{`${this.state.emailEmpty}`}</Label>
@@ -372,58 +354,63 @@ class Questionnaire extends Component {
                     </Form.Field>  
                   </Form.Group>
                   <Form.Group widths='equal'>  
-                    <Form.Field control={Input} label="Major" className={`${this.state.majorProblem}`}>
+                    <Form.Field control={Input} label="Your Major" className={`${this.state.majorProblem}`}>
                       <input type="text" placeholder="Enter Your Major" required name="major" onChange={this.handleInputChange} />
                       {this.state.majorEmpty ?
                         <Label basic color="red" pointing="left">{`${this.state.majorEmpty}`}</Label>
                       : ""}
                     </ Form.Field>
-                    <Form.Field control={Input} label="Minor" className="minor">
-                      <input type="text" placeholder="Enter Your Minor (if applicable)" required name="minor" onChange={this.handleInputChange} />
+                    <Form.Field control={Input} label="Your Minor, if applicable" className="minor">
+                      <input type="text" placeholder="Enter Your Minor (if applicable)" name="minor" onChange={this.handleInputChange} />
                     </ Form.Field>  
                   </Form.Group>
                   <Form.Group>
-                    {/* <Form.Select label='Class Standing' name="classStanding" options={ classStandingOptions } placeholder='Select Your Class Standing' width={16} onChange={this.handleInputChange}/> */}
-                    <Form.Field control={Input} label="Class Standing" className="classStanding">
+                    <Form.Field control={Input} label="Your Class Standing" className="classStanding">
                       <input type="text" placeholder="i.e. Senior" required name="classStanding" onChange={this.handleInputChange} />
                     </ Form.Field>  
                   </Form.Group>
-                  <p className="label">Add Classes</p>
-                  <div>
-                    <h5>Class Prefix</h5>
-                    {this.state.prefixEmpty ?
-                      <Label basic color="red" pointing="below">{`${this.state.prefixEmpty}`}</Label>
-                    : ""}
-                    <SearchFormClasses
-                      fluid
-                      className={`${this.state.prefixProblem}`}
-                      style={{overflow: "auto", height: 100, minWidth: "30%"}}
-                      placeholder="Enter Class Prefix"
-                      loading={this.stateisLoadingClass}
-                      onResultSelect={this.handleResultSelectClass}
-                      onSearchChange={_.debounce(this.handleSearchChangeClass, 500, { leading: true })}
-                      results={this.state.results}
-                      value={this.state.valueClass}
-                      {...this.props}  
-                    />
-                  </div>
-                  <Form.Group>
-                    <Form.Field className={`${this.state.numberProblem}`} control={Input} label="Class Number" className="classNumber">
-                      <input type="text" placeholder="Enter Class Number" required name="classIDNumber" onChange={this.handleInputChange} />
-                      {this.state.numberEmpty ?
-                        <Label basic color="red" pointing="left">{`${this.state.numberEmpty}`}</Label>
-                      : ""}
-                      {this.state.numberWrong ?
-                        <Label basic color="red" pointing="left">{`${this.state.numberWrong}`}</Label>
-                      : ""}
-                    </ Form.Field>
-                    <Button toggle name="createClass" id="smallerButton"  onClick={this.createClass} width={5}> Add Class </Button>
-                  </Form.Group>
-                  <p className="label">Preferred Study Methods</p>
+                  <p className="label">Add the Class You Need to Study</p>
+                  <Grid>
+                    <Grid.Column width={8}>
+                      <div>
+                        <h5>Class Prefix</h5>
+                        {this.state.prefixEmpty ?
+                          <Label basic color="red" pointing="below">{`${this.state.prefixEmpty}`}</Label>
+                        : ""}
+                        <SearchFormClasses
+                          fluid
+                          className={`${this.state.prefixProblem}`}
+                          style={{overflow: "auto", height: 100, minWidth: "30%"}}
+                          placeholder="Enter Class Prefix"
+                          loading={this.stateisLoadingClass}
+                          onResultSelect={this.handleResultSelectClass}
+                          onSearchChange={_.debounce(this.handleSearchChangeClass, 500, { leading: true })}
+                          results={this.state.results}
+                          value={this.state.valueClass}
+                          {...this.props}  
+                        />
+                      </div>
+                    </Grid.Column>
+                    <Grid.Column width={8}>  
+                      <Form.Group>
+                        <Form.Field className={`${this.state.numberProblem}`} control={Input} label="Class Number" className="classNumber">
+                          <input type="text" placeholder="Enter Class Number" required name="classIDNumber" onChange={this.handleInputChange} />
+                          {this.state.numberEmpty ?
+                            <Label basic color="red" pointing="left">{`${this.state.numberEmpty}`}</Label>
+                          : ""}
+                          {this.state.numberWrong ?
+                            <Label basic color="red" pointing="left">{`${this.state.numberWrong}`}</Label>
+                          : ""}
+                        </Form.Field>   
+                        <Button toggle name="createClass" id="smallerButton"  onClick={this.createClass}> Add + </Button>
+                      </Form.Group>
+                    </Grid.Column>
+                  </Grid> 
+                  <p className="label">Your Preferred Study Methods</p>
                   <Form.Group widths="equal">
-                    <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" width={5}> Flashcards </Button>
-                    <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" width={5}> Quizzes </Button>
-                    <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" width={5}> Rereading </Button>
+                    <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
+                    <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
+                    <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
                   </Form.Group>
                   <Form.Group widths="equal">  
                     <Button toggle active={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
@@ -499,7 +486,6 @@ class Questionnaire extends Component {
                 />
               </div>
 
-              {/* this button is just kind of a placeholder. it works, but probably needs styling */}
               <Button onClick={this.handleFormSubmit} className="submit">Submit</Button>
             </Segment>
           </Container>

@@ -506,6 +506,10 @@ depd@~1.1.1, depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
 
+deps@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/deps/-/deps-0.1.2.tgz#c763b5ea142a264ed29a5f1be9de0c1df4b62cf8"
+
 destroy@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
