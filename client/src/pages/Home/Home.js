@@ -50,8 +50,8 @@ class Home extends React.Component {
   render() {
     return(
     <div>
-      {this.state.profiles ? 
-        <PracticeProfileLayout profiles={this.state.matches} user={this.state.user} facebook_id={this.props.facebook_id } />
+      {this.state.matches ? 
+        <PracticeProfileLayout matches={this.state.matches} user={this.state.user} facebook_id={this.props.facebook_id } />
         : <h1>This is the home page</h1> 
       }
     </div>
