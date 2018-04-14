@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import "./Questionnaire.css";
 // import TeacherInput from "../Teachers";
 // import ClassInput from "../Classes";
@@ -11,6 +12,7 @@ import vaSchools from '../../utils/vaSchools.js'
 import classNamesSeed from '../../utils/classNames.js'
 import SearchFormSchools from "../SearchFormSchools";
 import SearchFormClasses from "../SearchFormClasses";
+import Home from "../../pages/Home";
 
 // import SearchFormSchoolsRenderer from "../SearchFormSchoolsRenderer";
 
@@ -162,9 +164,10 @@ class Questionnaire extends Component {
           nameEmpty: false, nameProblem: false, 
           emailProblem: false, emailEmpty: false, emailFormatProblem: false, 
           majorEmpty: false, majorProblem: false,
-          schoolEmpty: false, schoolProblem: false, schoolWrong: false
+          schoolEmpty: false, schoolProblem: false, schoolWrong: false,
+          classStandingEmpty: false, classStandingProblem: false, classStandingWrong: false,
         });
-
+        console.log("should be lower case: " + this.state.classStanding.toLowerCase());
         let bad = false;
         if (!this.state.name) {
           this.setState({nameEmpty: "Please Enter Your Name", nameProblem: "error"});
@@ -200,14 +203,24 @@ class Questionnaire extends Component {
             bad = true;
           }
         }
+        if (!this.state.classStanding) {
+          this.setState({classStandingEmpty: "Please Choose Your Class Standing", classStandingProblem: "error"});
+          bad = true;
+        } else if (this.state.classStanding.toLowerCase() !== "senior" && this.state.classStanding.toLowerCase() !== "junior" && this.state.classStanding.toLowerCase() !== "sophomore" && this.state.classStanding.toLowerCase() !== "freshman" && this.state.classStanding.toLowerCase() !== "Postgraduate") {
+          this.setState({classStandingWrong: "Please use either Freshman, Sophomore, Junior, Senior, or Postgraduate" , classStandingProblem: "error" });
+          bad = true;
+        }
 
         if (bad) {
           return;
         }
         this.setState({ continue: true })
         console.log("we got here");
-        API.createUser(obj).then(data => console.log(data.data)).catch(err => console.log(err));
+        API.createUser(obj).then(data =>{
+          this.setState({user: data.data, userCreatedGoToHome: true});
+        }).catch(err => console.log(err));
       };
+    
 
       updateClassStanding = event => {
         event.preventDefault();
@@ -319,6 +332,31 @@ class Questionnaire extends Component {
 
 
       render() { 
+
+        <Route exact path="/" 
+        render={(routeProps) => (
+          <Home  
+            user={this.state.user}
+            facebook_id={this.state.facebook_id}
+          />
+        )} 
+      />
+        if (this.state.userCreatedGoToHome) {
+          return (
+            <Router>
+              <Redirect 
+                exact to='/home'
+                // render={(routeProps) => (
+                //   <Home  
+                //     user={this.state.user}
+                //     profiles={this.state.matches}
+                //     facebook_id={this.state.facebook_id}
+                //   />
+                // )} 
+              />
+            </Router>
+          )
+        }
         return(
           <Container>
             <Segment style={{ marginTop: 20}} raised>
@@ -365,8 +403,14 @@ class Questionnaire extends Component {
                     </ Form.Field>  
                   </Form.Group>
                   <Form.Group>
-                    <Form.Field control={Input} label="Your Class Standing" className="classStanding">
+                    <Form.Field control={Input} label="Your Class Standing" className="classStanding" className={`${this.state.classStandingProblem}`}>
                       <input type="text" placeholder="i.e. Senior" required name="classStanding" onChange={this.handleInputChange} />
+                      {this.state.classStandingEmpty ?
+                        <Label basic color="red" pointing="left">{`${this.state.classStandingEmpty}`}</Label>
+                      : ""}
+                      {this.state.classStandingWrong ?
+                        <Label basic color="red" pointing="left">{`${this.state.classStandingWrong}`}</Label>
+                      : ""}
                     </ Form.Field>  
                   </Form.Group>
                   <p className="label">Add the Class You Need to Study</p>

@@ -37,11 +37,11 @@ router.get('/userprofile/:fbID', (req, res) => {
     .then(data => {
       let returnObject = data
       // console.log(data);
-      if (!data) {
-        returnObject.string = "no data";
-      } else {
-        returnObject = data;
-      }
+      // if (!data) {
+      //   returnObject.string = "no data";
+      // } else {
+      //   returnObject = data;
+      // }
       res.json(returnObject)
     }).catch(err => console.log(err));
 })
@@ -53,8 +53,8 @@ router.get('/allschools', (req, res) => {
 
 router.post('/createuser', (req, res) => {
   console.log(req.body.data)
-  db.Users.create(req.body.data).then(data => console.log(data)).catch(err => console.log(err));
-  res.send("we did shit here");
+  db.Users.create(req.body.data).then(data => res.json(data)).catch(err => console.log(err));
+  // res.send("we did shit here");
 })
 
 
