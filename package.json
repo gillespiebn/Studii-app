@@ -40,6 +40,8 @@
     "deps": "^0.1.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "lodash": "^4.17.5",
+    "lodash-object": "^4.17.7",
     "mongoose": "^5.0.12",
     "react-facebook-login": "^4.0.1"
   }

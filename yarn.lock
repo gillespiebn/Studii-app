@@ -1199,11 +1199,17 @@ latest-version@^3.0.0:
   dependencies:
     package-json "^4.0.0"
 
+lodash-object@^4.17.7:
+  version "4.17.7"
+  resolved "https://registry.yarnpkg.com/lodash-object/-/lodash-object-4.17.7.tgz#aca5a3a4e87dfcaf867ca8b0e86432430f7e7394"
+  dependencies:
+    lodash "^4.17.5"
+
 lodash.get@4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
-lodash@^4.14.0, lodash@^4.5.1:
+lodash@^4.14.0, lodash@^4.17.5, lodash@^4.5.1:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 

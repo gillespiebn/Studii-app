@@ -1,17 +1,18 @@
 import React from "react";
+import _ from 'lodash';
 import "./PracticeProfileLayout.css";
 
 import API from "../../utils/API";
 
 import { Card, Image, Container, Button, List, Transition } from 'semantic-ui-react'
 
-
 class Profiles extends React.Component {  
 
     state = {
        user: this.props.user,
        matches: this.props.matches,
-       facebook_id: this.props.facebook_id
+       facebook_id: this.props.facebook_id,
+     
      }
 
      componentDidMount() {
@@ -28,7 +29,6 @@ class Profiles extends React.Component {
                 this.setState({user: data.data[0]})
                 console.log(data)
                 this.getMatches()
-          
 
         }
         )
@@ -48,12 +48,13 @@ class Profiles extends React.Component {
 
     render() {
       console.log("at render " + this.state.matches.length);
+       var firstUserId=this.props.matches[0].facebook_id;
       if (this.state.matches) {
       return(
         <div>
           <Container>
           {this.state.matches.map(profile => (
-              <Card fluid style={{marginTop: 20}} align="center" key={profile._id}>
+              <Card fluid align="center" key={profile._id} style={{display: (firstUserId===profile.facebook_id ? 'block' : 'none') }}>
                 {/* <Segment align="center"> */}
                   <Image src={profile.photo} size='small' />
                   <h2>Name: {profile.name}</h2>
