@@ -15,8 +15,9 @@ class Profiles extends React.Component {
      }
 
      componentDidMount() {
-       // this.getUser();
-        //this.getMatches();
+        this.getUser();
+        this.getMatches();
+        console.log("there is a fairy");
 
     }
  
@@ -42,6 +43,8 @@ class Profiles extends React.Component {
      }
    )
  };
+
+   
 
     render() {
         console.log("at render " + this.state.matches.length);
