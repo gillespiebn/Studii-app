@@ -7,7 +7,7 @@ import API from "../../utils/API";
 
 
 
-class Profiles extends React.Component {
+class Home extends React.Component {
     state = {
        user: null,
        matches: null
@@ -61,4 +61,4 @@ class Profiles extends React.Component {
   }
 }
 
-export default Profiles;
+export default Home;

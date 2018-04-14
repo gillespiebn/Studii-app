@@ -10,7 +10,8 @@ class Profiles extends React.Component {
 
     state = {
        user: this.props.user,
-       matches: this.props.matches
+       matches: this.props.matches,
+       facebook_id: this.props.facebook_id
      }
 
      componentDidMount() {
@@ -43,7 +44,7 @@ class Profiles extends React.Component {
  };
 
     render() {
-        console.log("at render " + this.state.matches.length)
+        console.log("at render " + this.state.matches.length);
         return(
       <div>
         <Container>
