@@ -137,36 +137,50 @@ class SettingsCard extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    
     if (prevState.objLocations !== this.state.objLocations) {
+      var locations = { };
+      
       for (var i = 0; i < this.state.objLocations.length; i++) {
-        console.log("this ran")
-        const  obj  = this.state.objLocations[i];
-        console.log(obj);
-        console.log(this.state.objLocations[i])
-        const locations = {...this.state.locations, [obj]: !this.state.locations[obj] };
-        this.setState({locations})
+        var location = this.state.objLocations[i];
+        locations[location] = !this.state.locations[location];
       }
+
+      this.setState({ locations });
     }
-    if (prevState.objMethods !== this.state.objMethods) {
-      for (var i = 0; i < this.state.objMethods.length; i++) {
-        console.log("this ran")
-        const  obj  = this.state.objMethods[i];
-        console.log(obj);
-        console.log(this.state.objMethods[i])
-        const methods = {...this.state.methods, [obj]: !this.state.methods[obj] };
-        this.setState({methods})
-      }
-    }
-    if (prevState.objTimes !== this.state.objTimes) {
-      for (var i = 0; i < this.state.objTimes.length; i++) {
-        console.log("this ran")
-        const  obj  = this.props.user.times[i];
-        console.log(obj);
-        console.log(this.props.user.times[i])
-        const times = {...this.state.times, [obj]: !this.state.times[obj] };
-        this.setState({times})
-      }
-    }
+
+    
+    
+    // if (prevState.objLocations !== this.state.objLocations) {
+    //   for (var i = 0; i < this.state.objLocations.length; i++) {
+    //     console.log("this ran")
+    //     const  obj  = this.state.objLocations[i];
+    //     console.log(obj);
+    //     console.log(this.state.objLocations[i])
+    //     const locations = {...this.state.locations, [obj]: !this.state.locations[obj] };
+    //     this.setState({locations})
+    //   }
+    // }
+    // if (prevState.objMethods !== this.state.objMethods) {
+    //   for (var i = 0; i < this.state.objMethods.length; i++) {
+    //     console.log("this ran")
+    //     const  obj  = this.state.objMethods[i];
+    //     console.log(obj);
+    //     console.log(this.state.objMethods[i])
+    //     const methods = {...this.state.methods, [obj]: !this.state.methods[obj] };
+    //     this.setState({methods})
+    //   }
+    // }
+    // if (prevState.objTimes !== this.state.objTimes) {
+    //   for (var i = 0; i < this.state.objTimes.length; i++) {
+    //     console.log("this ran")
+    //     const  obj  = this.props.user.times[i];
+    //     console.log(obj);
+    //     console.log(this.props.user.times[i])
+    //     const times = {...this.state.times, [obj]: !this.state.times[obj] };
+    //     this.setState({times})
+    //   }
+    // }
   }
 
 
