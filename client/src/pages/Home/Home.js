@@ -21,11 +21,16 @@ class Home extends React.Component {
       API.getUser(this.props.facebook_id)
         .then(data => {
             this.setState({user: data.data})
-            this.getMatches();
+            // this.getMatches();
         }
       )
     };
 
+    componentDidUpdate(prevProps, prevState) {
+      if (prevState.user !== this.state.user){
+        this.getMatches();
+      }
+    }
     getMatches = () => {
       API.getMatches(this.state.user)
         .then(data => {
