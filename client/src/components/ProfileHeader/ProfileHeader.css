@@ -47,4 +47,10 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
     font-size: 50px;
     color: #F4AE9F;
   }
+
+  .whiteText {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    font-weight: bold;
+  }
   
