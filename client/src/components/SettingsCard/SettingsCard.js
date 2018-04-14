@@ -17,15 +17,16 @@ class SettingsCard extends Component {
   state = {
     facebook_id: this.props.facebook_id,
     schoolsForAutocomplete: vaSchools,
+    user: this.props.user,
     name: '',
     email: '',
     school: '',
     classStanding: '',
     classID: '',
     classes: '',
-    objMethods: '',
-    objlocations: '',
-    objTimes: '',
+    objMethods: [],
+    objLocations: [],
+    objTimes: [],
     results: [],
     //change major and minor when they are created
     major: '',
@@ -138,42 +139,77 @@ class SettingsCard extends Component {
     this.setState({ classStanding: standing })
   };
 
+  setStates = () => {
+    this.setState({name: this.state.user.name, email: this.state.user.email, school: this.state.user.school, classStanding: this.state.user.classStanding, classes: this.state.user.classes, objMethods: this.props.user.methods, objLocations: this.props.user.locations, objTimes: this.props.user.times, major: this.state.user.major, minor: this.state.user.minor, photo: this.state.user.photo});
+    return("done");
+  }
 
   componentDidMount() {
-    API.getUser(this.state.facebook_id)
-      .then(data => {
-        console.log("underthisisthecardshit");
-        console.log(this.state.facebook_id);
-        console.log(data);
-        this.setState({user: data.data[0], name: data.data[0].name, email: data.data[0].email, school: data.data[0].school, classStanding: data.data[0].classStanding, classes: data.data[0].classes, objMethods: data.data[0].methods, objLocations: data.data[0].locations, objTimes: data.data[0].times, major: data.data[0].major, minor: data.data[0].minor, photo: data.data[0].photo});
-        for (var i = 0; i < this.state.objMethods.length; i++) {
-          console.log("this ran")
-          const  obj  = this.state.objMethods[i];
-          console.log(obj);
-          console.log(this.state.objMethods[i])
-          const methods = {...this.state.methods, [obj]: !this.state.methods[obj] };
-          this.setState({methods})
-        }
-        for (var i = 0; i < this.state.objLocations.length; i++) {
-          console.log("this ran")
-          const  obj  = this.state.objLocations[i];
-          console.log(obj);
-          console.log(this.state.objLocations[i])
-          const locations = {...this.state.locations, [obj]: !this.state.locations[obj] };
-          this.setState({locations})
-        }
-        for (var i = 0; i < this.state.objTimes.length; i++) {
-          console.log("this ran")
-          const  obj  = this.state.objTimes[i];
-          console.log(obj);
-          console.log(this.state.objTimes[i])
-          const times = {...this.state.times, [obj]: !this.state.times[obj] };
-          this.setState({times})
-        }
+    console.log("component did mount here is a user")
+    // console.log(this.state.user.methods);
+    // console.log(this.state.user.locations);
+    // console.log(this.state.user.times);
+    // this.setState({user: this.props.user});
+    const promise = this.setStates();
+
+    promise().then( () => {
+      for (var i = 0; i < this.props.user.methods.length; i++) {
+        console.log("this ran")
+        const  obj  = this.props.user.methods[i];
+        console.log(obj);
+        console.log(this.props.user.methods[i])
+        const methods = {...this.state.methods, [obj]: !this.state.methods[obj] };
+        this.setState({methods})
       }
-    )
-    // console.log(this.props);
+      // console.log("OBJJJJJJ");
+      // console.log(this.state.objLocations)
+      for (var i = 0; i < this.props.user.locations.length; i++) {
+        console.log("this ran")
+        const  obj  = this.props.user.locations[i];
+        console.log(obj);
+        console.log(this.props.user.locations[i])
+        const locations = {...this.state.locations, [obj]: !this.state.locations[obj] };
+        this.setState({locations})
+      }
+      for (var i = 0; i < this.props.user.times.length; i++) {
+        console.log("this ran")
+        const  obj  = this.props.user.times[i];
+        console.log(obj);
+        console.log(this.props.user.times[i])
+        const times = {...this.state.times, [obj]: !this.state.times[obj] };
+        this.setState({times})
+      }
+    }).catch(err => console.log(err));
+
+    // for (var i = 0; i < this.props.user.methods.length; i++) {
+    //   console.log("this ran")
+    //   const  obj  = this.props.user.methods[i];
+    //   console.log(obj);
+    //   console.log(this.props.user.methods[i])
+    //   const methods = {...this.state.methods, [obj]: !this.state.methods[obj] };
+    //   this.setState({methods})
+    // }
+    // // console.log("OBJJJJJJ");
+    // // console.log(this.state.objLocations)
+    // for (var i = 0; i < this.props.user.locations.length; i++) {
+    //   console.log("this ran")
+    //   const  obj  = this.props.user.locations[i];
+    //   console.log(obj);
+    //   console.log(this.props.user.locations[i])
+    //   const locations = {...this.state.locations, [obj]: !this.state.locations[obj] };
+    //   this.setState({locations})
+    // }
+    // for (var i = 0; i < this.props.user.times.length; i++) {
+    //   console.log("this ran")
+    //   const  obj  = this.props.user.times[i];
+    //   console.log(obj);
+    //   console.log(this.props.user.times[i])
+    //   const times = {...this.state.times, [obj]: !this.state.times[obj] };
+    //   this.setState({times})
+    // }
   }
+    // console.log(this.props);
+
 
   componentWillMount() {
     this.resetComponent()
