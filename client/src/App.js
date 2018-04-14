@@ -55,11 +55,11 @@ class App extends React.Component {
       } else {
         // For production, the two commented out lines below will be the ones used. currently using the other ones for production
 
-        this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
-        //  this.setState({checked: true, facebook_id: 10})
+        //this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+         this.setState({checked: true, facebook_id: 10})
         console.log(window.fbToken.authResponse.userID);
 
-        this.getUser(window.fbToken.authResponse.userID);
+        //this.getUser(window.fbToken.authResponse.userID);
  
         // this.getUser(10);
       }
@@ -73,20 +73,10 @@ class App extends React.Component {
           this.setState({newUser: true})
         } else {
           this.setState({user: data.data[0]})
-          // this.getMatches()
         }
       }
     )
   };
-
-  getMatches = () => {
-    API.getMatches(this.state.user)
-      .then(data => {
-        console.log("the line under this is matches")
-        console.log(data)
-      } 
-    )
-  }
 
   responseFacebook = (response) => {
     console.log(response.id);
@@ -170,10 +160,10 @@ class App extends React.Component {
             />
             <Route 
               exact path="/register" 
-              // render={(routeProps) => (
-              //   <Register facebook_id={this.state.facebook_id} 
-              //   test="this should appears somewhere"/>
-              // )}
+              render={(routeProps) => (
+                <Register facebook_id={this.state.facebook_id} 
+                test="this should appears somewhere"/>
+              )}
             />
             <Route component={Page404} />
           </Switch>

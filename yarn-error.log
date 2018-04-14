@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run devs
+  /usr/local/Cellar/node/9.8.0/bin/node /usr/local/bin/yarn install deps
 
 PATH: 
   C:\Users\Owner\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Owner\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\IBM\SPSS\Statistics\24\JRE\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\3.6\bin;C:\Program Files\Heroku\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\Owner\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -56,6 +56,8 @@ npm manifest:
       "deps": "^0.1.2",
       "dotenv": "^5.0.1",
       "express": "^4.16.3",
+      "lodash": "^4.17.5",
+      "lodash-object": "^4.17.7",
       "mongoose": "^5.0.12",
       "react-facebook-login": "^4.0.1"
     }
@@ -1266,11 +1268,17 @@ Lockfile:
     dependencies:
       package-json "^4.0.0"
   
+  lodash-object@^4.17.7:
+    version "4.17.7"
+    resolved "https://registry.yarnpkg.com/lodash-object/-/lodash-object-4.17.7.tgz#aca5a3a4e87dfcaf867ca8b0e86432430f7e7394"
+    dependencies:
+      lodash "^4.17.5"
+  
   lodash.get@4.4.2:
     version "4.4.2"
     resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   
-  lodash@^4.14.0, lodash@^4.5.1:
+  lodash@^4.14.0, lodash@^4.17.5, lodash@^4.5.1:
     version "4.17.5"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
   
@@ -2316,6 +2324,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
 Trace: 
+<<<<<<< HEAD
   Error: Command "devs" not found. Did you mean "dev"?
       at new MessageError (C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
       at C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87307:17
@@ -2327,3 +2336,12 @@ Trace:
       at C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:95:12
       at runCommand (C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87312:22)
       at Object.<anonymous> (C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87412:14)
+=======
+  Error: `install` has been replaced with `add` to add new dependencies. Run "yarn add deps" instead.
+      at new MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
+      at Object.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:21987:13)
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:98:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:109:13
+      at <anonymous>
+>>>>>>> a41609cfc3ecdcc5829c2f5753bf4767204f81b5

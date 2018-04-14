@@ -7,7 +7,7 @@ import API from "../../utils/API";
 
 
 
-class Profiles extends React.Component {
+class Home extends React.Component {
     state = {
        user: null,
        matches: null
@@ -21,11 +21,16 @@ class Profiles extends React.Component {
       API.getUser(this.props.facebook_id)
         .then(data => {
             this.setState({user: data.data})
-            this.getMatches();
+            // this.getMatches();
         }
       )
     };
 
+    componentDidUpdate(prevProps, prevState) {
+      if (prevState.user !== this.state.user){
+        this.getMatches();
+      }
+    }
     getMatches = () => {
       API.getMatches(this.state.user)
         .then(data => {
@@ -50,8 +55,8 @@ class Profiles extends React.Component {
   render() {
     return(
     <div>
-      {this.state.profiles ? 
-        <PracticeProfileLayout profiles={this.state.matches} user={this.state.user} facebook_id={this.props.facebook_id } />
+      {this.state.matches ? 
+        <PracticeProfileLayout matches={this.state.matches} user={this.state.user} facebook_id={this.props.facebook_id } />
         : <h1>This is the home page</h1> 
       }
     </div>
@@ -59,4 +64,4 @@ class Profiles extends React.Component {
   }
 }
 
-export default Profiles;
+export default Home;
