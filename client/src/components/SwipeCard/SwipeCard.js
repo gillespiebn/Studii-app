@@ -8,6 +8,7 @@ const CardExampleCard = (props) => {
   return(
     <Container>
     {props.profiles.data.map(profile => (
+      <div>
       <ProfileHeader />
       <div className="sectionTitle">Classes</div>
 
@@ -16,7 +17,7 @@ const CardExampleCard = (props) => {
       <div className="sectionTitle">Preferred places to study</div>
 
       <div className="sectionTitle">Availability</div>
-      {/* <Calandar /> */}
+      </div>
     ))}
     </Container>
   );
