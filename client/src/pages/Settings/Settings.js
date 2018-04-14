@@ -1,5 +1,6 @@
 import React from 'react'
 import SettingsCard from "../../components/SettingsCard";
+import API from "../../utils/API";
 
 
 class Login extends React.Component {
@@ -9,7 +10,16 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
+    this.getUser();
   }
+
+  getUser = () => {
+    API.getUser(this.props.facebook_id)
+      .then(data => {
+          this.setState({user: data.data})
+      }
+    )
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -23,11 +33,15 @@ class Login extends React.Component {
   };
 
   render() {
-    return(
-    <div>
-      <SettingsCard user={this.props.user} facebook_id={this.props.facebook_id}/>
-    </div>
-    )
+    if (this.state.user) {
+      return(
+      <div>
+        <SettingsCard user={this.state.user} facebook_id={this.props.facebook_id}/>
+      </div>
+      )
+    } else {
+      return(<div/>)
+    }
   }
 }
 

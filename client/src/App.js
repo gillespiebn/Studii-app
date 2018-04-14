@@ -163,8 +163,9 @@ class App extends React.Component {
             <Route 
               exact path="/settings" 
               render={(routeProps) => (
-                <Settings facebook_id={this.state.facebook_id} 
-                user={this.state.user} />   
+                <Settings 
+                  facebook_id={this.state.facebook_id} 
+                />   
               )}
             />
             <Route 
