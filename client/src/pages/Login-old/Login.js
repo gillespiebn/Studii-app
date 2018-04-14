@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Header, Icon } from 'semantic-ui-react';
 import FacebookLogin from 'react-facebook-login';
+import "./Login.css";
 
 
 class Login extends React.Component {

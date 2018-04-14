@@ -1,10 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import API from "./utils/API";
 // import NavMenu from "./components/NavMenu";
 import Header from "./components/Header/";
 import Questionnaire from "./components/Questionnaire/";
 import Loading from "./components/Loading";
+import Footer from "./components/Footer";
+import LoginCard from "./components/LoginCard";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Groups from "./pages/Groups";
@@ -29,6 +31,7 @@ class App extends React.Component {
     school: {},
     checked: false,
     intervalId: null,
+    newUser: null,
   };
 
   handleInputChange = event => {
@@ -52,11 +55,11 @@ class App extends React.Component {
       } else {
         // For production, the two commented out lines below will be the ones used. currently using the other ones for production
 
-        //this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+        this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+        //  this.setState({checked: true, facebook_id: 10})
         console.log(window.fbToken.authResponse.userID);
 
-        //this.getUser(window.fbToken.authResponse.userID);
-         this.setState({checked: true, facebook_id: 10})
+        this.getUser(window.fbToken.authResponse.userID);
  
         // this.getUser(10);
       }
@@ -66,9 +69,7 @@ class App extends React.Component {
   getUser = (fbID) => {
     API.getUser(fbID)
       .then(data => {
-        console.log("Squirrel");
-        console.log(data);
-        if (data.data.length === 0) {
+        if (!data.data) {
           this.setState({newUser: true})
         } else {
           this.setState({user: data.data[0]})
@@ -107,13 +108,25 @@ class App extends React.Component {
     return (
       <Container textAlign="center">
         <h1 style={{color: "white"}}>Login page</h1>
-
         <FacebookLogin
           appId="432818630486037"
           autoLoad
           callback={this.responseFacebook}
           render={renderProps => (
-            <button onClick={renderProps.onClick}>This is my custom FB button</button>
+            <button 
+              style={{
+                height: 60, 
+                width:300, 
+                borderRadius: 10, 
+                borderColor: "white",
+                borderStyle: "solid",
+                borderWidth: 3,
+                background: "#22223B", 
+                color: "white",
+                fontFamily: "Arial",
+                fontSize: 24
+              }} 
+              onClick={renderProps.onClick}>Continue with Facebook</button>
           )}
         />
       </Container>
@@ -130,17 +143,19 @@ class App extends React.Component {
             <Route exact path="/" 
               render={(routeProps) => (
                 <Home  
+                  user={this.state.user}
                   facebook_id={this.state.facebook_id}
                 />
               )} 
             />
             <Route exact path="/home" 
-               render={(routeProps) => (
+              render={(routeProps) => (
                 <Home  
-                    facebook_id={this.state.facebook_id}
-                    />
-                   )} 
+                  user={this.state.user}
+                  facebook_id={this.state.facebook_id}
                 />
+              )} 
+            />
             {/* <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/groups" component={Groups} />
@@ -148,16 +163,17 @@ class App extends React.Component {
             <Route 
               exact path="/settings" 
               render={(routeProps) => (
-                <Settings facebook_id={this.state.facebook_id} 
-                user={this.state.user} />   
+                <Settings 
+                  facebook_id={this.state.facebook_id} 
+                />   
               )}
             />
             <Route 
               exact path="/register" 
-              render={(routeProps) => (
-                <Register facebook_id={this.state.facebook_id} 
-                test="this should appears somewhere"/>
-              )}
+              // render={(routeProps) => (
+              //   <Register facebook_id={this.state.facebook_id} 
+              //   test="this should appears somewhere"/>
+              // )}
             />
             <Route component={Page404} />
           </Switch>
@@ -194,10 +210,10 @@ class App extends React.Component {
           return(
           <div>
             <Header />
-            <Register 
-              facebook_id={this.state.facebook_id} 
-              test="this should appears somewhere"
+            <Register
+              facebook_id={this.state.facebook_id}
             />
+            {/* {this.redirectToQuestionnaire()} */}
           </div>
           )
         } else {

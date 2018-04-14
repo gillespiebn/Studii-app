@@ -11,12 +11,14 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
  */
 .ui.segment {
   background: #E4E3E5;
+  color: #22223B;
 }
 
 /* .ui#smallerButton {
   width: auto;
   height: auto
 } */
+
 
 .ui.button {
   background: #194584;
@@ -38,4 +40,28 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
   font-family: Arial, Helvetica, sans-serif;
   font-size:20px;
   padding:0px 5px 0px 0px;
+}
+
+img {
+  width: 75px;
+  margin: 5px;
+}
+
+.Morning {
+ height: 124px;
+}
+
+.Afternoon {
+  margin-top: -50.5px;
+  height: 142px;
+}
+
+.Evening{
+  margin-top: -50.5px;
+  height: 142px;
+}
+
+.Night {
+  margin-top: -50.5px;
+  height: 124px;
 }

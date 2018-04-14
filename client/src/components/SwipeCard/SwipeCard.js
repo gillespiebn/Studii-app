@@ -8,20 +8,16 @@ const CardExampleCard = (props) => {
   return(
     <Container>
     {props.profiles.data.map(profile => (
-      <Card fluid>
-        ProfileHeader
-        <Card.Content>
-          <Card.Header>
+      <div>
+      <ProfileHeader />
+      <div className="sectionTitle">Classes</div>
 
-          </Card.Header>
-          <Card.Description>
-            
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          
-        </Card.Content>
-      </Card>
+      <div className="sectionTitle">Preferred study methods</div>
+
+      <div className="sectionTitle">Preferred places to study</div>
+
+      <div className="sectionTitle">Availability</div>
+      </div>
     ))}
     </Container>
   );
