@@ -10,7 +10,7 @@ import LoginCard from "./components/LoginCard";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Groups from "./pages/Groups";
-import Messenger from "./pages/Messenger";
+// import Messenger from "./pages/Messenger";
 import Settings from "./pages/Settings";
 import Register from "./pages/Register";
 import Page404 from "./pages/404";
@@ -149,7 +149,7 @@ class App extends React.Component {
             {/* <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/groups" component={Groups} />
-            <Route exact path="/messenger" component={Messenger} />
+            {/* <Route exact path="/messenger" component={Messenger} /> */}
             <Route 
               exact path="/settings" 
               render={(routeProps) => (
@@ -190,9 +190,11 @@ class App extends React.Component {
         return (
           <div>
             <Header />
+            <LoginCard />
             <div>
               {this.facebookButton()}
             </div>
+            <Footer/>
           </div>
         )
       } else {

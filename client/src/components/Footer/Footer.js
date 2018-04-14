@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import "./Footer.css";
-import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown } from 'semantic-ui-react';
+// import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown, Footer } from 'semantic-ui-react';
 
-const Footer = () => {
+const FooterClass = () => {
+  return(
     <div>
-        <Footer className="footer">
+        {/* <Footer className="footer"> */}
             <span className="footer-text">(c) Brittany Gillespie, Olivia Garrett, Mary Hall, Jordan Shear</span>
-        </Footer>
+        {/* </Footer> */}
     </div>
+  )
 }
 
-export default Footer;
+export default FooterClass;

@@ -18,6 +18,7 @@ app.use(bodyParser.json())
 // Use express.static to serve the public folder as a static directory
 const router = express.Router();
 
+app.use(express.static("public"));
 app.use(express.static("client/build"));
 
 //cookie parser for grabbing cookies
