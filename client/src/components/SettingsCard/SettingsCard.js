@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from '../../utils/API.js';
-import { Container } from 'semantic-ui-react';
-// import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown } from 'semantic-ui-react';
+import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown } from 'semantic-ui-react';
+import "./SettingsCard.css"
 import _ from 'lodash';
 import vaSchools from '../../utils/vaSchools.js'
 // import SearchForm from "../SearchForm";
@@ -27,7 +27,7 @@ class SettingsCard extends Component {
     results: [],
     //change major and minor when they are created
     major: '',
-    minor: '',
+    minor: 'None Selected',
     photo: '',
     methods: {
       flashcards: false,
@@ -74,6 +74,10 @@ class SettingsCard extends Component {
       SaturdayAfternoon: false,
       SaturdayEvening: false,
       SaturdayNight: false
+    },
+    edit: {
+      editName: false,
+      editEmail: false,
     },
   };
 
@@ -148,55 +152,38 @@ class SettingsCard extends Component {
 
       this.setState({ locations });
     }
+    
+    if (prevState.objMethods !== this.state.objMethods) {
+      var methods = this.state.methods;
+      
+      for (var i = 0; i < this.state.objMethods.length; i++) {
+        var method = this.state.objMethods[i];
+        methods[method] = !this.state.methods[method];
+      }
 
-    
-    
-    // if (prevState.objLocations !== this.state.objLocations) {
-    //   for (var i = 0; i < this.state.objLocations.length; i++) {
-    //     console.log("this ran")
-    //     const  obj  = this.state.objLocations[i];
-    //     console.log(obj);
-    //     console.log(this.state.objLocations[i])
-    //     const locations = {...this.state.locations, [obj]: !this.state.locations[obj] };
-    //     this.setState({locations})
-    //   }
-    // }
-    // if (prevState.objMethods !== this.state.objMethods) {
-    //   for (var i = 0; i < this.state.objMethods.length; i++) {
-    //     console.log("this ran")
-    //     const  obj  = this.state.objMethods[i];
-    //     console.log(obj);
-    //     console.log(this.state.objMethods[i])
-    //     const methods = {...this.state.methods, [obj]: !this.state.methods[obj] };
-    //     this.setState({methods})
-    //   }
-    // }
-    // if (prevState.objTimes !== this.state.objTimes) {
-    //   for (var i = 0; i < this.state.objTimes.length; i++) {
-    //     console.log("this ran")
-    //     const  obj  = this.props.user.times[i];
-    //     console.log(obj);
-    //     console.log(this.props.user.times[i])
-    //     const times = {...this.state.times, [obj]: !this.state.times[obj] };
-    //     this.setState({times})
-    //   }
-    // }
+      this.setState({ methods });
+    }
+
+    if (prevState.objTimes !== this.state.objTimes) {
+      var times = this.state.times;
+      
+      for (var i = 0; i < this.state.objTimes.length; i++) {
+        var time = this.state.objTimes[i];
+        times[time] = !this.state.times[time];
+      }
+
+      this.setState({ times });
+    }
+    if (prevState.minor !== this.state.minor) {
+      if (!this.state.minor || this.state.minor === "null" || this.state.minor.trim() === "") {
+        this.setState({minor: "None Currently Selected"})
+      }
+    }
   }
 
 
   componentDidMount() {
-    console.log("component did mount here is a user")
-    // console.log(this.state.user.methods);
-    // console.log(this.state.user.locations);
-    // console.log(this.state.user.times);
-    // this.setState({user: this.props.user});
-    // const promise = this.setStates();
-
     this.setState({name: this.state.user.name, email: this.state.user.email, school: this.state.user.school, classStanding: this.state.user.classStanding, classes: this.state.user.classes, objMethods: this.props.user.methods, objLocations: this.props.user.locations, objTimes: this.props.user.times, major: this.state.user.major, minor: this.state.user.minor, photo: this.state.user.photo});
-
-    // console.log("OBJJJJJJ");
-    // console.log(this.state.objLocations)
-
   }
 
 
@@ -207,7 +194,6 @@ class SettingsCard extends Component {
   handleMethodToggle = event => {
     event.preventDefault();
     const { name } = event.target;
-
     const methods = {...this.state.methods, [name]: !this.state.methods[name]};
     this.setState({
       methods
@@ -217,7 +203,6 @@ class SettingsCard extends Component {
   handleLocationToggle = event => {
     event.preventDefault();
     const { name } = event.target;
-
     const location = {...this.state.location, [name]: !this.state.location[name]};
     this.setState({
       location
@@ -227,10 +212,18 @@ class SettingsCard extends Component {
   handleTimeToggle = event => {
     event.preventDefault();
     const { name } = event.target;
-
     const time = {...this.state.time, [name]: !this.state.time[name]};
     this.setState({
       time
+    });
+  }
+
+  handleEditToggle = event => {
+    event.preventDefault();
+    const { name } = event.target;
+    const edit = {...this.state.edit, [name]: !this.state.edit[name]};
+    this.setState({
+      edit
     });
   }
 
@@ -245,6 +238,63 @@ class SettingsCard extends Component {
   filterTimes = () => {
     return Object.keys(this.state.times).filter((option, index) => this.state.times[option]);
   }
+
+  checkFunction = (state) => {
+    if (state === "nameUpdate") {
+      if (!this.state.nameUpdate){
+        this.setState({nameEmpty: "Please Enter Your Name", nameProblem: "error"})
+        return true;
+      }
+    }
+    if (state === "emailUpdate") {
+      if (!this.state.emailUpdate){
+        this.setState({emailEmpty: "Please Enter Your Email Address", emailProblem: "error"})
+        return true;
+      }
+    }
+    if (state === "emailUpdate") {          
+      if(!this.state.emailUpdate.split("@")[1] || this.state.emailUpdate.split('@')[1].split('.')[1] !== "edu") {
+        this.setState({ emailFormatProblem: "Please Enter a .edu Email Address", emailProblem: "error"})
+        return true;
+      }
+    }
+    if (state === "majorUpdate") {
+      if (!this.state.majorUpdate){
+        this.setState({majorEmpty: "Please Enter Your Major", majorProblem: "error"})
+        return true;
+      }
+    }
+  }
+
+  handleUpdateOne = event => {
+    event.preventDefault();
+    this.setState({
+      nameEmpty: false,
+      emailEmpty: false,
+      emailProblem: false,
+      emailFormatProblem: false,
+      majorProblem: false,
+      majorEmpty: false,
+
+    })
+    const { name, value } = event.target;
+    let update = value.split("*")[0]
+    if (!update) {
+      update = ' '
+    }
+    const stateOne = value.split("*")[1]
+    const wrong = this.checkFunction(stateOne);
+    if (wrong) {
+      return;
+    }
+    const stateTwo = value.split("*")[2]
+    this.setState({ [name]: update, [stateOne]: null, changesMade: true})
+    const edit = {...this.state.edit, [stateTwo]: !this.state.edit[stateTwo]};
+    this.setState({
+      edit
+    })
+  }
+
 
   //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
@@ -270,11 +320,127 @@ class SettingsCard extends Component {
     }, 300)
   }
   //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
+  
 
   render() { 
+    
+
     return(
       <Container>
-        <h1>this is the settings page</h1>
+        <Segment>
+          <Container textAlign="center">
+            <Header as="h2">User Settings</Header>
+            {this.state.changesMade ?
+              <Header as="h3" style={{color: "red"}}>Press "Update" to Save Changes</Header>
+            : 
+              ""
+            }
+          </Container>
+          <Container>
+            <Grid>
+              <Grid.Column width={7}>
+                <Button toggle /*active={this.state.edit.editName}*/ name="editName" onClick={this.handleEditToggle} data-methods="Edit Name" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={9} verticalAlign="middle">
+                <Header as="h4">Name</Header>
+              </ Grid.Column>
+            </Grid>
+            {this.state.edit.editName ?
+              <Form>
+                <Grid>
+                  <Form.Field control={Input} label='Your First and Last Name'  width={12} className={`${this.state.nameProblem}`}>
+                    <input type="text" placeholder={this.state.name} required name="nameUpdate" onChange={this.handleInputChange} />
+                    {this.state.nameEmpty ?
+                      <Label basic color="red" pointing="left">{`${this.state.nameEmpty}`}</Label>
+                    : ""}
+                  </Form.Field>
+                  <Button onClick={this.handleUpdateOne} name="name" value={`${this.state.nameUpdate}*nameUpdate*editName`} size="small" content="Update" />
+                </Grid>
+              </Form>
+            : 
+              <span>Name: {this.state.name}</span>
+            }
+          </Container>
+          {/* ///////////////////////// */}
+          <Container>
+            <Grid>
+              <Grid.Column width={7}>
+                <Button toggle /*active={this.state.edit.editName}*/ name="editEmail" onClick={this.handleEditToggle} data-methods="Edit Email" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={9} verticalAlign="middle">
+                <Header as="h4">Email</Header>
+              </ Grid.Column>
+            </Grid>
+            {this.state.edit.editEmail ?
+              <Form>
+                <Grid>
+                  <Form.Field control={Input} label='Enter your .edu Email'  width={12} className={`${this.state.emailProblem}`}>
+                    <input type="text" placeholder={this.state.email} required name="emailUpdate" onChange={this.handleInputChange} />
+                      {this.state.emailEmpty ?
+                            <Label basic color="red" pointing="left">{`${this.state.emailEmpty}`}</Label>
+                          : ""}
+                      {this.state.emailFormatProblem ?
+                        <Label basic color="red" pointing="left">{`${this.state.emailFormatProblem}`}</Label>
+                      : ""}
+                  </Form.Field>
+                  <Button onClick={this.handleUpdateOne} name="email" value={`${this.state.emailUpdate}*emailUpdate*editEmail`} size="small" content="Update" />
+                </Grid>
+              </Form>
+            : 
+              <span>Email: {this.state.email}</span>
+            }
+          </Container>
+          {/* ////////////////////////////// */}
+          <Container>
+            <Grid>
+              <Grid.Column width={7}>
+                <Button toggle /*active={this.state.edit.editName}*/ name="editMajor" onClick={this.handleEditToggle} data-methods="Edit Major" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={9} verticalAlign="middle">
+                <Header as="h4">Major</Header>
+              </ Grid.Column>
+            </Grid>
+            {this.state.edit.editMajor ?
+              <Form>
+                <Grid>
+                  <Form.Field control={Input} label='Enter Your Major'  width={12} className={`${this.state.majorProblem}`}>
+                    <input type="text" placeholder={this.state.major} required name="majorUpdate" onChange={this.handleInputChange} />
+                      {this.state.majorEmpty ?
+                            <Label basic color="red" pointing="left">{`${this.state.majorEmpty}`}</Label>
+                          : ""}
+                  </Form.Field>
+                  <Button onClick={this.handleUpdateOne} name="major" value={`${this.state.majorUpdate}*majorUpdate*editMajor`} size="small" content="Update" />
+                </Grid>
+              </Form>
+            : 
+              <span>Major: {this.state.major}</span>
+            }
+          </Container>
+          {/* ////////////////////////////// */}
+          <Container>
+            <Grid>
+              <Grid.Column width={7}>
+                <Button toggle /*active={this.state.edit.editName}*/ name="editMinor" onClick={this.handleEditToggle} data-methods="Edit Minor" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={9} verticalAlign="middle">
+                <Header as="h4">Minor</Header>
+              </ Grid.Column>
+            </Grid>
+            {this.state.edit.editMinor ?
+              <Form>
+                <Grid>
+                  <Form.Field control={Input} label='Enter Your Minor'  width={12} className={`${this.state.majorProblem}`}>
+                    <input type="text" placeholder={this.state.minor} name="minorUpdate" onChange={this.handleInputChange} />
+                  </Form.Field>
+                  <Button onClick={this.handleUpdateOne} name="minor" value={`${this.state.minorUpdate}*minorUpdate*editMinor`} size="small" content="Update" />
+                </Grid>
+              </Form>
+            : 
+              <span>Minor: {this.state.minor}</span>
+            }
+          </Container>
+          {/* ////////////////////////////// */}
+        </Segment>
       </Container>
     )
   }

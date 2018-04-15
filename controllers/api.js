@@ -15,6 +15,10 @@ router.post('/matches', (req, res) => {
   // class
   console.log(req.body.data)
   // console.log(req.body.data.times);
+  if (!req.body.data){
+    dataGone(res);
+    return;
+  }
   db.Users
     // .where('schoolCode').equals('req.body.data.schoolCode')
     // .where('schoolCode').equals(req.body.data.schoolCode)
@@ -29,6 +33,10 @@ router.post('/matches', (req, res) => {
     //     console.log(data);
     //   })
   });
+
+  dataGone = (res) => {
+    res.send("nothing happened")
+  }
 
 router.get('/userprofile/:fbID', (req, res) => {
   const user = req.params.fbID.toString();
