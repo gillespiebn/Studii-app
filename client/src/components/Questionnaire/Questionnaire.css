@@ -9,16 +9,28 @@ MAIN COLORS
  ACCENT COLORS
 Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = #282840
  */
-.ui.segment {
+.ui.raised.segment {
   background: #E4E3E5;
   color: #22223B;
+  width: 75%;
+  margin: auto;
+}
+.registerTitle {
+  font-family: 'Nunito', sans-serif;
+  color: #22223B;
+  text-align: center;
+  border: none;
+  font-size: 2em;
+  /* top:50%; */
+}
+.ui.grid.classGrid {
+  margin-left: 15%;
 }
 
-/* .ui#smallerButton {
-  width: auto;
-  height: auto
-} */
-
+.ui.search>.results {
+  overflow: scroll;
+  height:100px;
+}
 
 .ui.button {
   background: #194584;
@@ -31,8 +43,38 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
   height: 60px;
 }
 
-.ui.button::active {
-  background: #F4AE9F;
+.ui.button:active, .ui.button:focus {
+  background: #E4E3E5;
+}
+
+.ui.button.submit {
+  width:100%
+}
+.equal.width.fields.preferbtn {
+  margin-top: 1%;
+  margin-left: 22%
+
+}
+
+.equal.width.fields.timebtnMo {
+  margin-top: 1%;
+  margin-left: 15%
+
+}
+.equal.width.fields.timebtnAf {
+  margin-top: 1%;
+  margin-left: 15%
+
+}
+.equal.width.fields.timebtnEv {
+  margin-top: 1%;
+  margin-left: 15%
+
+}
+.equal.width.fields.timebtnNi {
+  margin-top: 1%;
+  margin-left: 15%
+
 }
 
 .ui.form>p {

@@ -11,9 +11,19 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
  */
 .footer {
     background: #22223B;
+    /* text-align: center; */
+    height: 5em;
+    position: relative
 }
 
 .footer-text {
     color: #F4AE9F;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    position: absolute;
 }

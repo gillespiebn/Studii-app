@@ -4,10 +4,8 @@ import "./Footer.css";
 
 const FooterClass = () => {
   return(
-    <div>
-        {/* <Footer className="footer"> */}
+    <div className="footer">
             <span className="footer-text">(c) Brittany Gillespie, Olivia Garrett, Mary Hall, Jordan Shear</span>
-        {/* </Footer> */}
     </div>
   )
 }

@@ -361,20 +361,22 @@ class Questionnaire extends Component {
           <Container>
             <Segment style={{ marginTop: 20}} raised>
               <Container textAlign="center">
-                <Header as="h2">Find a Studii Buddy</Header>
+                <h3 style={{ marginTop: 20 }} className="registerTitle">Find a Studii Buddy</h3>
               </Container>
               <Container>
                 <Form>
+                  <h4>Your First and Last Name</h4>
                   <Form.Group>
-                    <Form.Field control={Input} label='Your First and Last Name'  width={16} className={`${this.state.nameProblem}`}>
-                    <input type="text" placeholder="Enter First and Last Name Here" required name="name" onChange={this.handleInputChange} />
+                    <Form.Field control={Input} width={16} className={`${this.state.nameProblem}`}>
+                    <input type="text" required name="name" onChange={this.handleInputChange} />
                     {this.state.nameEmpty ?
                       <Label basic color="red" pointing="left">{`${this.state.nameEmpty}`}</Label>
                     : ""}                      
                     </ Form.Field>
                   </Form.Group>
+                  <h4>Your University Email Address (must include .edu)</h4>
                   <Form.Group>  
-                    <Form.Field control={Input} label="Your University Email Address (must be include .edu)" placeholder="Enter School (.edu) Email Address" className={`${this.state.emailProblem}`} width={16}>
+                    <Form.Field control={Input} className={`${this.state.emailProblem}`} width={16}>
                       <input type="email" required name="email" onChange={this.handleInputChange} />
                       {this.state.emailEmpty ?
                         <Label basic color="red" pointing="left">{`${this.state.emailEmpty}`}</Label>
@@ -384,27 +386,44 @@ class Questionnaire extends Component {
                       : ""}
                     </Form.Field>
                   </Form.Group>
+                  <h4>Find Your University</h4>
                   <Form.Group>  
-                    <Form.Field>
-                      <Label>
-                        {<Icon name="university" size="large" />}
-                      </Label>
+                    <Form.Field width={16}>
+                      {/* <div>  */}
+                        {this.state.schoolEmpty ?
+                          <Label basic color="red" pointing="below">{`${this.state.schoolEmpty}`}</Label>
+                        : ""}
+                        {this.state.schoolWrong ?
+                          <Label basic color="red" pointing="below">{`${this.state.schoolWrong}`}</Label>
+                        : ""}
+                        <SearchFormSchools
+                          // style={{overflow: "auto", height: 50}}
+                          placeholder="Type in Your University"
+                          loading={this.stateisLoading}
+                          onResultSelect={this.handleResultSelect}
+                          onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+                          results={this.state.results}
+                          value={this.state.value}
+                          {...this.props}  
+                        />
+                      {/* </div> */}
                     </Form.Field>  
                   </Form.Group>
                   <Form.Group widths='equal'>  
                     <Form.Field control={Input} label="Your Major" className={`${this.state.majorProblem}`}>
-                      <input type="text" placeholder="Enter Your Major" required name="major" onChange={this.handleInputChange} />
+                      <input type="text" required name="major" onChange={this.handleInputChange} />
                       {this.state.majorEmpty ?
                         <Label basic color="red" pointing="left">{`${this.state.majorEmpty}`}</Label>
                       : ""}
                     </ Form.Field>
                     <Form.Field control={Input} label="Your Minor, if applicable" className="minor">
-                      <input type="text" placeholder="Enter Your Minor (if applicable)" name="minor" onChange={this.handleInputChange} />
+                      <input type="text" name="minor" onChange={this.handleInputChange} />
                     </ Form.Field>  
                   </Form.Group>
+                  <h4>Your Class Standing, i.e. "Senior"</h4>
                   <Form.Group>
-                    <Form.Field control={Input} label="Your Class Standing" className="classStanding" className={`${this.state.classStandingProblem}`}>
-                      <input type="text" placeholder="i.e. Senior" required name="classStanding" onChange={this.handleInputChange} />
+                    <Form.Field width={16} control={Input} className="classStanding" className={`${this.state.classStandingProblem}`}>
+                      <input type="text" required name="classStanding" onChange={this.handleInputChange} />
                       {this.state.classStandingEmpty ?
                         <Label basic color="red" pointing="left">{`${this.state.classStandingEmpty}`}</Label>
                       : ""}
@@ -413,19 +432,18 @@ class Questionnaire extends Component {
                       : ""}
                     </ Form.Field>  
                   </Form.Group>
-                  <p className="label">Add the Class You Need to Study</p>
-                  <Grid>
-                    <Grid.Column width={8}>
-                      <div>
-                        <h5>Class Prefix</h5>
+                  <h3 className="registerTitle">Add the Class You Need to Study</h3>
+                  <Grid className="classGrid">
+                    <Grid.Column width={5}>
+                      <h4>Class Prefix</h4>
+                      <div width={16}>
                         {this.state.prefixEmpty ?
                           <Label basic color="red" pointing="below">{`${this.state.prefixEmpty}`}</Label>
                         : ""}
                         <SearchFormClasses
                           fluid
                           className={`${this.state.prefixProblem}`}
-                          style={{overflow: "auto", height: 100, minWidth: "30%"}}
-                          placeholder="Enter Class Prefix"
+                          // style={{overflow: "auto", height: 75}}
                           loading={this.stateisLoadingClass}
                           onResultSelect={this.handleResultSelectClass}
                           onSearchChange={_.debounce(this.handleSearchChangeClass, 500, { leading: true })}
@@ -435,10 +453,11 @@ class Questionnaire extends Component {
                         />
                       </div>
                     </Grid.Column>
-                    <Grid.Column width={8}>  
+                    <Grid.Column width={5}>
+                      <h4>Class ID Number</h4>
                       <Form.Group>
-                        <Form.Field className={`${this.state.numberProblem}`} control={Input} label="Class Number" className="classNumber">
-                          <input type="text" placeholder="Enter Class Number" required name="classIDNumber" onChange={this.handleInputChange} />
+                        <Form.Field width={16} className={`${this.state.numberProblem}`} control={Input} className="classNumber">
+                          <input  type="text" required name="classIDNumber" onChange={this.handleInputChange} />
                           {this.state.numberEmpty ?
                             <Label basic color="red" pointing="left">{`${this.state.numberEmpty}`}</Label>
                           : ""}
@@ -446,41 +465,41 @@ class Questionnaire extends Component {
                             <Label basic color="red" pointing="left">{`${this.state.numberWrong}`}</Label>
                           : ""}
                         </Form.Field>   
-                        <Button toggle name="createClass" id="smallerButton"  onClick={this.createClass}> Add + </Button>
                       </Form.Group>
                     </Grid.Column>
+                    <Grid.Column width={2}>
+                      <Button style={{
+                        height: "37px",
+                        width:"100px",
+                        marginTop: "32px"
+                      }}toggle name="createClass" id="smallerButton"  onClick={this.createClass}>Add
+                      </Button>
+                    </Grid.Column>      
                   </Grid> 
-                  <p className="label">Your Preferred Study Methods</p>
-                  <Form.Group widths="equal">
-                    <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
-                    <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
-                    <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
+                  <h4 className="registerTitle">Preferred Study Methods</h4>
+                  <Form.Group className="preferbtn" widths="equal">
+                    <Button toggle={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
+                    <Button toggle={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
+                    <Button toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
                   </Form.Group>
-                  <Form.Group widths="equal">  
-                    <Button toggle active={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
-                    <Button toggle active={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
-                    <Button toggle active={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
+                  <Form.Group className="preferbtn" widths="equal">  
+                    <Button toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
+                    <Button toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
+                    <Button toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
                   </Form.Group>
-                  <p className="label">Preferred Study Location</p>
-                  <Form.Group widths="equal">
-                    <Button toggle active={this.state.locations.library}name="library"  onClick={this.handleLocationToggle}data-locations="Library">Library</Button>
-                    <Button toggle active={this.state.locations.online} name="online" onClick={this.handleLocationToggle}data-locations="Online">Online</Button>
-                    <Button toggle active={this.state.locations.commons}name="commons"  onClick={this.handleLocationToggle}data-locations="Commons">Commons</Button>
+                  <h4 className="registerTitle">Preferred Study Location</h4>
+                  <Form.Group className="preferbtn" widths="equal">
+                    <Button toggle={this.state.locations.library}name="library"  onClick={this.handleLocationToggle}data-locations="Library">Library</Button>
+                    <Button toggle={this.state.locations.online} name="online" onClick={this.handleLocationToggle}data-locations="Online">Online</Button>
+                    <Button toggle={this.state.locations.commons}name="commons"  onClick={this.handleLocationToggle}data-locations="Commons">Commons</Button>
                   </Form.Group>
-                  <Form.Group widths="equal">  
-                    <Button toggle active={this.state.locations.cafe} name="cafe" onClick={this.handleLocationToggle}data-locations="Cafe">Cafe</Button>
-                    <Button toggle active={this.state.locations.home} name="home" onClick={this.handleLocationToggle}data-locations="Home">Home</Button>
-                    <Button toggle active={this.state.locations.other} name="other" onClick={this.handleLocationToggle}data-locations="Other">Other</Button>
+                  <Form.Group className="preferbtn" widths="equal">  
+                    <Button toggle={this.state.locations.cafe} name="cafe" onClick={this.handleLocationToggle}data-locations="Cafe">Cafe</Button>
+                    <Button toggle={this.state.locations.home} name="home" onClick={this.handleLocationToggle}data-locations="Home">Home</Button>
+                    <Button toggle={this.state.locations.other} name="other" onClick={this.handleLocationToggle}data-locations="Other">Other</Button>
                   </Form.Group>
-                  <p className="label">Preferred Study Time</p>
-                  <Form.Group widths="equal">
-                    {/* <Button toggle active={this.state.times.SundayMorning} name="SundayMorning" onClick={this.handleTimeToggle} data-times="SundayMorning" className="Sunday" > Sunday Morning </Button>
-                    <Button toggle active={this.state.times.MondayMorning} name="MondayMorning" onClick={this.handleTimeToggle} data-times="MondayMorning" className="Monday"> Monday Morning </Button>
-                    <Button toggle active={this.state.times.TuesdayMorning} name="TuesdayMorning" onClick={this.handleTimeToggle} data-times="TuesdayMorning" className="Tuesday" > Tuesday Morning </Button>
-                    <Button toggle active={this.state.times.WednesdayMorning} name="WednesdayMorning" onClick={this.handleTimeToggle} data-times="WednesdayMorning" className="Wednesday" > Wednesday Morning </Button> 
-                    <Button toggle active={this.state.times.ThursdayMorning} name="ThursdayMorning" onClick={this.handleTimeToggle} data-times="ThursdayMorning" className="Thursday" > Thursday Morning </Button>
-                    <Button toggle active={this.state.times.FridayMorning} name="FridayMorning" onClick={this.handleTimeToggle} data-times="FridayMorning" className="Friday" > Friday Morning </Button>
-                    <Button toggle active={this.state.times.SaturdayMorning} name="SaturdayMorning" onClick={this.handleTimeToggle} data-times="SaturdayMorning" className="Saturday" > Saturday Morning </Button> */}
+                  <h4 className="registerTitle">Preferred Study Time</h4>
+                  <Form.Group className="timebtnMo" widths="equal">
                     {this.state.times.SundayMorning ?
                   <img alt="." src="/images/pinkMor.png" active={this.state.times.SundayMorning} name="SundayMorning" onClick={this.handleTimeToggle} data-times="SundayMorning" className="Sunday Morning" />
                   : <img alt="." src="/images/blueMor.png" active={this.state.times.SundayMorning} name="SundayMorning" onClick={this.handleTimeToggle} data-times="SundayMorning" className="Sunday Morning" />}
@@ -510,14 +529,8 @@ class Questionnaire extends Component {
                   : <img alt="." src="/images/blueMor.png" active={this.state.times.SaturdayMorning} name="SaturdayMorning" onClick={this.handleTimeToggle} data-times="SaturdayMorning" className="Saturday Morning" />}
                  
                   </Form.Group>
-                  <Form.Group widths="equal"> 
-                    {/* <Button toggle active={this.state.times.SundayAfternoon} name="SundayAfternoon" onClick={this.handleTimeToggle} data-times="SundayAfternoon" className="Sunday" > Sunday Afternoon </Button>
-                    <Button toggle active={this.state.times.MondayAfternoon} name="MondayAfternoon" onClick={this.handleTimeToggle} data-times="MondayAfternoon" className="Monday" > Monday Afternoon </Button>
-                    <Button toggle active={this.state.times.TuesdayAfternoon} name="TuesdayAfternoon" onClick={this.handleTimeToggle} data-times="TuesdayAfternoon" className="Tuesday" > Tuesday Afternoon </Button> 
-                    <Button toggle active={this.state.times.WednesdayAfternoon} name="WednesdayAfternoon" onClick={this.handleTimeToggle} data-times="WednesdayAfternoon" className="Wednesday" > Wednesday Afternoon </Button>
-                    <Button toggle active={this.state.times.ThursdayAfternoon} name="ThursdayAfternoon" onClick={this.handleTimeToggle} data-times="ThursdayAfternoon" className="Thursday" > Thursday Afternoon </Button>
-                    <Button toggle active={this.state.times.FridayAfternoon} name="FridayAfternoon" onClick={this.handleTimeToggle} data-times="FridayAfternoon" className="Friday" > Friday Afternoon </Button>
-                    <Button toggle active={this.state.times.SaturdayAfternoon} name="SaturdayAfternoon" onClick={this.handleTimeToggle} data-times="SaturdayAfternoon" className="Saturday" > Saturday Afternoon </Button> */}
+                  <Form.Group className="timebtnAf" widths="equal"> 
+
                     {this.state.times.SundayAfternoon ?
                   <img alt="." src="/images/pinkAft.png" active={this.state.times.SundayAfternoon} name="SundayAfternoon" onClick={this.handleTimeToggle} data-times="SundayAfternoon" className="Sunday Afternoon" />
                   : <img alt="." src="/images/blueAft.png" active={this.state.times.SundayAfternoon} name="SundayAfternoon" onClick={this.handleTimeToggle} data-times="SundayAfternoon" className="Sunday Afternoon" />}
@@ -546,14 +559,8 @@ class Questionnaire extends Component {
                   <img alt="." src="/images/pinkAft.png" active={this.state.times.SaturdayAfternoon} name="SaturdayAfternoon" onClick={this.handleTimeToggle} data-times="SaturdayAfternoon" className="Saturday Afternoon" />
                   : <img alt="." src="/images/blueAft.png" active={this.state.times.SaturdayAfternoon} name="SaturdayAfternoon" onClick={this.handleTimeToggle} data-times="SaturdayAfternoon" className="Saturday Afternoon" />}
                   </Form.Group>
-                  <Form.Group widths="equal">
-                    {/* <Button toggle active={this.state.times.SundayEvening} name="SundayEvening" onClick={this.handleTimeToggle} data-times="SundayEvening" className="Sunday" > Sunday Evening </Button> 
-                    <Button toggle active={this.state.times.MondayEvening} name="MondayEvening" onClick={this.handleTimeToggle} data-times="MondayEvening" className="Monday" > Monday Evening </Button>   
-                    <Button toggle active={this.state.times.TuesdayEvening} name="TuesdayEvening" onClick={this.handleTimeToggle} data-times="TuesdayEvening" className="Tuesday" > Tuesday Evening </Button>
-                    <Button toggle active={this.state.times.WednesdayEvening} name="WednesdayEvening" onClick={this.handleTimeToggle} data-times="WednesdayEvening" className="Wednesday" > Wednesday Evening </Button>
-                    <Button toggle active={this.state.times.ThursdayEvening} name="ThursdayEvening" onClick={this.handleTimeToggle} data-times="ThursdayEvening" className="Thursday" > Thursday Evening </Button>
-                    <Button toggle active={this.state.times.FridayEvening} name="FridayEvening" onClick={this.handleTimeToggle} data-times="FridayEvening" className="Friday" > Friday Evening </Button>
-                    <Button toggle active={this.state.times.SaturdayEvening} name="SaturdayEvening" onClick={this.handleTimeToggle} data-times="SaturdayEvening" className="Saturday" > Saturday Evening </Button> */}
+                  <Form.Group className="timebtnEv" widths="equal">
+
                     {this.state.times.SundayEvening ?
                   <img alt="." src="/images/pinkEve.png" active={this.state.times.SundayEvening} name="SundayEvening" onClick={this.handleTimeToggle} data-times="SundayEvening" className="Sunday Evening" />
                   : <img alt="." src="/images/blueEve.png" active={this.state.times.SundayEvening} name="SundayEvening" onClick={this.handleTimeToggle} data-times="SundayEvening" className="Sunday Evening" />}
@@ -582,14 +589,8 @@ class Questionnaire extends Component {
                   <img alt="." src="/images/pinkEve.png" active={this.state.times.SaturdayEvening} name="SaturdayEvening" onClick={this.handleTimeToggle} data-times="SaturdayEvening" className="Saturday Evening" />
                   : <img alt="." src="/images/blueEve.png" active={this.state.times.SaturdayEvening} name="SaturdayEvening" onClick={this.handleTimeToggle} data-times="SaturdayEvening" className="Saturday Evening" />}
                   </Form.Group>
-                  <Form.Group widths="equal">   
-                    {/* <Button toggle active={this.state.times.SundayNight}name="SundayNight" onClick={this.handleTimeToggle}  data-times="SundayNight" className="Sunday" > Sunday Night </Button>
-                    <Button toggle active={this.state.times.MondayNight} name="MondayNight" onClick={this.handleTimeToggle} data-times="MondayNight" className="Monday" > Monday Night </Button>
-                    <Button toggle active={this.state.times.TuesdayNight} name="TuesdayNight" onClick={this.handleTimeToggle} data-times="TuesdayNight" className="Tuesday" > Tuesday Night </Button>
-                    <Button toggle active={this.state.times.WednesdayNight} name="WednesdayNight" onClick={this.handleTimeToggle} data-times="WednesdayNight" className="Wednesday" > Wednesday Night </Button>
-                    <Button toggle active={this.state.times.ThursdayNight} name="ThursdayNight" onClick={this.handleTimeToggle} data-times="ThursdayNight" className="Thursday" > Thursday Night </Button>
-                    <Button toggle active={this.state.times.FridayNight} name="FridayNight" onClick={this.handleTimeToggle} data-times="FridayNight" className="Friday" > Friday Night </Button>
-                    <Button toggle active={this.state.times.SaturdayNight} name="SaturdayNight" onClick={this.handleTimeToggle} data-times="SaturdayNight" className="Saturday" > Saturday Night </Button> */}
+                  <Form.Group className="timebtnNi" widths="equal">   
+
                     {this.state.times.SundayNight ?
                   <img alt="." src="/images/pinkNi.png" active={this.state.times.SundayNight} name="SundayNight" onClick={this.handleTimeToggle} data-times="SundayNight" className="Sunday Night" />
                   : <img alt="." src="/images/blueNi.png" active={this.state.times.SundayNight} name="SundayNight" onClick={this.handleTimeToggle} data-times="SundayNight" className="Sunday Night" />}
@@ -620,25 +621,6 @@ class Questionnaire extends Component {
                   </Form.Group>  
                 </Form>
               </Container>
-              <div> 
-                {this.state.schoolEmpty ?
-                  <Label basic color="red" pointing="below">{`${this.state.schoolEmpty}`}</Label>
-                : ""}
-                {this.state.schoolWrong ?
-                  <Label basic color="red" pointing="below">{`${this.state.schoolWrong}`}</Label>
-                : ""}
-                <SearchFormSchools
-                  style={{overflow: "auto", height: 100}}
-                  placeholder="Enter School Name"
-                  loading={this.stateisLoading}
-                  onResultSelect={this.handleResultSelect}
-                  onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                  results={this.state.results}
-                  value={this.state.value}
-                  {...this.props}  
-                />
-              </div>
-
               <Button onClick={this.handleFormSubmit} className="submit">Submit</Button>
             </Segment>
           </Container>

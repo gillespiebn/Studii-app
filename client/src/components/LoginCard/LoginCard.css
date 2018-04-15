@@ -9,21 +9,48 @@ MAIN COLORS
  ACCENT COLORS
 Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = #282840
  */
-.login-image {
+
+/* .ui.container {
+     background-image: url("./images/studiiTileBackground.png");
+     background-repeat: repeat-y;
+ } */
+.ui.segment.login-image {
     background: #22223B;
+    width: 60%;
+    border: 3px solid #F4AE9F;
+    border-radius: 10px;
+    margin: auto;
+    height: 35em;
+}
+.ui.medium.image {
+    /* background: #22223B; */
     padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
     border-radius: 10px;
     border-style: none;
+}
+.ui.segment {
+    background: #22223B;
+    margin: 0;
+    padding: 0;
 }
 
 p {
     color: #FFFFFF;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nunito', sans-serif;
     text-align: center;
+    font-size: 2em;
+    transform: translate(0%, -250%);
 }
 
 h2 {
-    font-family: 'Baloo Bhaijaan', cursive;
+    font-family: 'Nunito', sans-serif;
     color: #FFFFFF;
     text-align: center;
+    border: none;
+    font-size: 4em;
+    transform: translate(0%, -330%);
 }
