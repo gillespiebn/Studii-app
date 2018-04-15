@@ -20,8 +20,9 @@ const userSeed = [
     "email": "hingmcring@vcu.edu",
     "classStanding": "F",
     "classes": [
-      "bio:101",
-      "math100"
+      "biology:101",
+      "math:100",
+      "english:100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes", "other"
@@ -44,8 +45,8 @@ const userSeed = [
     "email": "ty@vcu.edu",
     "classStanding": "F",
     "classes": [
-      "bio101",
-      "math100"
+      "biology:101",
+      "math:100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes", "other"
@@ -68,9 +69,9 @@ const userSeed = [
     "email": "tjajrj@vcu.edu",
     "classStanding": "F",
     "classes": [
-      "bio101",
-      "math100",
-      "eng100"
+      "biology:101",
+      "math:100",
+      "english:100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
@@ -94,9 +95,9 @@ const userSeed = [
     "email": "tjajrj@vcu.edu",
     "classStanding": "F",
     "classes": [
-      "bio101",
-      "math100",
-      "eng100"
+      "biology:101",
+      "math:100",
+      "english:100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
@@ -120,9 +121,9 @@ const userSeed = [
     "email": "tjajrj@urich.edu",
     "classStanding": "F",
     "classes": [
-      "bio101",
-      "math100",
-      "eng100"
+      "biology:101",
+      "math:100",
+      "english:100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
@@ -146,9 +147,9 @@ const userSeed = [
     "email": "tjajrj@urich.edu",
     "classStanding": "F",
     "classes": [
-      "bio101",
-      "math100",
-      "eng100"
+      "biology:101",
+      "math:100",
+      "english:100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
@@ -172,8 +173,9 @@ const userSeed = [
     "email": "neckbeard@urich.edu",
     "classStanding": "F",
     "classes": [
-      "bio101",
-      "eng100"
+      "biology:101",
+      "math:100",
+      "english:100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
@@ -196,7 +198,7 @@ const userSeed = [
     "email": "beandip@urich.edu",
     "classStanding": "S",
     "classes": [
-      "bio101"
+      "biology:101"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes"
@@ -219,9 +221,9 @@ const userSeed = [
     "email": "grunk@urich.edu",
     "classStanding": "F",
     "classes": [
-      "biol101",
-      "m100",
-      "wri100"
+      "biology:101",
+      "math:100",
+      "english:100"
     ],
     "methods": [
       "flashcards"
@@ -243,8 +245,9 @@ const userSeed = [
     "email": "bfunyuns@vcu.edu",
     "classStanding": "Freshman",
     "classes": [
-      "bio:101",
-      "math100"
+      "biology:101",
+      "math:100",
+      "english:100"
     ],
     "methods": [
       "flashcards", "quizzes", "rereading", "mneumonics", "revisionNotes", "other"

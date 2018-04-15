@@ -337,6 +337,11 @@ class SettingsCard extends Component {
   }
   //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
   
+  renderClasses = (clas) => {
+    const prefix = clas.split(":")[0].split("*").join(" ");
+    const number = clas.split(":")[1]
+    console.log(prefix + "   stuff    " + number)
+  }
 
   render() { 
     
@@ -484,6 +489,42 @@ class SettingsCard extends Component {
                       : ""}
                   </Form.Field>
                   <Button onClick={this.handleUpdateOne} name="classStanding" value={`${this.state.classStandingUpdate}*classStandingUpdate*editClassStanding`} size="small" content="Update" />
+                </Grid>
+              </Form>
+            : 
+              <span>Class Standing: {this.state.classStanding}</span>
+            }
+          </Container>
+          {/* ////////////////////////////// */}
+          <Container>
+            <Grid>
+              <Grid.Column width={7}>
+                <Button toggle /*active={this.state.edit.editName}*/ name="editClasses" onClick={this.handleEditToggle} data-methods="Edit Classes" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={9} verticalAlign="middle">
+                <Header as="h4">Classes</Header>
+              </ Grid.Column>
+            </Grid>
+            {this.state.edit.editClasses ?
+              <Form>
+
+
+                {this.state.classes.map(clas => {
+                  this.renderClasses(clas);
+                })}
+
+
+                <Grid>
+                  <Form.Field control={Input} label='Enter Class Standing'  width={12} className={`${this.state.classStandingProblem}`}>
+                    <input type="text" placeholder="ie: Senior, Junior, etc." required name="classStandingUpdate" onChange={this.handleInputChange} />
+                      {this.state.classStandingEmpty ?
+                            <Label basic color="red" pointing="left">{`${this.state.classStandingEmpty}`}</Label>
+                          : ""}
+                      {this.state.classStandingWrong ?
+                        <Label basic color="red" pointing="left">{`${this.state.classStandingWrong}`}</Label>
+                      : ""}
+                  </Form.Field>
+                  <Button onClick={this.handleUpdateOne} name="classStanding" value={`${this.state.classStandingUpdate}*classStandingUpdate*editClasses`} size="small" content="Update" />
                 </Grid>
               </Form>
             : 
