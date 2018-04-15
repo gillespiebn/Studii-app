@@ -241,7 +241,7 @@ const userSeed = [
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
     "email": "bfunyuns@vcu.edu",
-    "classStanding": "F",
+    "classStanding": "Freshman",
     "classes": [
       "bio:101",
       "math100"

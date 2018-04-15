@@ -78,6 +78,10 @@ class SettingsCard extends Component {
     edit: {
       editName: false,
       editEmail: false,
+      editMajor: false,
+      editMinor: false,
+      editClassStanding: false,
+
     },
   };
 
@@ -264,6 +268,16 @@ class SettingsCard extends Component {
         return true;
       }
     }
+    if (state === "classStandingUpdate") {
+      if (!this.state.classStandingUpdate) {
+        this.setState({classStandingEmpty: "Please Enter Your Class Standing", classStandingProblem: "error"});
+        return true;
+      }
+      if (this.state.classStandingUpdate.toLowerCase() !== "senior" && this.state.classStandingUpdate.toLowerCase() !== "junior" && this.state.classStandingUpdate.toLowerCase() !== "sophomore" && this.state.classStandingUpdate.toLowerCase() !== "freshman" && this.state.classStandingUpdate.toLowerCase() !== "postgraduate") {
+        this.setState({classStandingWrong: "Please use either Freshman, Sophomore, Junior, Senior, or Postgraduate" , classStandingProblem: "error" });
+        return true;
+      }
+    }
   }
 
   handleUpdateOne = event => {
@@ -275,7 +289,9 @@ class SettingsCard extends Component {
       emailFormatProblem: false,
       majorProblem: false,
       majorEmpty: false,
-
+      classStandingEmpty: false,
+      classStandingWrong: false,
+      classStandingProblem: false,
     })
     const { name, value } = event.target;
     let update = value.split("*")[0]
@@ -391,52 +407,87 @@ class SettingsCard extends Component {
             }
           </Container>
           {/* ////////////////////////////// */}
-          <Container>
-            <Grid>
-              <Grid.Column width={7}>
-                <Button toggle /*active={this.state.edit.editName}*/ name="editMajor" onClick={this.handleEditToggle} data-methods="Edit Major" content={<Icon name="edit" large />} /> 
-              </Grid.Column>
-              <Grid.Column width={9} verticalAlign="middle">
-                <Header as="h4">Major</Header>
-              </ Grid.Column>
-            </Grid>
-            {this.state.edit.editMajor ?
-              <Form>
+          <Grid>
+            <Grid.Column width={8}>
+              <Container>
                 <Grid>
-                  <Form.Field control={Input} label='Enter Your Major'  width={12} className={`${this.state.majorProblem}`}>
-                    <input type="text" placeholder={this.state.major} required name="majorUpdate" onChange={this.handleInputChange} />
-                      {this.state.majorEmpty ?
-                            <Label basic color="red" pointing="left">{`${this.state.majorEmpty}`}</Label>
-                          : ""}
-                  </Form.Field>
-                  <Button onClick={this.handleUpdateOne} name="major" value={`${this.state.majorUpdate}*majorUpdate*editMajor`} size="small" content="Update" />
+                  <Grid.Column width={7}>
+                    <Button toggle /*active={this.state.edit.editName}*/ name="editMajor" onClick={this.handleEditToggle} data-methods="Edit Major" content={<Icon name="edit" large />} /> 
+                  </Grid.Column>
+                  <Grid.Column width={9} verticalAlign="middle">
+                    <Header as="h4">Major</Header>
+                  </ Grid.Column>
                 </Grid>
-              </Form>
-            : 
-              <span>Major: {this.state.major}</span>
-            }
-          </Container>
+                {this.state.edit.editMajor ?
+                  <Form>
+                    <Grid>
+                      <Form.Field control={Input} label='Enter Your Major'  width={12} className={`${this.state.majorProblem}`}>
+                        <input type="text" placeholder={this.state.major} required name="majorUpdate" onChange={this.handleInputChange} />
+                          {this.state.majorEmpty ?
+                                <Label basic color="red" pointing="left">{`${this.state.majorEmpty}`}</Label>
+                              : ""}
+                      </Form.Field>
+                      <Button onClick={this.handleUpdateOne} name="major" value={`${this.state.majorUpdate}*majorUpdate*editMajor`} size="small" content="Update" />
+                    </Grid>
+                  </Form>
+                : 
+                  <span>Major: {this.state.major}</span>
+                }
+              </Container>
+            </Grid.Column>
           {/* ////////////////////////////// */}
+            <Grid.Column width={8}>
+              <Container>
+                <Grid>
+                  <Grid.Column width={7}>
+                    <Button toggle /*active={this.state.edit.editName}*/ name="editMinor" onClick={this.handleEditToggle} data-methods="Edit Minor" content={<Icon name="edit" large />} /> 
+                  </Grid.Column>
+                  <Grid.Column width={9} verticalAlign="middle">
+                    <Header as="h4">Minor</Header>
+                  </ Grid.Column>
+                </Grid>
+                {this.state.edit.editMinor ?
+                  <Form>
+                    <Grid>
+                      <Form.Field control={Input} label='Enter Your Minor'  width={12} className={`${this.state.majorProblem}`}>
+                        <input type="text" placeholder={this.state.minor} name="minorUpdate" onChange={this.handleInputChange} />
+                      </Form.Field>
+                      <Button onClick={this.handleUpdateOne} name="minor" value={`${this.state.minorUpdate}*minorUpdate*editMinor`} size="small" content="Update" />
+                    </Grid>
+                  </Form>
+                : 
+                  <span>Minor: {this.state.minor}</span>
+                }
+              </Container>
+            </Grid.Column>
+          </Grid>
+          {/* ///////////////////////// */}
           <Container>
             <Grid>
               <Grid.Column width={7}>
-                <Button toggle /*active={this.state.edit.editName}*/ name="editMinor" onClick={this.handleEditToggle} data-methods="Edit Minor" content={<Icon name="edit" large />} /> 
+                <Button toggle /*active={this.state.edit.editName}*/ name="editClassStanding" onClick={this.handleEditToggle} data-methods="Edit Class Standing" content={<Icon name="edit" large />} /> 
               </Grid.Column>
               <Grid.Column width={9} verticalAlign="middle">
-                <Header as="h4">Minor</Header>
+                <Header as="h4">Class Standing</Header>
               </ Grid.Column>
             </Grid>
-            {this.state.edit.editMinor ?
+            {this.state.edit.editClassStanding ?
               <Form>
                 <Grid>
-                  <Form.Field control={Input} label='Enter Your Minor'  width={12} className={`${this.state.majorProblem}`}>
-                    <input type="text" placeholder={this.state.minor} name="minorUpdate" onChange={this.handleInputChange} />
+                  <Form.Field control={Input} label='Enter Class Standing'  width={12} className={`${this.state.classStandingProblem}`}>
+                    <input type="text" placeholder="ie: Senior, Junior, etc." required name="classStandingUpdate" onChange={this.handleInputChange} />
+                      {this.state.classStandingEmpty ?
+                            <Label basic color="red" pointing="left">{`${this.state.classStandingEmpty}`}</Label>
+                          : ""}
+                      {this.state.classStandingWrong ?
+                        <Label basic color="red" pointing="left">{`${this.state.classStandingWrong}`}</Label>
+                      : ""}
                   </Form.Field>
-                  <Button onClick={this.handleUpdateOne} name="minor" value={`${this.state.minorUpdate}*minorUpdate*editMinor`} size="small" content="Update" />
+                  <Button onClick={this.handleUpdateOne} name="classStanding" value={`${this.state.classStandingUpdate}*classStandingUpdate*editClassStanding`} size="small" content="Update" />
                 </Grid>
               </Form>
             : 
-              <span>Minor: {this.state.minor}</span>
+              <span>Class Standing: {this.state.classStanding}</span>
             }
           </Container>
           {/* ////////////////////////////// */}
