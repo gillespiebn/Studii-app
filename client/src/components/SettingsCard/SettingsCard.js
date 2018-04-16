@@ -31,7 +31,7 @@ class SettingsCard extends Component {
       quizzes: false,
       rereading: false,
       revisionNotes: false,
-      mneumonics: false,
+      mnemonics: false,
       other: false
     },
     locations: {
@@ -382,28 +382,12 @@ class SettingsCard extends Component {
     )
   }
 
-  // renderMethods = () => {
-  //   return(
-  //     <div>
-  //       {this.state.methods.map(clas => (
-  //         <Grid>
-  //           <Grid.Column width={12}>
-  //             <span>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</span>
-  //           </Grid.Column>
-  //           <Grid.Column width={4}>
-  //             <Button size="tiny" onClick={this.handleDeleteClass} name={clas} content="x" />
-  //           </Grid.Column>
-  //         </Grid>
-  //       ))}
-  //     </div>
-  //   )
-  // }
-
   renderMethods = () => {
     return(
       <div>
+      {this.state.objMethodsToSave ? 
         <Grid>
-          {this.state.user.methods.map(method => (
+          {this.state.objMethodsToSave.map(method => (
             <div>
               <Grid.Column width={2}>
                 <Button> {method} </Button>
@@ -411,8 +395,40 @@ class SettingsCard extends Component {
             </div>
           ))}
         </Grid>
+      :
+        <div>
+          {this.state.objMethods ? 
+            <Grid>
+              {this.state.objMethods.map(method => (
+                <div>
+                  <Grid.Column width={2}>
+                    <Button> {method} </Button>
+                  </Grid.Column>
+                </div>
+              ))}
+            </Grid>
+          :
+            "" 
+          }
+        </div>
+      }
       </div>
     )
+  }
+
+  handleUpdateMethods = event => {
+    console.log(this.state.methods);
+    const methodsObj = this.state.methods;
+    const methodsArray = Object.keys(methodsObj)
+      .filter(function(k){return methodsObj[k]})
+      .map(String);
+      
+    this.setState({objMethodsToSave: methodsArray, changesMade: true});
+    const edit = {...this.state.edit, editStudyMethods: !this.state.edit.editStudyMethods};
+    this.setState ({
+      edit
+    });
+    this.setState({methodsToSave: this.state.methods})
   }
 
 
@@ -671,9 +687,6 @@ class SettingsCard extends Component {
             }
           </Container>
           {/* ////////////////////////////// */}
-
-
-
           <Container>
             <Grid>
               <Grid.Column width={7}>
@@ -685,17 +698,20 @@ class SettingsCard extends Component {
             </Grid>
             {this.state.edit.editStudyMethods ?
               <Form>
-              <h4 className="registerTitle">Preferred Study Methods</h4>
-              <Form.Group className="preferbtn" widths="equal">
-                <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
-                <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
-                <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
-              </Form.Group>
-              <Form.Group className="preferbtn" widths="equal">  
-                <Button toggle active={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
-                <Button toggle active={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
-                <Button toggle active={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
-              </Form.Group>
+                <h4 className="registerTitle">Preferred Study Methods</h4>
+                <Form.Group className="preferbtn" widths="equal">
+                  <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
+                  <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
+                  <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
+                </Form.Group>
+                <Form.Group className="preferbtn" widths="equal">  
+                  <Button toggle active={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
+                  <Button toggle active={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
+                  <Button toggle active={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
+                </Form.Group>
+                <Form.Group>
+                    <Button onClick={this.handleUpdateMethods} name="methods" /*value={`${this.state.methodsUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`}*/ size="small" content="Update" />
+                </Form.Group>
               </Form>
             : 
               <div>
@@ -704,9 +720,13 @@ class SettingsCard extends Component {
             }
           </Container>
           {/* ////////////////////////////// */}
+            {/* nextStep: The Locations Thingy. Calandar may end up being a real bastard */}
 
 
 
+
+          
+          {/* ////////////////////////////// */}
         </Segment>
       </Container>
     )
