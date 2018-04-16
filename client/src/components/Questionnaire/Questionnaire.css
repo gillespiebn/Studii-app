@@ -91,19 +91,30 @@ img {
 
 .Morning {
  height: 124px;
+ width: 75px;
 }
 
 .Afternoon {
-  margin-top: -50.5px;
+  margin-top: -62px;
   height: 142px;
+  width: 75px;
 }
 
 .Evening{
-  margin-top: -50.5px;
+  margin-top: -64px;
   height: 142px;
+  width: 75px;
 }
 
 .Night {
-  margin-top: -50.5px;
+  margin-top: -64px;
   height: 124px;
+  width: 75px;
+}
+
+.timeFrameLabels {
+  width: 80px;
+  color: #22223B;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:20px;
 }
