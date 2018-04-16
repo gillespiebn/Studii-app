@@ -10,7 +10,7 @@ import LoginCard from "./components/LoginCard";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Groups from "./pages/Groups";
-import Messenger from "./pages/Messenger";
+// import Messenger from "./pages/Messenger";
 import Settings from "./pages/Settings";
 import Register from "./pages/Register";
 import Page404 from "./pages/404";
@@ -103,7 +103,6 @@ class App extends React.Component {
   facebookButton = () => {
     return (
       <Container textAlign="center">
-        <h1 style={{color: "white"}}>Login page</h1>
         <FacebookLogin
           appId="432818630486037"
           autoLoad
@@ -119,8 +118,9 @@ class App extends React.Component {
                 borderWidth: 3,
                 background: "#22223B", 
                 color: "white",
-                fontFamily: "Arial",
-                fontSize: 24
+                fontFamily: "Nunito",
+                fontSize: 24,
+                transform: 'translate(0%, -375%)'
               }} 
               onClick={renderProps.onClick}>Continue with Facebook</button>
           )}
@@ -155,7 +155,7 @@ class App extends React.Component {
             {/* <Route exact path="/login" setFacebookState = {this.setFacebookState}  message="You are already logged in!" component={Home} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/groups" component={Groups} />
-            <Route exact path="/messenger" component={Messenger} />
+            {/* <Route exact path="/messenger" component={Messenger} /> */}
             <Route 
               exact path="/settings" 
               render={(routeProps) => (
@@ -196,9 +196,11 @@ class App extends React.Component {
         return (
           <div>
             <Header />
+            <LoginCard />
             <div>
               {this.facebookButton()}
             </div>
+            <Footer/>
           </div>
         )
       } else {

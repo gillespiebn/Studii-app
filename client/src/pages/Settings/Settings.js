@@ -10,7 +10,7 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
-    // this.getUser();
+    this.getUser();
   }
 
   getUser = () => {

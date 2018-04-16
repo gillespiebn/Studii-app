@@ -1,7 +1,7 @@
 import React from "react";
 import _ from 'lodash';
 import "./PracticeProfileLayout.css";
-
+import Footer from "../Footer";
 import API from "../../utils/API";
 
 import { Card, Image, Container, Button, List, Transition } from 'semantic-ui-react'
@@ -54,17 +54,26 @@ class Profiles extends React.Component {
         <div>
           <Container>
           {this.state.matches.map(profile => (
-              <Card fluid align="center" key={profile._id} style={{display: (firstUserId===profile.facebook_id ? 'block' : 'none') }}>
-                {/* <Segment align="center"> */}
-                  <Image src={profile.photo} size='small' />
-                  <h2>Name: {profile.name}</h2>
-                  <h2>Class: {profile.classStanding}</h2>
-                  <h3>Major: {profile.major}</h3>
-                  {profile.minor ? 
-                    <h3>Minor: {profile.minor}</h3>
-                    : "" 
-                  }
-                {/* </ Segment> */}
+              <Card className="cardContainer" fluid align="center" key={profile._id} style={{display: (firstUserId===profile.facebook_id ? 'block' : 'none') }}>
+                  <div className="imgDiv">
+                  <Image className="cardImage" src={profile.photo} size='small' />
+                  </div>
+                  <div className="profileDiv">
+                    <h2 className="profileName">{profile.name}</h2>
+                    <h3 className="profileElmt">{profile.classStanding}</h3>
+                    <h3 className="profileElmt">Major -  {profile.major}</h3>
+                    {profile.minor ? 
+                      <h3 className="profileElmt">Minor -  {profile.minor}</h3>
+                      : "" 
+                    }
+                  </div> 
+                  <div class="prfDiv">
+                    <h3>Classes</h3>
+                    <h3>Study Methods</h3>
+                    <h3>Preferred Locations</h3>
+                    <h3>Availability</h3>
+                  </div> 
+
               </ Card>
           /*
               <div>
@@ -100,6 +109,7 @@ class Profiles extends React.Component {
         
 
           ))}
+          <Footer />
           </ Container>
           {/* <Card
             image='/assets/images/avatar/large/elliot.jpg'
