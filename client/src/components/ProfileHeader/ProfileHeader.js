@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProfileHeader.css"
 import API from "../../utils/API";
+import SwipeCard from "../../components/SwipeCard";
 
 import { Card, Image, Container, Button, List, Transition } from 'semantic-ui-react'
 
@@ -9,7 +10,7 @@ import { Card, Image, Container, Button, List, Transition } from 'semantic-ui-re
 const ProfileHeader = (props) => {
     console.log(props);
     return (
-    {props: profiles.data.map(profile => (
+    {props: SwipeCard.data.map(profile => (
         <div>
             <div className="profileHeadPink"></div>
             <div className="profileHeadBlue">
