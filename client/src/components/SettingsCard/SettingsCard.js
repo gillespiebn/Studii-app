@@ -23,7 +23,7 @@ class SettingsCard extends Component {
     school: '',
     classStanding: '',
     classID: '',
-    classes: '',
+    classes: [],
     results: [],
     //change major and minor when they are created
     major: '',
@@ -337,10 +337,23 @@ class SettingsCard extends Component {
   }
   //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
   
-  renderClasses = (clas) => {
-    const prefix = clas.split(":")[0].split("*").join(" ");
-    const number = clas.split(":")[1]
-    console.log(prefix + "   stuff    " + number)
+  renderClasses = () => {
+    this.state.classes.map(clas => {
+      const prefix = clas.split(":")[0].split("*").join(" ");
+      const number = clas.split(":")[1]
+      console.log(prefix + "     sss    " + number)
+      return (
+        // <Grid>
+        //   <Grid.Column width={8}>
+        //     <span>{prefix}: {number} </span>
+        //   </Grid.Column>
+        //   <Grid.Column width={8}>
+        //     <Button size="tiny" onClick={this.deleteClass} name={clas} content="x" />
+        //   </Grid.Column>
+        // </Grid>
+        <p>"WASZZZZZZZZUP"</p>
+      )
+    })
   }
 
   render() { 
@@ -506,12 +519,16 @@ class SettingsCard extends Component {
               </ Grid.Column>
             </Grid>
             {this.state.edit.editClasses ?
+              <div>
+
+
+
+
+
+
               <Form>
 
 
-                {this.state.classes.map(clas => {
-                  this.renderClasses(clas);
-                })}
 
 
                 <Grid>
@@ -527,8 +544,12 @@ class SettingsCard extends Component {
                   <Button onClick={this.handleUpdateOne} name="classStanding" value={`${this.state.classStandingUpdate}*classStandingUpdate*editClasses`} size="small" content="Update" />
                 </Grid>
               </Form>
+              </div>
             : 
-              <span>Class Standing: {this.state.classStanding}</span>
+            <div>
+              {this.renderClasses()}
+            </div>
+              // <span>Class Standing: {this.state.classStanding}</span>
             }
           </Container>
           {/* ////////////////////////////// */}
