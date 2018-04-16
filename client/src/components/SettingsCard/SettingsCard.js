@@ -1,22 +1,19 @@
 import React, { Component } from "react";
 import API from '../../utils/API.js';
-import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown } from 'semantic-ui-react';
+import { Segment, Container, Header, Icon, Input, Label, Form, Button, Grid } from 'semantic-ui-react';
 import "./SettingsCard.css"
 import _ from 'lodash';
 import vaSchools from '../../utils/vaSchools.js'
-// import SearchForm from "../SearchForm";
+import classNamesSeed from '../../utils/classNames.js'
+import SearchFormSchools from "../SearchFormSchools";
+import SearchFormClasses from "../SearchFormClasses";
 
-const classStandingOptions = [
-  { key: 'f', text: 'Freshman', value: 'freshman' },
-  { key: 'so', text: 'Sophomore', value: 'sophomore' },
-  { key: 'j', text: 'Junior', value: 'junior' },
-  { key: 'se', text: 'Senior', value: 'senior' }
-];
 
 class SettingsCard extends Component {
   state = {
     facebook_id: this.props.facebook_id,
     schoolsForAutocomplete: vaSchools,
+    classNamesForAutocomplete: classNamesSeed,
     user: this.props.user,
     name: '',
     email: '',
@@ -81,7 +78,7 @@ class SettingsCard extends Component {
       editMajor: false,
       editMinor: false,
       editClassStanding: false,
-
+  
     },
   };
 
@@ -244,6 +241,22 @@ class SettingsCard extends Component {
   }
 
   checkFunction = (state) => {
+    this.setState({
+      nameEmpty: false,
+      emailEmpty: false,
+      emailProblem: false,
+      emailFormatProblem: false,
+      majorProblem: false,
+      majorEmpty: false,
+      classStandingEmpty: false,
+      classStandingWrong: false,
+      classStandingProblem: false,
+      classNumberEmpty: false,
+      classNumberProblem: false,
+      classPrefixEmpty: false,
+      classPrefixProblem: false,
+      
+    })
     if (state === "nameUpdate") {
       if (!this.state.nameUpdate){
         this.setState({nameEmpty: "Please Enter Your Name", nameProblem: "error"})
@@ -278,21 +291,20 @@ class SettingsCard extends Component {
         return true;
       }
     }
+    if (state === "newClass") {
+      if(!this.state.value){
+        this.setState({ classPrefixEmpty: "Please Enter a Prefix", classPrefixProblem: "error"})
+        return true;
+      }
+      if (!this.state.classNumberUpdate){
+        this.setState({classNumberEmpty: "Please Enter a Number", classNumberProblem: "error"});
+        return true;
+      }
+    }
   }
 
   handleUpdateOne = event => {
     event.preventDefault();
-    this.setState({
-      nameEmpty: false,
-      emailEmpty: false,
-      emailProblem: false,
-      emailFormatProblem: false,
-      majorProblem: false,
-      majorEmpty: false,
-      classStandingEmpty: false,
-      classStandingWrong: false,
-      classStandingProblem: false,
-    })
     const { name, value } = event.target;
     let update = value.split("*")[0]
     if (!update) {
@@ -311,50 +323,116 @@ class SettingsCard extends Component {
     })
   }
 
+  handleDeleteClass = event => {
+    console.log(event.target.name);
+    const { name } = event.target;
+    let classArray = this.state.classes;
+    const index = classArray.indexOf(name);
+    if (index !== -1) {
+      classArray.splice(index, 1);
+    }
+    this.setState({classes: classArray});
+  } 
 
-  //this starts all the search form autocomplete shit /////////////////////////////////////////////////////////////////////////////////////////
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+  handleAddClass = event => {
+    const check = this.checkFunction("newClass");
+    if (check){
+      return;
+    }
+    let classArray = this.state.classes;
+    classArray.push(this.state.classID.split(" ").join("*") + ":" + this.state.classNumberUpdate);
+    this.setState({ classes: classArray, value: null, classNumberUpdate: null, changesMade: true});
+    const edit = {...this.state.edit, editClasses: !this.state.edit.editClasses};
+    this.setState({
+      edit
+    })
 
-  handleResultSelect = (e, { result }) => this.setState({ school: result.name })
-
-  handleSearchChange = (e, { value }) => {
-
-    this.setState({ isLoading: true, value })
-
-    setTimeout(() => {
-      if (value.length < 1) return this.resetComponent()
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.name)
-      // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
-      // this.setState({results: tempResults});
-
-      this.setState({
-        isLoading: false,
-        results: _.filter(this.state.schoolsForAutocomplete, isMatch),
-      })
-    }, 300)
   }
-  //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
   
   renderClasses = () => {
-    this.state.classes.map(clas => {
-      const prefix = clas.split(":")[0].split("*").join(" ");
-      const number = clas.split(":")[1]
-      console.log(prefix + "     sss    " + number)
-      return (
-        // <Grid>
-        //   <Grid.Column width={8}>
-        //     <span>{prefix}: {number} </span>
-        //   </Grid.Column>
-        //   <Grid.Column width={8}>
-        //     <Button size="tiny" onClick={this.deleteClass} name={clas} content="x" />
-        //   </Grid.Column>
-        // </Grid>
-        <p>"WASZZZZZZZZUP"</p>
-      )
-    })
+    return(
+      <div>
+        {this.state.classes.map(clas => (
+          <Grid>
+            <Grid.Column width={12}>
+              <span>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</span>
+            </Grid.Column>
+            {/* <Grid.Column width={4}>
+              <Button size="tiny" onClick={this.handleDeleteClass} name={clas} content="x" />
+            </Grid.Column> */}
+          </Grid>
+        ))}
+      </div>
+    )
   }
+
+  renderClassesToEdit = () => {
+    return(
+      <div>
+        {this.state.classes.map(clas => (
+          <Grid>
+            <Grid.Column width={12}>
+              <span>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</span>
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <Button size="tiny" onClick={this.handleDeleteClass} name={clas} content="x" />
+            </Grid.Column>
+          </Grid>
+        ))}
+      </div>
+    )
+  }
+
+
+      //AUTOCOMPLETE for University Search
+      resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+
+      handleResultSelect = (e, { result }) => this.setState({ school: result.name })
+    
+      handleSearchChange = (e, { value }) => {
+
+        this.setState({ isLoading: true, value })
+    
+        setTimeout(() => {
+          if (value.length < 1) return this.resetComponent()
+    
+          const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+          const isMatch = result => re.test(result.name)
+          // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
+          // this.setState({results: tempResults});
+    
+          this.setState({
+            isLoading: false,
+            results: _.filter(this.state.schoolsForAutocomplete, isMatch),
+          })
+        }, 300)
+      }
+      //END AUTOCOMPLETE for Universities
+
+      //AUTCOMPLETE for classes
+      resetComponentClass = () => this.setState({ isLoading: false, results: [], valueClass: '' })
+
+      handleResultSelectClass = (e, { result }) => this.setState({ classID: result.fullName })
+    
+      handleSearchChangeClass = (e, { value }) => {
+
+        this.setState({ isLoading: true, value })
+    
+        setTimeout(() => {
+          if (value.length < 1) return this.resetComponent()
+    
+          const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+          const isMatch = result => re.test(result.fullName)
+          // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
+          // this.setState({results: tempResults});
+    
+          this.setState({
+            isLoading: false,
+            results: _.filter(this.state.classNamesForAutocomplete, isMatch),
+          })
+        }, 300)
+      }
+      //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() { 
     
@@ -519,36 +597,43 @@ class SettingsCard extends Component {
               </ Grid.Column>
             </Grid>
             {this.state.edit.editClasses ?
-              <div>
-
-
-
-
-
-
-              <Form>
-
-
-
-
-                <Grid>
-                  <Form.Field control={Input} label='Enter Class Standing'  width={12} className={`${this.state.classStandingProblem}`}>
-                    <input type="text" placeholder="ie: Senior, Junior, etc." required name="classStandingUpdate" onChange={this.handleInputChange} />
-                      {this.state.classStandingEmpty ?
-                            <Label basic color="red" pointing="left">{`${this.state.classStandingEmpty}`}</Label>
+              <div> 
+                {this.renderClassesToEdit()}
+                <Form>
+                  <Grid>
+                    <Grid.Column>
+                        {this.state.classPrefixEmpty ?
+                          <Label basic color="red" pointing="below">{`${this.state.classPrefixEmpty}`}</Label>
+                        : ""}
+                        <SearchFormClasses
+                          style={{minWidth: 150}}
+                          fluid
+                          className={`${this.state.classPrefixProblem}`}
+                          // style={{overflow: "auto", height: 75}}
+                          loading={this.stateisLoadingClass}
+                          onResultSelect={this.handleResultSelectClass}
+                          onSearchChange={_.debounce(this.handleSearchChangeClass, 500, { leading: true })}
+                          results={this.state.results}
+                          value={this.state.valueClass}
+                          {...this.props}  
+                        />
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                      <Form.Field control={Input} label='Enter New Class Number'  width={12} className={`${this.state.classNumberProblem}`}>
+                        <input type="text" placeholder="ie: 101" required name="classNumberUpdate" onChange={this.handleInputChange} />
+                          {this.state.classNumberEmpty ?
+                            <Label basic color="red" pointing="left">{`${this.state.classNumberEmpty}`}</Label>
                           : ""}
-                      {this.state.classStandingWrong ?
-                        <Label basic color="red" pointing="left">{`${this.state.classStandingWrong}`}</Label>
-                      : ""}
-                  </Form.Field>
-                  <Button onClick={this.handleUpdateOne} name="classStanding" value={`${this.state.classStandingUpdate}*classStandingUpdate*editClasses`} size="small" content="Update" />
-                </Grid>
-              </Form>
+                      </Form.Field>
+                    </Grid.Column>
+                  </Grid>
+                  <Button onClick={this.handleAddClass} name="class" value={`${this.state.classNumberUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`} size="small" content="Update" />
+                </Form>
               </div>
             : 
-            <div>
-              {this.renderClasses()}
-            </div>
+              <div>
+                {this.renderClasses()}
+              </div>
               // <span>Class Standing: {this.state.classStanding}</span>
             }
           </Container>
