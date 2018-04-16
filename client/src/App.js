@@ -97,7 +97,6 @@ class App extends React.Component {
   facebookButton = () => {
     return (
       <Container textAlign="center">
-        <h1 style={{color: "white"}}>Login page</h1>
         <FacebookLogin
           appId="432818630486037"
           autoLoad
@@ -113,8 +112,9 @@ class App extends React.Component {
                 borderWidth: 3,
                 background: "#22223B", 
                 color: "white",
-                fontFamily: "Arial",
-                fontSize: 24
+                fontFamily: "Nunito",
+                fontSize: 24,
+                transform: 'translate(0%, -375%)'
               }} 
               onClick={renderProps.onClick}>Continue with Facebook</button>
           )}
