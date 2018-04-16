@@ -473,8 +473,8 @@ class Questionnaire extends Component {
                     <Button toggle active={this.state.locations.other} name="other" onClick={this.handleLocationToggle}data-locations="Other">Other</Button>
                   </Form.Group>
                   <p className="label">Preferred Study Time</p>
-                  <div className="timeFrameLabels">Morning</div>
                   <Form.Group widths="equal">
+                  <div className="timeFrameLabels">Morning</div>
                     {/* <Button toggle active={this.state.times.SundayMorning} name="SundayMorning" onClick={this.handleTimeToggle} data-times="SundayMorning" className="Sunday" > Sunday Morning </Button>
                     <Button toggle active={this.state.times.MondayMorning} name="MondayMorning" onClick={this.handleTimeToggle} data-times="MondayMorning" className="Monday"> Monday Morning </Button>
                     <Button toggle active={this.state.times.TuesdayMorning} name="TuesdayMorning" onClick={this.handleTimeToggle} data-times="TuesdayMorning" className="Tuesday" > Tuesday Morning </Button>
@@ -512,7 +512,7 @@ class Questionnaire extends Component {
                  
                   </Form.Group>
                   <Form.Group widths="equal"> 
-                  <div className="timeFrameLabels">Morning</div>
+                  <div className="timeFrameLabels">Afternoon</div>
 
                     {/* <Button toggle active={this.state.times.SundayAfternoon} name="SundayAfternoon" onClick={this.handleTimeToggle} data-times="SundayAfternoon" className="Sunday" > Sunday Afternoon </Button>
                     <Button toggle active={this.state.times.MondayAfternoon} name="MondayAfternoon" onClick={this.handleTimeToggle} data-times="MondayAfternoon" className="Monday" > Monday Afternoon </Button>
@@ -550,7 +550,7 @@ class Questionnaire extends Component {
                   : <img alt="." src="/images/blueAft.png" active={this.state.times.SaturdayAfternoon} name="SaturdayAfternoon" onClick={this.handleTimeToggle} data-times="SaturdayAfternoon" className="Saturday Afternoon" />}
                   </Form.Group>
                   <Form.Group widths="equal">
-                  <div className="timeFrameLabels">Morning</div>
+                  <div className="timeFrameLabels">Evening</div>
 
                     {/* <Button toggle active={this.state.times.SundayEvening} name="SundayEvening" onClick={this.handleTimeToggle} data-times="SundayEvening" className="Sunday" > Sunday Evening </Button> 
                     <Button toggle active={this.state.times.MondayEvening} name="MondayEvening" onClick={this.handleTimeToggle} data-times="MondayEvening" className="Monday" > Monday Evening </Button>   
@@ -588,7 +588,7 @@ class Questionnaire extends Component {
                   : <img alt="." src="/images/blueEve.png" active={this.state.times.SaturdayEvening} name="SaturdayEvening" onClick={this.handleTimeToggle} data-times="SaturdayEvening" className="Saturday Evening" />}
                   </Form.Group>
                   <Form.Group widths="equal">  
-                  <div className="timeFrameLabels">Morning</div>
+                  <div className="timeFrameLabels">Night</div>
  
                     {/* <Button toggle active={this.state.times.SundayNight}name="SundayNight" onClick={this.handleTimeToggle}  data-times="SundayNight" className="Sunday" > Sunday Night </Button>
                     <Button toggle active={this.state.times.MondayNight} name="MondayNight" onClick={this.handleTimeToggle} data-times="MondayNight" className="Monday" > Monday Night </Button>

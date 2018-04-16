@@ -11,16 +11,17 @@ const CardExampleCard = (props) => {
       <div>
       <ProfileHeader />
       <div className="sectionTitle">Classes</div>
-
+        {profile.classes}
       <div className="sectionTitle">Preferred study methods</div>
-
+        {profile.methods}
       <div className="sectionTitle">Preferred places to study</div>
-
+        {profile.locations}
       <div className="sectionTitle">Availability</div>
+        {profile.times}
       </div>
     ))}
     </Container>
   );
 }
 
-export default SwipeCard
+export default SwipeCard;

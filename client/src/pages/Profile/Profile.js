@@ -1,5 +1,6 @@
 import React from "react";
 import "./Profile.css";
+import SwipeCard from "./SwipeCard";
 
 
 const Profile = (props) => (
@@ -17,6 +18,7 @@ const Profile = (props) => (
                 <div className="shelf"></div>
             </div>
         </div>
+        <SwipeCard />
     </div>
 );
 

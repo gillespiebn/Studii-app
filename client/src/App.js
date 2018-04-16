@@ -17,6 +17,7 @@ import Page404 from "./pages/404";
 // import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { Container } from 'semantic-ui-react';
+import Axios from "axios";
 
 
 class App extends React.Component {
@@ -55,18 +56,23 @@ class App extends React.Component {
       } else {
         // For production, the two commented out lines below will be the ones used. currently using the other ones for production
 
-        //this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
-         this.setState({checked: true, facebook_id: 10})
+        this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
+        //  this.setState({checked: true, facebook_id: 10})
         console.log(window.fbToken.authResponse.userID);
 
-        //this.getUser(window.fbToken.authResponse.userID);
+        // this.getUser(window.fbToken.authResponse.userID);
  
-        // this.getUser(10);
+        this.getUser(10);
       }
 		}
   };
   
   getUser = (fbID) => {
+    Axios.get("https://graph.facebook.com/v2.12/" + fbID + "/picture?type=large&width=200&height=200&redirect=false").then(data => {
+    console.log("=========================pictue===============");  
+    // data.data.data.url gets facebook profile picture! 
+    console.log(data.data.data.url);
+    console.log(data);})
     API.getUser(fbID)
       .then(data => {
         if (!data.data) {
