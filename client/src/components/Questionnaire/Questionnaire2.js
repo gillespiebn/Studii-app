@@ -13,7 +13,7 @@ import classNamesSeed from '../../utils/classNames.js'
 import SearchFormSchools from "../SearchFormSchools";
 import SearchFormClasses from "../SearchFormClasses";
 import Home from "../../pages/Home";
-
+import Footer from "../Footer";
 // import SearchFormSchoolsRenderer from "../SearchFormSchoolsRenderer";
 
 // const source = allSchools;
@@ -623,6 +623,7 @@ class Questionnaire extends Component {
               </Container>
               <Button onClick={this.handleFormSubmit} className="submit">Submit</Button>
             </Segment>
+            <Footer />
           </Container>
         )
       }

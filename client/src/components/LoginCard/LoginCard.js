@@ -10,7 +10,7 @@ const LoginCard = () => {
     <Container className="logincard-container">
         <Segment className="login-image">
             <Image src={src1}  size='medium' center />
-            <p>
+            <p className="loginCardTxt">
                 Need help after a confusing lecture? 
             <br />
                 Or maybe you just need to talk out a concept? 
@@ -21,7 +21,7 @@ const LoginCard = () => {
             </p>
         </Segment>
         <Segment>
-            <h2>
+            <h2 className="joinNow">
                 Join Now
             </h2>
         </Segment>
