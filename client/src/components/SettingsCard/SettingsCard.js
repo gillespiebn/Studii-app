@@ -346,7 +346,6 @@ class SettingsCard extends Component {
     this.setState({
       edit
     })
-
   }
   
   renderClasses = () => {
@@ -383,6 +382,39 @@ class SettingsCard extends Component {
     )
   }
 
+  // renderMethods = () => {
+  //   return(
+  //     <div>
+  //       {this.state.methods.map(clas => (
+  //         <Grid>
+  //           <Grid.Column width={12}>
+  //             <span>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</span>
+  //           </Grid.Column>
+  //           <Grid.Column width={4}>
+  //             <Button size="tiny" onClick={this.handleDeleteClass} name={clas} content="x" />
+  //           </Grid.Column>
+  //         </Grid>
+  //       ))}
+  //     </div>
+  //   )
+  // }
+
+  renderMethods = () => {
+    return(
+      <div>
+        <Grid>
+          {this.state.user.methods.map(method => (
+            <div>
+              <Grid.Column width={2}>
+                <Button> {method} </Button>
+              </Grid.Column>
+            </div>
+          ))}
+        </Grid>
+      </div>
+    )
+  }
+
 
       //AUTOCOMPLETE for University Search
       resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
@@ -407,6 +439,7 @@ class SettingsCard extends Component {
           })
         }, 300)
       }
+
       //END AUTOCOMPLETE for Universities
 
       //AUTCOMPLETE for classes
@@ -638,6 +671,42 @@ class SettingsCard extends Component {
             }
           </Container>
           {/* ////////////////////////////// */}
+
+
+
+          <Container>
+            <Grid>
+              <Grid.Column width={7}>
+                <Button toggle /*active={this.state.edit.editName}*/ name="editStudyMethods" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Methods" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={9} verticalAlign="middle">
+                <Header as="h4">Study Methods</Header>
+              </ Grid.Column>
+            </Grid>
+            {this.state.edit.editStudyMethods ?
+              <Form>
+              <h4 className="registerTitle">Preferred Study Methods</h4>
+              <Form.Group className="preferbtn" widths="equal">
+                <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
+                <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
+                <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
+              </Form.Group>
+              <Form.Group className="preferbtn" widths="equal">  
+                <Button toggle active={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
+                <Button toggle active={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
+                <Button toggle active={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
+              </Form.Group>
+              </Form>
+            : 
+              <div>
+                {this.renderMethods()}
+              </div>
+            }
+          </Container>
+          {/* ////////////////////////////// */}
+
+
+
         </Segment>
       </Container>
     )
