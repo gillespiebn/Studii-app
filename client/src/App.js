@@ -57,7 +57,7 @@ class App extends React.Component {
 
         //this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
          this.setState({checked: true, facebook_id: 10})
-        console.log(window.fbToken.authResponse.userID);
+        // console.log(window.fbToken.authResponse.userID);
 
         //this.getUser(window.fbToken.authResponse.userID);
  
