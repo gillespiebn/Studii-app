@@ -500,14 +500,14 @@ class Questionnaire extends Component {
                   </Form.Group>
                   <h4 className="registerTitle">Preferred Study Time</h4>
                   <Form.Group className="timebtnMo" widths="equal">
-                  <div className="dayTitles">  </div>
-                  <div className="dayTitles">Su</div>
-                  <div className="dayTitles">M</div>
-                  <div className="dayTitles">Tu</div>
-                  <div className="dayTitles">W</div>
-                  <div className="dayTitles">Th</div>
-                  <div className="dayTitles">F</div>
-                  <div className="dayTitles">Sa</div>
+                  <div className="dayTitles blank">  </div>
+                  <div className="dayTitles su">Su</div>
+                  <div className="dayTitles m">M</div>
+                  <div className="dayTitles tu">Tu</div>
+                  <div className="dayTitles w">W</div>
+                  <div className="dayTitles th">Th</div>
+                  <div className="dayTitles f">F</div>
+                  <div className="dayTitles sa">Sa</div>
                     </Form.Group>
                   <Form.Group className="timebtnMo" widths="equal">
                   <div className="timeFrameLabels morLabel">Morning</div>
