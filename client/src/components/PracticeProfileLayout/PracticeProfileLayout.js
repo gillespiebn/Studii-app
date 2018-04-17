@@ -6,6 +6,8 @@ import API from "../../utils/API";
 
 import { Form, Card, Image, Container, Button, List, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
 
+const transition = ['pulse']
+
 class Profiles extends React.Component {  
 
   state = {
@@ -13,6 +15,9 @@ class Profiles extends React.Component {
     matches: this.props.matches,
     facebook_id: this.props.facebook_id,
     index: 0,
+    animation: transition[0],
+    duration: 500,
+    visible: true
   }
 
   componentDidMount() {
@@ -46,6 +51,8 @@ class Profiles extends React.Component {
       this.setState({noMoreMatches: true});
     }
     this.setState({index: this.state.index + 1})
+    this.setState({visible: !this.state.visible})
+  
   }
 
   
@@ -84,11 +91,17 @@ class Profiles extends React.Component {
     //   }
     // }
 
+    const { animation, duration, visible } = this.state
+
     return(
+   
       <div>
         {this.state.noMoreMatches ?
           <p>no more matches dummy</p>
-        :
+          :
+
+       <Transition animation={animation} duration={duration} visible={visible}>
+        
         <Card className="cardContainer" fluid align="center" key={profile._id} >
           <div className="imgDiv">
               <Image className="cardImage" src={profile.photo} size='small' />
@@ -267,6 +280,7 @@ class Profiles extends React.Component {
             <Button name="" onClick={this.handleNext}> {<Icon name="plus" size="small" />} </Button>
           </div> 
         </ Card>
+       </Transition>
         }
       </div>
     )
