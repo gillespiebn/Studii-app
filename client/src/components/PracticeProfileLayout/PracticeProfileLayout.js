@@ -105,7 +105,6 @@ class Profiles extends React.Component {
                 <Button icon='plus' onClick={this.handleNext} />
             </Button.Group>
         </div>
-        <div>placeholder</div>
       </div>
     )
   }

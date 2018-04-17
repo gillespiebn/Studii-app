@@ -4,11 +4,13 @@
     height: 180px;
     width:180px;
     /* the following lines will keep the image from getting all weird. needs a little work */
-    /* display: block;
+    display: block;
     width: auto;
     height: auto;
+    min-height: 180px;
+    min-width: 180px;
     max-height: 500px;
-    max-width: 500px; */
+    max-width: 500px;
     position: relative;
 }
 
