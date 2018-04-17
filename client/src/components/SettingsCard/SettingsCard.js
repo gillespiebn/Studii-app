@@ -182,11 +182,9 @@ class SettingsCard extends Component {
     }
   }
 
-
   componentDidMount() {
     this.setState({name: this.state.user.name, email: this.state.user.email, school: this.state.user.school, classStanding: this.state.user.classStanding, classes: this.state.user.classes, objMethods: this.props.user.methods, objLocations: this.props.user.locations, objTimes: this.props.user.times, major: this.state.user.major, minor: this.state.user.minor, photo: this.state.user.photo});
   }
-
 
   componentWillMount() {
     this.resetComponent()
@@ -484,13 +482,11 @@ class SettingsCard extends Component {
       //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() { 
-    
-
     return(
       <Container>
-        <Segment>
+        <Segment style={{ marginTop: 20}} raised>
           <Container textAlign="center">
-            <Header as="h2">User Settings</Header>
+            <h3 style={{ marginTop: 20}} className="registerTitle">Settings</h3>
             {this.state.changesMade ?
               <Header as="h3" style={{color: "red"}}>Press "Update" to Save Changes</Header>
             : 
@@ -499,16 +495,28 @@ class SettingsCard extends Component {
           </Container>
           <Container>
             <Grid>
-              <Grid.Column width={7}>
-                <Button toggle /*active={this.state.edit.editName}*/ name="editName" onClick={this.handleEditToggle} data-methods="Edit Name" content={<Icon name="edit" large />} /> 
+              <Grid.Column width={2}>
+                <Button toggle /*active={this.state.edit.editName}*/ className="editBtn" name="editName" onClick={this.handleEditToggle} data-methods="Edit Name" content={<Icon name="edit" medium />} /> 
               </Grid.Column>
-              <Grid.Column width={9} verticalAlign="middle">
-                <Header as="h4">Name</Header>
-              </ Grid.Column>
-            </Grid>
-            {this.state.edit.editName ?
+              <Grid.Column width={12}>
+                {this.state.edit.editName ?
+                  <Form>
+                    <Form.Field control={Input} label='Change Your First and Last Name' className={`${this.state.nameProblem}`}>
+                        <input type="text" placeholder="Change Your First Name and Last Name" required name="nameUpdate" onChange={this.handleInputChange} />
+                        {this.state.nameEmpty ?
+                          <Label basic color="red" pointing="left">{`${this.state.nameEmpty}`}</Label>
+                        : ""}
+                    </Form.Field>
+                    <Button className="updateBtn" onClick={this.handleUpdateOne} name="name" value={`${this.state.nameUpdate}*nameUpdate*editName`} size="small" content="Update" />
+                    {/* </Grid> */}
+                  </Form>
+                : 
+                  <span>Name: {this.state.name}</span>
+                }
+                </ Grid.Column>
+              </Grid>
+            {/* {this.state.edit.editName ?
               <Form>
-                <Grid>
                   <Form.Field control={Input} label='Your First and Last Name'  width={12} className={`${this.state.nameProblem}`}>
                     <input type="text" placeholder={this.state.name} required name="nameUpdate" onChange={this.handleInputChange} />
                     {this.state.nameEmpty ?
@@ -516,13 +524,11 @@ class SettingsCard extends Component {
                     : ""}
                   </Form.Field>
                   <Button onClick={this.handleUpdateOne} name="name" value={`${this.state.nameUpdate}*nameUpdate*editName`} size="small" content="Update" />
-                </Grid>
               </Form>
             : 
               <span>Name: {this.state.name}</span>
-            }
+            } */}
           </Container>
-          {/* ///////////////////////// */}
           <Container>
             <Grid>
               <Grid.Column width={7}>

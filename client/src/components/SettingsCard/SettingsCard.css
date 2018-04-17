@@ -6,3 +6,29 @@
 body {
   color: white;
 }
+
+.ui.toggle.button.editBtn {
+  background: rgb(173, 173, 173);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #FFFFFF;
+  font-size: 15px;
+  border-radius: 25%;
+  border-style: none;
+  width: 52px;
+  height: 40px;
+  margin: auto;
+  display: block;
+}
+
+.ui.small.button.updateBtn {
+  background: rgb(173, 173, 173);
+  font-family: 'Nunito', sans-serif;
+  color: #FFFFFF;
+  font-size: 15px;
+  border-radius: 15%;
+  border-style: none;
+  width: 100px;
+  height: 40px;
+  margin: auto;
+  float: right;
+}
