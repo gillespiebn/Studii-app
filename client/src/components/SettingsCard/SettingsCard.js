@@ -7,6 +7,7 @@ import vaSchools from '../../utils/vaSchools.js'
 import classNamesSeed from '../../utils/classNames.js'
 import SearchFormSchools from "../SearchFormSchools";
 import SearchFormClasses from "../SearchFormClasses";
+import Footer from "../Footer";
 
 
 class SettingsCard extends Component {
@@ -182,11 +183,9 @@ class SettingsCard extends Component {
     }
   }
 
-
   componentDidMount() {
     this.setState({name: this.state.user.name, email: this.state.user.email, school: this.state.user.school, classStanding: this.state.user.classStanding, classes: this.state.user.classes, objMethods: this.props.user.methods, objLocations: this.props.user.locations, objTimes: this.props.user.times, major: this.state.user.major, minor: this.state.user.minor, photo: this.state.user.photo});
   }
-
 
   componentWillMount() {
     this.resetComponent()
@@ -484,13 +483,11 @@ class SettingsCard extends Component {
       //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() { 
-    
-
     return(
       <Container>
-        <Segment>
+        <Segment style={{ marginTop: 20}} raised>
           <Container textAlign="center">
-            <Header as="h2">User Settings</Header>
+            <h3 style={{ marginTop: 20}} className="registerTitle">Settings</h3>
             {this.state.changesMade ?
               <Header as="h3" style={{color: "red"}}>Press "Update" to Save Changes</Header>
             : 
@@ -499,128 +496,103 @@ class SettingsCard extends Component {
           </Container>
           <Container>
             <Grid>
-              <Grid.Column width={7}>
-                <Button toggle /*active={this.state.edit.editName}*/ name="editName" onClick={this.handleEditToggle} data-methods="Edit Name" content={<Icon name="edit" large />} /> 
+              <Grid.Column width={2}>
+                <Button toggle /*active={this.state.edit.editName}*/ className="editBtn" name="editName" onClick={this.handleEditToggle} data-methods="Edit Name" content={<Icon name="edit" medium />} /> 
               </Grid.Column>
-              <Grid.Column width={9} verticalAlign="middle">
-                <Header as="h4">Name</Header>
-              </ Grid.Column>
-            </Grid>
-            {this.state.edit.editName ?
-              <Form>
-                <Grid>
-                  <Form.Field control={Input} label='Your First and Last Name'  width={12} className={`${this.state.nameProblem}`}>
-                    <input type="text" placeholder={this.state.name} required name="nameUpdate" onChange={this.handleInputChange} />
-                    {this.state.nameEmpty ?
-                      <Label basic color="red" pointing="left">{`${this.state.nameEmpty}`}</Label>
-                    : ""}
-                  </Form.Field>
-                  <Button onClick={this.handleUpdateOne} name="name" value={`${this.state.nameUpdate}*nameUpdate*editName`} size="small" content="Update" />
-                </Grid>
-              </Form>
-            : 
-              <span>Name: {this.state.name}</span>
-            }
+              <Grid.Column width={12}>
+                {this.state.edit.editName ?
+                  <Form>
+                    <Form.Field control={Input} className={`${this.state.nameProblem}`}>
+                        <input type="text" placeholder="Change Your First Name and Last Name" required name="nameUpdate" onChange={this.handleInputChange} />
+                        {this.state.nameEmpty ?
+                          <Label basic color="red" pointing="left">{`${this.state.nameEmpty}`}</Label>
+                        : ""}
+                    </Form.Field>
+                    <Button className="updateBtn" onClick={this.handleUpdateOne} name="name" value={`${this.state.nameUpdate}*nameUpdate*editName`} size="small" content="Update" />
+                    {/* </Grid> */}
+                  </Form>
+                : 
+                  <span>Name: {this.state.name}</span>
+                }
+                </ Grid.Column>
+              </Grid>
           </Container>
-          {/* ///////////////////////// */}
           <Container>
             <Grid>
-              <Grid.Column width={7}>
-                <Button toggle /*active={this.state.edit.editName}*/ name="editEmail" onClick={this.handleEditToggle} data-methods="Edit Email" content={<Icon name="edit" large />} /> 
+              <Grid.Column width={2}>
+                <Button toggle /*active={this.state.edit.editName}*/ className="editBtn" name="editEmail" onClick={this.handleEditToggle} data-methods="Edit Email" content={<Icon name="edit" large />} /> 
               </Grid.Column>
-              <Grid.Column width={9} verticalAlign="middle">
-                <Header as="h4">Email</Header>
-              </ Grid.Column>
-            </Grid>
-            {this.state.edit.editEmail ?
-              <Form>
-                <Grid>
-                  <Form.Field control={Input} label='Enter your .edu Email'  width={12} className={`${this.state.emailProblem}`}>
-                    <input type="text" placeholder={this.state.email} required name="emailUpdate" onChange={this.handleInputChange} />
-                      {this.state.emailEmpty ?
-                            <Label basic color="red" pointing="left">{`${this.state.emailEmpty}`}</Label>
-                          : ""}
-                      {this.state.emailFormatProblem ?
-                        <Label basic color="red" pointing="left">{`${this.state.emailFormatProblem}`}</Label>
-                      : ""}
-                  </Form.Field>
-                  <Button onClick={this.handleUpdateOne} name="email" value={`${this.state.emailUpdate}*emailUpdate*editEmail`} size="small" content="Update" />
-                </Grid>
-              </Form>
-            : 
-              <span>Email: {this.state.email}</span>
-            }
+              <Grid.Column width={12}>
+                {this.state.edit.editEmail ?
+                  <Form>
+                    <Form.Field control={Input} className={`${this.state.emailProblem}`}>
+                      <input type="text" placeholder="Change Your Email" required name="emailUpdate" onChange={this.handleInputChange} />
+                        {this.state.emailEmpty ?
+                              <Label basic color="red" pointing="left">{`${this.state.emailEmpty}`}</Label>
+                            : ""}
+                        {this.state.emailFormatProblem ?
+                          <Label basic color="red" pointing="left">{`${this.state.emailFormatProblem}`}</Label>
+                        : ""}
+                    </Form.Field>
+                    <Button className="updateBtn" onClick={this.handleUpdateOne} name="email" value={`${this.state.emailUpdate}*emailUpdate*editEmail`} size="small" content="Update" />
+                  </Form>
+                : 
+                  <span>Email: {this.state.email}</span>
+                }
+              </Grid.Column>
+            </Grid>    
           </Container>
-          {/* ////////////////////////////// */}
-          <Grid>
-            <Grid.Column width={8}>
-              <Container>
-                <Grid>
-                  <Grid.Column width={7}>
-                    <Button toggle /*active={this.state.edit.editName}*/ name="editMajor" onClick={this.handleEditToggle} data-methods="Edit Major" content={<Icon name="edit" large />} /> 
-                  </Grid.Column>
-                  <Grid.Column width={9} verticalAlign="middle">
-                    <Header as="h4">Major</Header>
-                  </ Grid.Column>
-                </Grid>
+          <Container>
+            <Grid>
+              <Grid.Column width={2}>
+                <Button toggle className="editBtn" /*active={this.state.edit.editName}*/ name="editMajor" onClick={this.handleEditToggle} data-methods="Edit Major" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={12}>
                 {this.state.edit.editMajor ?
                   <Form>
-                    <Grid>
-                      <Form.Field control={Input} label='Enter Your Major'  width={12} className={`${this.state.majorProblem}`}>
-                        <input type="text" placeholder={this.state.major} required name="majorUpdate" onChange={this.handleInputChange} />
+                      <Form.Field control={Input} className={`${this.state.majorProblem}`}>
+                        <input type="text" placeholder="Change Your Major" required name="majorUpdate" onChange={this.handleInputChange} />
                           {this.state.majorEmpty ?
                                 <Label basic color="red" pointing="left">{`${this.state.majorEmpty}`}</Label>
                               : ""}
                       </Form.Field>
-                      <Button onClick={this.handleUpdateOne} name="major" value={`${this.state.majorUpdate}*majorUpdate*editMajor`} size="small" content="Update" />
-                    </Grid>
+                      <Button className="updateBtn" onClick={this.handleUpdateOne} name="major" value={`${this.state.majorUpdate}*majorUpdate*editMajor`} size="small" content="Update" />
                   </Form>
-                : 
-                  <span>Major: {this.state.major}</span>
-                }
-              </Container>
-            </Grid.Column>
-          {/* ////////////////////////////// */}
-            <Grid.Column width={8}>
-              <Container>
-                <Grid>
-                  <Grid.Column width={7}>
-                    <Button toggle /*active={this.state.edit.editName}*/ name="editMinor" onClick={this.handleEditToggle} data-methods="Edit Minor" content={<Icon name="edit" large />} /> 
-                  </Grid.Column>
-                  <Grid.Column width={9} verticalAlign="middle">
-                    <Header as="h4">Minor</Header>
-                  </ Grid.Column>
-                </Grid>
+                  : 
+                    <span>Major: {this.state.major}</span>
+                  }
+              </Grid.Column>
+            </Grid>  
+          </Container>
+          <Container>
+            <Grid>
+              <Grid.Column width={2}>
+                <Button toggle className="editBtn" /*active={this.state.edit.editName}*/ name="editMinor" onClick={this.handleEditToggle} data-methods="Edit Minor" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={12}>
                 {this.state.edit.editMinor ?
                   <Form>
-                    <Grid>
-                      <Form.Field control={Input} label='Enter Your Minor'  width={12} className={`${this.state.majorProblem}`}>
-                        <input type="text" placeholder={this.state.minor} name="minorUpdate" onChange={this.handleInputChange} />
-                      </Form.Field>
-                      <Button onClick={this.handleUpdateOne} name="minor" value={`${this.state.minorUpdate}*minorUpdate*editMinor`} size="small" content="Update" />
-                    </Grid>
+                    <Form.Field control={Input} className={`${this.state.majorProblem}`}>
+                      <input type="text" placeholder="Change Your Minor" name="minorUpdate" onChange={this.handleInputChange} />
+                    </Form.Field>
+                    <Button className="updateBtn" onClick={this.handleUpdateOne} name="minor" value={`${this.state.minorUpdate}*minorUpdate*editMinor`} size="small" content="Update" />
                   </Form>
                 : 
                   <span>Minor: {this.state.minor}</span>
                 }
-              </Container>
-            </Grid.Column>
-          </Grid>
-          {/* ///////////////////////// */}
+              </Grid.Column>
+            </Grid>    
+          </Container>
           <Container>
             <Grid>
-              <Grid.Column width={7}>
-                <Button toggle /*active={this.state.edit.editName}*/ name="editClassStanding" onClick={this.handleEditToggle} data-methods="Edit Class Standing" content={<Icon name="edit" large />} /> 
+              <Grid.Column width={2}>
+                <Button toggle className="editBtn" /*active={this.state.edit.editName}*/ name="editClassStanding" onClick={this.handleEditToggle} data-methods="Edit Class Standing" content={<Icon name="edit" large />} /> 
               </Grid.Column>
-              <Grid.Column width={9} verticalAlign="middle">
-                <Header as="h4">Class Standing</Header>
-              </ Grid.Column>
-            </Grid>
+            <Grid.Column width={12}>
             {this.state.edit.editClassStanding ?
               <Form>
-                <Grid>
-                  <Form.Field control={Input} label='Enter Class Standing'  width={12} className={`${this.state.classStandingProblem}`}>
-                    <input type="text" placeholder="ie: Senior, Junior, etc." required name="classStandingUpdate" onChange={this.handleInputChange} />
+                  <Form.Field control={Input} className={`${this.state.classStandingProblem}`}>
+                    <input type="text" placeholder="Update Your Classing Standing, i.e. Senior, Junior, etc." required name="classStandingUpdate" onChange={this.handleInputChange} />
                       {this.state.classStandingEmpty ?
                             <Label basic color="red" pointing="left">{`${this.state.classStandingEmpty}`}</Label>
                           : ""}
@@ -628,33 +600,29 @@ class SettingsCard extends Component {
                         <Label basic color="red" pointing="left">{`${this.state.classStandingWrong}`}</Label>
                       : ""}
                   </Form.Field>
-                  <Button onClick={this.handleUpdateOne} name="classStanding" value={`${this.state.classStandingUpdate}*classStandingUpdate*editClassStanding`} size="small" content="Update" />
-                </Grid>
+                  <Button className="updateBtn" onClick={this.handleUpdateOne} name="classStanding" value={`${this.state.classStandingUpdate}*classStandingUpdate*editClassStanding`} size="small" content="Update" />
               </Form>
             : 
               <span>Class Standing: {this.state.classStanding}</span>
             }
+            </Grid.Column>
+            </Grid>
           </Container>
-          {/* ////////////////////////////// */}
           <Container>
             <Grid>
-              <Grid.Column width={7}>
-                <Button toggle /*active={this.state.edit.editName}*/ name="editClasses" onClick={this.handleEditToggle} data-methods="Edit Classes" content={<Icon name="edit" large />} /> 
+              <Grid.Column width={2}>
+                <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editClasses" onClick={this.handleEditToggle} data-methods="Edit Classes" content={<Icon name="edit" large />} /> 
               </Grid.Column>
-              <Grid.Column width={9} verticalAlign="middle">
-                <Header as="h4">Classes</Header>
-              </ Grid.Column>
-            </Grid>
-            {this.state.edit.editClasses ?
-              <div> 
-                {this.renderClassesToEdit()}
-                <Form>
-                  <Grid>
-                    <Grid.Column>
+              <Grid.Column width={12}>
+                {this.state.edit.editClasses ?
+                  <div> 
+                    {this.renderClassesToEdit()}
+                    <Grid>
                         {this.state.classPrefixEmpty ?
                           <Label basic color="red" pointing="below">{`${this.state.classPrefixEmpty}`}</Label>
                         : ""}
                         <SearchFormClasses
+                          width={6}
                           style={{minWidth: 150}}
                           fluid
                           className={`${this.state.classPrefixProblem}`}
@@ -666,58 +634,54 @@ class SettingsCard extends Component {
                           value={this.state.valueClass}
                           {...this.props}  
                         />
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                      <Form.Field control={Input} label='Enter New Class Number'  width={12} className={`${this.state.classNumberProblem}`}>
-                        <input type="text" placeholder="ie: 101" required name="classNumberUpdate" onChange={this.handleInputChange} />
+                      <Grid.Column>
+                        <Form.Field control={Input} className={`${this.state.classNumberProblem}`}>
+                          <input type="text" placeholder="Enter New Class Number, ie: 101" required name="classNumberUpdate" onChange={this.handleInputChange} />
                           {this.state.classNumberEmpty ?
                             <Label basic color="red" pointing="left">{`${this.state.classNumberEmpty}`}</Label>
                           : ""}
-                      </Form.Field>
-                    </Grid.Column>
-                  </Grid>
-                  <Button onClick={this.handleAddClass} name="class" value={`${this.state.classNumberUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`} size="small" content="Update" />
-                </Form>
-              </div>
-            : 
-              <div>
-                {this.renderClasses()}
-              </div>
-              // <span>Class Standing: {this.state.classStanding}</span>
-            }
+                        </Form.Field>
+                      </Grid.Column>
+                      <Button className="updateClassBtn" width={2} onClick={this.handleAddClass} name="class" value={`${this.state.classNumberUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`} size="small" content="Update" />
+                  </Grid> 
+                  </div> 
+                : 
+                <div>
+                  {this.renderClasses()}
+                </div>
+              }
+              </Grid.Column>
+            </Grid>
           </Container>
-          {/* ////////////////////////////// */}
           <Container>
             <Grid>
-              <Grid.Column width={7}>
-                <Button toggle /*active={this.state.edit.editName}*/ name="editStudyMethods" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Methods" content={<Icon name="edit" large />} /> 
+              <Grid.Column width={2} style={{height: "250px"}}>
+                <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editStudyMethods" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Methods" content={<Icon name="edit" large />} /> 
               </Grid.Column>
-              <Grid.Column width={9} verticalAlign="middle">
-                <Header as="h4">Study Methods</Header>
-              </ Grid.Column>
-            </Grid>
-            {this.state.edit.editStudyMethods ?
-              <Form>
-                <h4 className="registerTitle">Preferred Study Methods</h4>
-                <Form.Group className="preferbtn" widths="equal">
-                  <Button toggle active={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
-                  <Button toggle active={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
-                  <Button toggle active={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
-                </Form.Group>
-                <Form.Group className="preferbtn" widths="equal">  
-                  <Button toggle active={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
-                  <Button toggle active={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
-                  <Button toggle active={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
-                </Form.Group>
-                <Form.Group>
-                    <Button onClick={this.handleUpdateMethods} name="methods" /*value={`${this.state.methodsUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`}*/ size="small" content="Update" />
-                </Form.Group>
-              </Form>
-            : 
-              <div>
-                {this.renderMethods()}
-              </div>
-            }
+              <Grid.Column width={12}>
+                {this.state.edit.editStudyMethods ?
+                  <Form>
+                    <Form.Group widths="equal">
+                      <Button className="preferbtn" toggle={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" >Flashcards </Button>
+                      <Button className="preferbtn" toggle={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
+                      <Button className="preferbtn" toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
+                    </Form.Group>
+                    <Form.Group widths="equal">  
+                      <Button className="preferBtn" toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
+                    </Form.Group>
+                    <Form.Group>
+                      <Button className="updateBtn" onClick={this.handleUpdateMethods} name="methods" /*value={`${this.state.methodsUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`}*/ size="small" content="Update" />
+                    </Form.Group>
+                  </Form>
+                : 
+                  <div>
+                    {this.renderMethods()}
+                  </div>
+                }
+              </Grid.Column>
+            </Grid>    
           </Container>
           {/* ////////////////////////////// */}
             {/* nextStep: The Locations Thingy. Calandar may end up being a real bastard */}
@@ -728,6 +692,7 @@ class SettingsCard extends Component {
           
           {/* ////////////////////////////// */}
         </Segment>
+      <Footer />  
       </Container>
     )
   }

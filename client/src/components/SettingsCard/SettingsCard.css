@@ -1,8 +1,61 @@
-.button {
+/* .button {
   width: auto;
   height: auto;
-}
+} */
 
 body {
   color: white;
+}
+
+.ui.toggle.button.editBtn {
+  background: rgb(173, 173, 173);
+  font-family: 'Nunito', sans-serif;
+  color: #FFFFFF;
+  font-size: 15px;
+  border-radius: 25%;
+  border-style: none;
+  width: 52px;
+  height: 40px;
+  margin: auto;
+  display: block;
+}
+
+.ui.small.button.updateBtn {
+  background: rgb(173, 173, 173);
+  font-family: 'Nunito', sans-serif;
+  color: #FFFFFF;
+  font-size: 15px;
+  border-radius: 15%;
+  border-style: none;
+  width: 100px;
+  height: 40px;
+  margin: auto;
+  float: right;
+}
+
+.ui.small.button.updateClassBtn {
+  background: rgb(173, 173, 173);
+  font-family: 'Nunito', sans-serif;
+  color: #FFFFFF;
+  font-size: 15px;
+  border-radius: 15%;
+  border-style: none;
+  width: 100px;
+  height: 40px;
+  margin-left: 75%;
+  margin-top: -8%;
+}
+
+.ui.tiny.button {
+  background: rgb(173, 173, 173);
+  font-family: 'Nunito', sans-serif;
+  color: #FFFFFF;
+  font-size: 15px;
+  border-radius: 25%;
+  border-style: none;
+  width: 52px;
+  height: 40px;
+  margin: auto;
+  display: block;
+
 }

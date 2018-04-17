@@ -3,6 +3,14 @@
     border: 3px solid #22223B;
     height: 180px;
     width:180px;
+    /* the following lines will keep the image from getting all weird. needs a little work */
+    display: block;
+    width: auto;
+    height: auto;
+    min-height: 180px;
+    /* min-width: 180px; */
+    max-height: 180px;
+    /* max-width: 500px; */
     position: relative;
 }
 
@@ -35,10 +43,16 @@
 .prfDiv {
     background-color: #E4E3E5;
     position: relative;
-    top: 60px;
+    top: 100px;
     font-family: "arial";
     font-weight: bold;
     font-size: 36px;
     color:  #22223B; 
     text-align: center;
+}
+#methods{
+  /* padding-left: auto;
+  padding-right: auto; */
+  margin-left: auto;
+  margin-right: auto;
 }

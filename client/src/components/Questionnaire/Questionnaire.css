@@ -59,28 +59,28 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
 
 .equal.width.fields.timebtnMo {
   margin-top: 1%;
-  margin-left: 15%
+  margin-left: 5%
 
 }
 .equal.width.fields.timebtnAf {
   margin-top: 1%;
-  margin-left: 15%
+  margin-left: 5%
 
 }
 .equal.width.fields.timebtnEv {
   margin-top: 1%;
-  margin-left: 15%
+  margin-left: 5%
 
 }
 .equal.width.fields.timebtnNi {
   margin-top: 1%;
-  margin-left: 15%
+  margin-left: 5%
 
 }
 
 .ui.form>p {
   color: #22223B;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size:20px;
   padding:0px 5px 0px 0px;
 }
@@ -116,7 +116,7 @@ img {
 .timeFrameLabels {
   width: 80px;
   color: #22223B;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size:20px;
 }
 
