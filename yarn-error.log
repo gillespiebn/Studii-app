@@ -2324,6 +2324,22 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
 Trace: 
+<<<<<<< HEAD
+  Error: Command failed.
+  Exit code: 3221225786
+  Command: C:\Windows\system32\cmd.exe
+  Arguments: /d /s /c concurrently "nodemon server" "yarn run client"
+  Directory: C:\Users\Owner\Desktop\code\finalProject\Studii-app
+  Output:
+  
+      at ProcessTermError.MessageError (C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
+      at new ProcessTermError (C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
+      at ChildProcess.<anonymous> (C:\Users\Owner\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
+      at emitTwo (events.js:126:13)
+      at ChildProcess.emit (events.js:214:7)
+      at maybeClose (internal/child_process.js:925:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+=======
   Error: Command "seed" not found.
       at new MessageError (C:\Users\Jordan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
       at C:\Users\Jordan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87307:17
@@ -2335,3 +2351,4 @@ Trace:
       at C:\Users\Jordan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:95:12
       at runCommand (C:\Users\Jordan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87312:22)
       at Object.<anonymous> (C:\Users\Jordan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87412:14)
+>>>>>>> 38039efbca72f941f7fc4d8be2d9b4234ee9535f
