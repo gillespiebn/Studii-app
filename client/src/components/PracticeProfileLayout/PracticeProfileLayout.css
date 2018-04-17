@@ -64,6 +64,41 @@
     text-align: center;
     font-weight: bolder;
   } 
+  .timeFrameLabels {
+    width: 80px;
+    color: #22223B;
+    font-family: 'Nunito', sans-serif;
+    font-size:20px;
+  }
+  
+  .morLabel{
+    margin-top: 50px;
+    margin-left: -17px;
+  }
+  
+  .aftLabel {
+    margin-top: 20px;
+    margin-right: 7px;
+    margin-left: -24px;
+  }
+  
+  .eveLabel {
+    margin-top: 20px;
+    margin-left: -17px;
+  }
+  
+  .niLabel {
+    margin-top: 15px;
+    margin-left: -17px;
+  }
+  .dayTitles {
+    width: 75px;
+    color: #22223B;
+    font-family: 'Nunito', sans-serif;
+    font-size:20px;
+    text-align: center;
+    font-weight: bolder;
+  }
 .su {
     margin-left: -13px;
   }
