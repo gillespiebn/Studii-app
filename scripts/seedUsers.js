@@ -18,7 +18,7 @@ const userSeed = [
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
     "email": "hingmcring@vcu.edu",
-    "classStanding": "F",
+    "classStanding": "Freshman",
     "classes": [
       "biology:101",
       "math:100",
@@ -43,7 +43,7 @@ const userSeed = [
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
     "email": "ty@vcu.edu",
-    "classStanding": "F",
+    "classStanding": "Freshman",
     "classes": [
       "biology:101",
       "math:100"
@@ -67,7 +67,7 @@ const userSeed = [
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
     "email": "tjajrj@vcu.edu",
-    "classStanding": "F",
+    "classStanding": "Junior",
     "classes": [
       "biology:101",
       "math:100",
@@ -93,7 +93,7 @@ const userSeed = [
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
     "email": "tjajrj@vcu.edu",
-    "classStanding": "F",
+    "classStanding": "Freshman",
     "classes": [
       "biology:101",
       "math:100",
@@ -119,7 +119,7 @@ const userSeed = [
     "school": "UNIVERSITY OF RICHMOND",
     "schoolCode": "003744",
     "email": "tjajrj@urich.edu",
-    "classStanding": "F",
+    "classStanding": "Senior",
     "classes": [
       "biology:101",
       "math:100",
@@ -145,7 +145,7 @@ const userSeed = [
     "school": "UNIVERSITY OF RICHMOND",
     "schoolCode": "003744",
     "email": "tjajrj@urich.edu",
-    "classStanding": "F",
+    "classStanding": "Sophomore",
     "classes": [
       "biology:101",
       "math:100",
@@ -171,7 +171,7 @@ const userSeed = [
     "school": "UNIVERSITY OF RICHMOND",
     "schoolCode": "003744",
     "email": "neckbeard@urich.edu",
-    "classStanding": "F",
+    "classStanding": "Sophomore",
     "classes": [
       "biology:101",
       "math:100",
@@ -196,7 +196,7 @@ const userSeed = [
     "school": "UNIVERSITY OF RICHMOND",
     "schoolCode": "003744",
     "email": "beandip@urich.edu",
-    "classStanding": "S",
+    "classStanding": "Senior",
     "classes": [
       "biology:101"
     ],
@@ -219,7 +219,7 @@ const userSeed = [
     "school": "UNIVERSITY OF RICHMOND",
     "schoolCode": "003744",
     "email": "grunk@urich.edu",
-    "classStanding": "F",
+    "classStanding": "Freshman",
     "classes": [
       "biology:101",
       "math:100",

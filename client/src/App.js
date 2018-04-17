@@ -58,7 +58,6 @@ class App extends React.Component {
 
         //this.setState({checked: true, facebook_id: window.fbToken.authResponse.userID})
          this.setState({checked: true, facebook_id: 10})
-        // console.log(window.fbToken.authResponse.userID);
 
         // this.getUser(window.fbToken.authResponse.userID);
  
@@ -85,7 +84,6 @@ class App extends React.Component {
   };
 
   responseFacebook = (response) => {
-    console.log(response.id);
     this.setState({facebook_id: response.id});
   };
 
@@ -95,7 +93,6 @@ class App extends React.Component {
   };
 
   fadeout = () => {
-    console.log("we will be fading")
   }
 
   ///////////////////////////////////////////////////////////////////////////////////

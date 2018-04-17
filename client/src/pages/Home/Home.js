@@ -34,8 +34,6 @@ class Home extends React.Component {
     getMatches = () => {
       API.getMatches(this.state.user)
         .then(data => {
-        console.log("the line under this is matches")
-        console.log(data)
         this.setState({matches: data.data})
       }
     )
@@ -56,8 +54,9 @@ class Home extends React.Component {
     return(
     <div>
       {this.state.matches ? 
-        <PracticeProfileLayout matches={this.state.matches} user={this.state.user} facebook_id={this.props.facebook_id } />
-        : <h1>This is the home page</h1> 
+          <PracticeProfileLayout matches={this.state.matches} user={this.state.user} facebook_id={this.props.facebook_id } />
+        : 
+          <h1>This is the home page</h1> 
       }
     </div>
     )
