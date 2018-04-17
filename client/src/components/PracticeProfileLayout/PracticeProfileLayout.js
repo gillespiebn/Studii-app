@@ -138,9 +138,19 @@ class Profiles extends React.Component {
             </Grid>
             <h3>Availability</h3>
 
-            <Form>
+            <Form> 
+            <Form.Group className="timebtnMo" widths="equal">
+                  <div className="dayTitles blank">  </div>
+                  <div className="dayTitles su">Su</div>
+                  <div className="dayTitles m">M</div>
+                  <div className="dayTitles tu">Tu</div>
+                  <div className="dayTitles w">W</div>
+                  <div className="dayTitles th">Th</div>
+                  <div className="dayTitles f">F</div>
+                  <div className="dayTitles sa">Sa</div> 
+                    </Form.Group>
               <Form.Group className="timebtnMo" widths="equal">
-                <div className="timeFrameLabels">Morning</div>
+                <div className="timeFrameLabels morLabel">Morning</div>
                 {timesObject.SundayMorning ?
                   <img alt="." src="/images/pinkMor.png" active={timesObject.SundayMorning} name="SundayMorning" /*onClick={this.handleTimeToggle}*/ data-times="SundayMorning" className="Sunday Morning" />
                 : 
@@ -173,7 +183,7 @@ class Profiles extends React.Component {
                 
                 </Form.Group>
                 <Form.Group className="timebtnAf" widths="equal"> 
-                <div className="timeFrameLabels">Afternoon</div>
+                <div className="timeFrameLabels aftLabel">Afternoon</div>
                   {timesObject.SundayAfternoon ?
                 <img alt="." src="/images/pinkAft.png" active={timesObject.SundayAfternoon} name="SundayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="SundayAfternoon" className="Sunday Afternoon" />
                 : <img alt="." src="/images/blueAft.png" active={timesObject.SundayAfternoon} name="SundayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="SundayAfternoon" className="Sunday Afternoon" />}
@@ -203,7 +213,7 @@ class Profiles extends React.Component {
                 : <img alt="." src="/images/blueAft.png" active={timesObject.SaturdayAfternoon} name="SaturdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayAfternoon" className="Saturday Afternoon" />}
                 </Form.Group>
                 <Form.Group className="timebtnEv" widths="equal">
-                <div className="timeFrameLabels">Evening</div>
+                <div className="timeFrameLabels eveLabel">Evening</div>
                   {timesObject.SundayEvening ?
                 <img alt="." src="/images/pinkEve.png" active={timesObject.SundayEvening} name="SundayEvening" /*onClick={this.handleTimeToggle}*/ data-times="SundayEvening" className="Sunday Evening" />
                 : <img alt="." src="/images/blueEve.png" active={timesObject.SundayEvening} name="SundayEvening" /*onClick={this.handleTimeToggle}*/ data-times="SundayEvening" className="Sunday Evening" />}
@@ -233,7 +243,7 @@ class Profiles extends React.Component {
                 : <img alt="." src="/images/blueEve.png" active={timesObject.SaturdayEvening} name="SaturdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayEvening" className="Saturday Evening" />}
                 </Form.Group>
                 <Form.Group className="timebtnNi" widths="equal">   
-                <div className="timeFrameLabels">Night</div>
+                <div className="timeFrameLabels niLabel">Night</div>
                   {timesObject.SundayNight ?
                 <img alt="." src="/images/pinkNi.png" active={timesObject.SundayNight} name="SundayNight" /*onClick={this.handleTimeToggle}*/ data-times="SundayNight" className="Sunday Night" />
                 : <img alt="." src="/images/blueNi.png" active={timesObject.SundayNight} name="SundayNight" /*onClick={this.handleTimeToggle}*/ data-times="SundayNight" className="Sunday Night" />}

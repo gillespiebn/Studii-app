@@ -56,3 +56,34 @@
   margin-left: auto;
   margin-right: auto;
 }
+.dayTitles {
+    width: 75px;
+    color: #22223B;
+    font-family: 'Nunito', sans-serif;
+    font-size:20px;
+    text-align: center;
+    font-weight: bolder;
+  } 
+.su {
+    margin-left: -13px;
+  }
+  
+  .m {
+    margin-left: 13px;
+  }
+  .tu {
+    margin-left: 9px;
+  } 
+  .w {
+    margin-left: 13px;
+  }
+  
+  .th {
+    margin-left: 9px;
+  }
+  .f {
+    margin-left: 9px;
+  }
+  .sa {
+    margin-left: 9px;
+  }
