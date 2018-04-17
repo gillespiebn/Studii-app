@@ -4,7 +4,7 @@ import "./PracticeProfileLayout.css";
 import Footer from "../Footer";
 import API from "../../utils/API";
 
-import { Card, Image, Container, Button, List, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
+import { Form, Card, Image, Container, Button, List, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
 
 class Profiles extends React.Component {  
 
@@ -20,8 +20,9 @@ class Profiles extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.user !== this.state.user) {
-    }
+    // if (prevProps.index !== this.state.index || this.state.index === 0) {
+    //   // this.setState({times: this.state.matches[this.state.index].times});
+    // }
   }
 
   getUser = () => {
@@ -55,11 +56,10 @@ class Profiles extends React.Component {
     } else {
       return;
     }
+    console.log("Hee Haw");
+    console.log(profile);
     // const profile = this.state.matches[this.state.index];
     const user = this.props.user;
-    console.log('inside the render card now');
-    console.log(profile)
-    console.log(user);
     if (profile.facebook_id === user.facebook_id){
       if (this.state.index + 1 === this.state.matches.length){
         this.setState({noMoreMatches: true});
@@ -130,6 +130,133 @@ class Profiles extends React.Component {
               ))}
             </Grid>
             <h3>Availability</h3>
+
+            <Form>
+              <Form.Group className="timebtnMo" widths="equal">
+                <div className="timeFrameLabels">Morning</div>
+                {profile.SundayMorning ?
+                  <img alt="." src="/images/pinkMor.png" active={profile.SundayMorning} name="SundayMorning" /*onClick={this.handleTimeToggle}*/ data-times="SundayMorning" className="Sunday Morning" />
+                : 
+                  <img alt="." src="/images/blueMor.png" active={profile.SundayMorning} name="SundayMorning" /*onClick={this.handleTimeToggle}*/ data-times="SundayMorning" className="Sunday Morning" />
+                }
+                
+                {profile.MondayMorning ?
+                <img alt="." src="/images/pinkMor.png" active={profile.MondayMorning} name="MondayMorning" /*onClick={this.handleTimeToggle}*/ data-times="MondayMorning" className="Monday Morning" />
+                : <img alt="." src="/images/blueMor.png" active={profile.MondayMorning} name="MondayMorning" /*onClick={this.handleTimeToggle}*/ data-times="MondayMorning" className="Monday Morning" />}
+                
+                {profile.TuesdayMorning ?
+                <img alt="." src="/images/pinkMor.png" active={profile.TuesdayMorning} name="TuesdayMorning" /*onClick={this.handleTimeToggle}*/ data-times="TuesdayMorning" className="Tuesday Morning" />
+                : <img alt="." src="/images/blueMor.png" active={profile.TuesdayMorning} name="TuesdayMorning" /*onClick={this.handleTimeToggle}*/ data-times="TuesdayMorning" className="Tuesday Morning" />}
+                
+                {profile.WednesdayMorning ?
+                <img alt="." src="/images/pinkMor.png" active={profile.WednesdayMorning} name="WednesdayMorning" /*onClick={this.handleTimeToggle}*/ data-times="WednesdayMorning" className="Wednesday Morning" />
+                : <img alt="." src="/images/blueMor.png" active={profile.WednesdayMorning} name="WednesdayMorning" /*onClick={this.handleTimeToggle}*/ data-times="WednesdayMorning" className="Wednesday Morning" />}
+                
+                {profile.ThursdayMorning ?
+                <img alt="." src="/images/pinkMor.png" active={profile.ThursdayMorning} name="ThursdayMorning" /*onClick={this.handleTimeToggle}*/ data-times="ThursdayMorning" className="Thursday Morning" />
+                : <img alt="." src="/images/blueMor.png" active={profile.ThursdayMorning} name="ThursdayMorning" /*onClick={this.handleTimeToggle}*/ data-times="ThursdayMorning" className="Thursday Morning" />}
+                
+                {profile.FridayMorning ?
+                <img alt="." src="/images/pinkMor.png" active={profile.FridayMorning} name="FridayMorning" /*onClick={this.handleTimeToggle}*/ data-times="FridayMorning" className="Friday Morning" />
+                : <img alt="." src="/images/blueMor.png" active={profile.FridayMorning} name="FridayMorning" /*onClick={this.handleTimeToggle}*/ data-times="FridayMorning" className="Friday Morning" />}
+                
+                {profile.SaturdayMorning ?
+                <img alt="." src="/images/pinkMor.png" active={profile.SaturdayMorning} name="SaturdayMorning" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayMorning" className="Saturday Morning" />
+                : <img alt="." src="/images/blueMor.png" active={profile.SaturdayMorning} name="SaturdayMorning" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayMorning" className="Saturday Morning" />}
+                
+                </Form.Group>
+                <Form.Group className="timebtnAf" widths="equal"> 
+                <div className="timeFrameLabels">Afternoon</div>
+                  {profile.SundayAfternoon ?
+                <img alt="." src="/images/pinkAft.png" active={profile.SundayAfternoon} name="SundayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="SundayAfternoon" className="Sunday Afternoon" />
+                : <img alt="." src="/images/blueAft.png" active={profile.SundayAfternoon} name="SundayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="SundayAfternoon" className="Sunday Afternoon" />}
+                
+                {profile.MondayAfternoon ?
+                <img alt="." src="/images/pinkAft.png" active={profile.MondayAfternoon} name="MondayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="MondayAfternoon" className="Monday Afternoon" />
+                : <img alt="." src="/images/blueAft.png" active={profile.MondayAfternoon} name="MondayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="MondayAfternoon" className="Monday Afternoon" />}
+                
+                {profile.TuesdayAfternoon ?
+                <img alt="." src="/images/pinkAft.png" active={profile.TuesdayAfternoon} name="TuesdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="TuesdayAfternoon" className="Tuesday Afternoon" />
+                : <img alt="." src="/images/blueAft.png" active={profile.TuesdayAfternoon} name="TuesdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="TuesdayAfternoon" className="Tuesday Afternoon" />}
+                
+                {profile.WednesdayAfternoon ?
+                <img alt="." src="/images/pinkAft.png" active={profile.WednesdayAfternoon} name="WednesdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="WednesdayAfternoon" className="Wednesday Afternoon" />
+                : <img alt="." src="/images/blueAft.png" active={profile.WednesdayAfternoon} name="WednesdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="WednesdayAfternoon" className="Wednesday Afternoon" />}
+                
+                {profile.ThursdayAfternoon ?
+                <img alt="." src="/images/pinkAft.png" active={profile.ThursdayAfternoon} name="ThursdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="ThursdayAfternoon" className="Thursday Afternoon" />
+                : <img alt="." src="/images/blueAft.png" active={profile.ThursdayAfternoon} name="ThursdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="ThursdayAfternoon" className="Thursday Afternoon" />}
+                
+                {profile.FridayAfternoon ?
+                <img alt="." src="/images/pinkAft.png" active={profile.FridayAfternoon} name="FridayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="FridayAfternoon" className="Friday Afternoon" />
+                : <img alt="." src="/images/blueAft.png" active={profile.FridayAfternoon} name="FridayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="FridayAfternoon" className="Friday Afternoon" />}
+                
+                {profile.SaturdayAfternoon ?
+                <img alt="." src="/images/pinkAft.png" active={profile.SaturdayAfternoon} name="SaturdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayAfternoon" className="Saturday Afternoon" />
+                : <img alt="." src="/images/blueAft.png" active={profile.SaturdayAfternoon} name="SaturdayAfternoon" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayAfternoon" className="Saturday Afternoon" />}
+                </Form.Group>
+                <Form.Group className="timebtnEv" widths="equal">
+                <div className="timeFrameLabels">Evening</div>
+                  {profile.SundayEvening ?
+                <img alt="." src="/images/pinkEve.png" active={profile.SundayEvening} name="SundayEvening" /*onClick={this.handleTimeToggle}*/ data-times="SundayEvening" className="Sunday Evening" />
+                : <img alt="." src="/images/blueEve.png" active={profile.SundayEvening} name="SundayEvening" /*onClick={this.handleTimeToggle}*/ data-times="SundayEvening" className="Sunday Evening" />}
+                
+                {profile.MondayEvening ?
+                <img alt="." src="/images/pinkEve.png" active={profile.MondayEvening} name="MondayEvening" /*onClick={this.handleTimeToggle}*/ data-times="MondayEvening" className="Monday Evening" />
+                : <img alt="." src="/images/blueEve.png" active={profile.MondayEvening} name="MondayEvening" /*onClick={this.handleTimeToggle}*/ data-times="MondayEvening" className="Monday Evening" />}
+                
+                {profile.TuesdayEvening ?
+                <img alt="." src="/images/pinkEve.png" active={profile.TuesdayEvening} name="TuesdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="TuesdayEvening" className="Tuesday Evening" />
+                : <img alt="." src="/images/blueEve.png" active={profile.TuesdayEvening} name="TuesdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="TuesdayEvening" className="Tuesday Evening" />}
+                
+                {profile.WednesdayEvening ?
+                <img alt="." src="/images/pinkEve.png" active={profile.WednesdayEvening} name="WednesdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="WednesdayEvening" className="Wednesday Evening" />
+                : <img alt="." src="/images/blueEve.png" active={profile.WednesdayEvening} name="WednesdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="WednesdayEvening" className="Wednesday Evening" />}
+                
+                {profile.ThursdayEvening ?
+                <img alt="." src="/images/pinkEve.png" active={profile.ThursdayEvening} name="ThursdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="ThursdayEvening" className="Thursday Evening" />
+                : <img alt="." src="/images/blueEve.png" active={profile.ThursdayEvening} name="ThursdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="ThursdayEvening" className="Thursday Evening" />}
+                
+                {profile.FridayEvening ?
+                <img alt="." src="/images/pinkEve.png" active={profile.FridayEvening} name="FridayEvening" /*onClick={this.handleTimeToggle}*/ data-times="FridayEvening" className="Friday Evening" />
+                : <img alt="." src="/images/blueEve.png" active={profile.FridayEvening} name="FridayEvening" /*onClick={this.handleTimeToggle}*/ data-times="FridayEvening" className="Friday Evening" />}
+                
+                {profile.SaturdayEvening ?
+                <img alt="." src="/images/pinkEve.png" active={profile.SaturdayEvening} name="SaturdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayEvening" className="Saturday Evening" />
+                : <img alt="." src="/images/blueEve.png" active={profile.SaturdayEvening} name="SaturdayEvening" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayEvening" className="Saturday Evening" />}
+                </Form.Group>
+                <Form.Group className="timebtnNi" widths="equal">   
+                <div className="timeFrameLabels">Night</div>
+                  {profile.SundayNight ?
+                <img alt="." src="/images/pinkNi.png" active={profile.SundayNight} name="SundayNight" /*onClick={this.handleTimeToggle}*/ data-times="SundayNight" className="Sunday Night" />
+                : <img alt="." src="/images/blueNi.png" active={profile.SundayNight} name="SundayNight" /*onClick={this.handleTimeToggle}*/ data-times="SundayNight" className="Sunday Night" />}
+                
+                {profile.MondayNight ?
+                <img alt="." src="/images/pinkNi.png" active={profile.MondayNight} name="MondayNight" /*onClick={this.handleTimeToggle}*/ data-times="MondayNight" className="Monday Night" />
+                : <img alt="." src="/images/blueNi.png" active={profile.MondayNight} name="MondayNight" /*onClick={this.handleTimeToggle}*/ data-times="MondayNight" className="Monday Night" />}
+                
+                {profile.TuesdayNight ?
+                <img alt="." src="/images/pinkNi.png" active={profile.TuesdayNight} name="TuesdayNight" /*onClick={this.handleTimeToggle}*/ data-times="TuesdayNight" className="Tuesday Night" />
+                : <img alt="." src="/images/blueNi.png" active={profile.TuesdayNight} name="TuesdayNight" /*onClick={this.handleTimeToggle}*/ data-times="TuesdayNight" className="Tuesday Night" />}
+                
+                {profile.WednesdayNight ?
+                <img alt="." src="/images/pinkNi.png" active={profile.WednesdayNight} name="WednesdayNight" /*onClick={this.handleTimeToggle}*/ data-times="WednesdayNight" className="Wednesday Night" />
+                : <img alt="." src="/images/blueNi.png" active={profile.WednesdayNight} name="WednesdayNight" /*onClick={this.handleTimeToggle}*/ data-times="WednesdayNight" className="Wednesday Night" />}
+                
+                {profile.ThursdayNight ?
+                <img alt="." src="/images/pinkNi.png" active={profile.ThursdayNight} name="ThursdayNight" /*onClick={this.handleTimeToggle}*/ data-times="ThursdayNight" className="Thursday Night" />
+                : <img alt="." src="/images/blueNi.png" active={profile.ThursdayNight} name="ThursdayNight" /*onClick={this.handleTimeToggle}*/ data-times="ThursdayNight" className="Thursday Night" />}
+                
+                {profile.FridayNight ?
+                <img alt="." src="/images/pinkNi.png" active={profile.FridayNight} name="FridayNight" /*onClick={this.handleTimeToggle}*/ data-times="FridayNight" className="Friday Night" />
+                : <img alt="." src="/images/blueNi.png" active={profile.FridayNight} name="FridayNight" /*onClick={this.handleTimeToggle}*/ data-times="FridayNight" className="Friday Night" />}
+                
+                {profile.SaturdayNight ?
+                <img alt="." src="/images/pinkNi.png" active={profile.SaturdayNight} name="SaturdayNight" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayNight" className="Saturday Night" />
+                : <img alt="." src="/images/blueNi.png" active={profile.SaturdayNight} name="SaturdayNight" /*onClick={this.handleTimeToggle}*/ data-times="SaturdayNight" className="Saturday Night" />}
+              </Form.Group>  
+            </Form>
+              
             <Button name="" onClick={this.handleNext}> {<Icon name="plus" size="small" />} </Button>
           </div> 
         </ Card>
