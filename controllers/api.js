@@ -24,7 +24,8 @@ router.post('/matches', (req, res) => {
     // .where('schoolCode').equals(req.body.data.schoolCode)
     .find( { schoolCode: req.body.data.schoolCode , _id: { $nin: req.body.data.blockedUsers} } )
     // .where('_id').ne(req.body.data.blockedUsers)
-    // .where("_id").nin(req.body.data.blockedUsers)
+    .where("_id").nin(req.body.data.blockedUsers)
+    .where("_id").nin(req.body.data._id)
     .where('times').in(req.body.data.times)
     .where('classes').in(req.body.data.classes)
     .then(data => res.json(data)).catch(err => console.log(err));

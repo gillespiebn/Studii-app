@@ -8,9 +8,9 @@
     width: auto;
     height: auto;
     min-height: 180px;
-    min-width: 180px;
-    max-height: 500px;
-    max-width: 500px;
+    /* min-width: 180px; */
+    max-height: 180px;
+    /* max-width: 500px; */
     position: relative;
 }
 
@@ -49,4 +49,10 @@
     font-size: 36px;
     color:  #22223B; 
     text-align: center;
+}
+#methods{
+  /* padding-left: auto;
+  padding-right: auto; */
+  margin-left: auto;
+  margin-right: auto;
 }

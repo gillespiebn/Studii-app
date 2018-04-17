@@ -4,7 +4,7 @@ import "./PracticeProfileLayout.css";
 import Footer from "../Footer";
 import API from "../../utils/API";
 
-import { Card, Image, Container, Button, List, Transition, Divider } from 'semantic-ui-react'
+import { Card, Image, Container, Button, List, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
 
 class Profiles extends React.Component {  
 
@@ -16,18 +16,11 @@ class Profiles extends React.Component {
   }
 
   componentDidMount() {
-    this.getUser();
+    // this.getUser();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.user !== this.state.user) {
-      this.getMatches();
-    }
-
-    if (prevProps.index !== this.state.index){
-      if (this.state.index === this.state.matches.length){
-        this.setState({noMoreMatches: true});
-      }
     }
   }
 
@@ -39,35 +32,56 @@ class Profiles extends React.Component {
     )
   };
 
-  getMatches = () => {
-    API.getMatches(this.state.user)
-    .then(data => {
-      console.log("the line under this is matches")
-      console.log(data)      
-    })
-  };
+  // getMatches = () => {
+  //   API.getMatches(this.state.user)
+  //   .then(data => {
+  //     console.log("the line under this is matches")
+  //     console.log(data)      
+  //   })
+  // };
+
+  handleNext = () => {
+    if (this.state.index + 1 === this.state.matches.length){
+      this.setState({noMoreMatches: true});
+    }
+    this.setState({index: this.state.index + 1})
+  }
+
   
   renderCard = () => {
-    const profile = this.state.matches[this.state.index];
+    let profile;
+    if (this.state.matches[this.state.index]){
+      profile = this.state.matches[this.state.index]
+    } else {
+      return;
+    }
+    // const profile = this.state.matches[this.state.index];
     const user = this.props.user;
     console.log('inside the render card now');
     console.log(profile)
     console.log(user);
     if (profile.facebook_id === user.facebook_id){
+      if (this.state.index + 1 === this.state.matches.length){
+        this.setState({noMoreMatches: true});
+      }
       this.setState({index: this.state.index + 1});
       return;
     }
-    if (user.blockedUsers) {
-      for(var i = 0; i < user.blockedUsers.length; i++){
-        if (user.blockedUsers[i] === profile._id){
-          this.setState({index: this.state.index + 1});
-          return;
-        }
-      }
-    }
+    // if (user.blockedUsers) {
+    //   for(var i = 0; i < user.blockedUsers.length; i++){
+    //     console.log(user.blockedUsers[i] + " " + profile._id)
+    //     if (user.blockedUsers[i] === profile._id){
+    //       this.setState({index: this.state.index + 1});
+    //       return;
+    //     }
+    //   }
+    // }
 
     return(
       <div>
+        {this.state.noMoreMatches ?
+          <p>no more matches dummy</p>
+        :
         <Card className="cardContainer" fluid align="center" key={profile._id} >
           <div className="imgDiv">
               <Image className="cardImage" src={profile.photo} size='small' />
@@ -96,15 +110,30 @@ class Profiles extends React.Component {
             <Divider />
             </div>
             <h3>Study Methods</h3>
+            <Grid id="methods">
+              {profile.methods.map(method => (
+                <div>
+                  <Grid.Column width={2}>
+                    <Button> {method} </Button>
+                  </Grid.Column>
+                </div>
+              ))}
+            </Grid>
             <h3>Preferred Locations</h3>
+            <Grid id="locations">
+              {profile.locations.map(location => (
+                <div>
+                  <Grid.Column width={2}>
+                    <Button> {location} </Button>
+                  </Grid.Column>
+                </div>
+              ))}
+            </Grid>
             <h3>Availability</h3>
+            <Button name="" onClick={this.handleNext}> {<Icon name="plus" size="small" />} </Button>
           </div> 
         </ Card>
-        <div>
-            <Button.Group>
-                <Button icon='plus' onClick={this.handleNext} />
-            </Button.Group>
-        </div>
+        }
       </div>
     )
   }
