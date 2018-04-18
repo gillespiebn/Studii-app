@@ -8,6 +8,7 @@ import classNamesSeed from '../../utils/classNames.js'
 import SearchFormSchools from "../SearchFormSchools";
 import SearchFormClasses from "../SearchFormClasses";
 import Footer from "../Footer";
+import NavMenu from "../NavMenu";
 
 
 class SettingsCard extends Component {
@@ -485,7 +486,8 @@ class SettingsCard extends Component {
   render() { 
     return(
       <Container>
-        <Segment style={{ marginTop: 20}} raised>
+        <Segment raised>
+        <NavMenu />
           <Container textAlign="center">
             <h3 style={{ marginTop: 20}} className="registerTitle">Settings</h3>
             {this.state.changesMade ?

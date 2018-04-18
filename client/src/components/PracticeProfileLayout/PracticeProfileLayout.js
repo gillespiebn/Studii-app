@@ -3,6 +3,7 @@ import _ from 'lodash';
 import "./PracticeProfileLayout.css";
 import Footer from "../Footer";
 import API from "../../utils/API";
+import NavMenu from "../NavMenu";
 
 import { Form, Card, Image, Container, Button, List, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
 
@@ -110,6 +111,7 @@ class Profiles extends React.Component {
        <Transition.Group animation={animation} duration={duration} visible={visible}>
         
         <Card className="cardContainer" fluid align="center" key={profile._id} >
+          <NavMenu />
           <div className="imgDiv">
               <Image className="cardImage" src={profile.photo} size='small'/>
           </div>
