@@ -295,7 +295,7 @@ class Profiles extends React.Component {
               </Form.Group>  
             </Form>
               
-            <Button name="" onClick={this.handleNext}> {<Icon name="plus" size="small" />} </Button>
+            <Button name="" onClick={this.handleNext}> {<Icon name="triangle right" size="large" />} </Button>
           </div> 
         </ Card>
        </Transition.Group>

@@ -346,7 +346,7 @@ class Questionnaire extends Component {
           return (
             <Router>
               <Redirect 
-                exact to='/home'
+                to='/'
                 // render={(routeProps) => (
                 //   <Home  
                 //     user={this.state.user}
