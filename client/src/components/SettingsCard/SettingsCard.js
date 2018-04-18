@@ -8,6 +8,7 @@ import classNamesSeed from '../../utils/classNames.js'
 import SearchFormSchools from "../SearchFormSchools";
 import SearchFormClasses from "../SearchFormClasses";
 import Footer from "../Footer";
+import NavMenu from "../NavMenu";
 
 
 class SettingsCard extends Component {
@@ -430,6 +431,55 @@ class SettingsCard extends Component {
     this.setState({methodsToSave: this.state.methods})
   }
 
+  renderLocations = () => {
+    return(
+      <div>
+      {this.state.objLocationsToSave ? 
+        <Grid>
+          {this.state.objLocationsToSave.map(method => (
+            <div>
+              <Grid.Column width={2}>
+                <Button> {method} </Button>
+              </Grid.Column>
+            </div>
+          ))}
+        </Grid>
+      :
+        <div>
+          {this.state.objLocations ? 
+            <Grid>
+              {this.state.objLocations.map(method => (
+                <div>
+                  <Grid.Column width={2}>
+                    <Button> {method} </Button>
+                  </Grid.Column>
+                </div>
+              ))}
+            </Grid>
+          :
+            "" 
+          }
+        </div>
+      }
+      </div>
+    )
+  }
+
+  handleUpdateLocations = event => {
+    console.log(this.state.locations);
+    const locationsObj = this.state.locations;
+    const locationsArray = Object.keys(locationsObj)
+      .filter(function(k){return locationsObj[k]})
+      .map(String);
+
+    this.setState({objLocationsToSave: locationsArray, changesMade: true});
+    const edit = {...this.state.edit, editStudyLocations: !this.state.edit.editStudyLocations};
+    this.setState ({
+      edit
+    });
+    this.setState({methodsToSave: this.state.locations})
+  }
+
 
       //AUTOCOMPLETE for University Search
       resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
@@ -483,11 +533,13 @@ class SettingsCard extends Component {
       //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() { 
+    console.log("the settings card actually is being called but just doens't render anything");
     return(
       <Container>
-        <Segment style={{ marginTop: 20}} raised>
+        <Segment raised>
+        <NavMenu />
           <Container textAlign="center">
-            <h3 style={{ marginTop: 20}} className="registerTitle">Settings</h3>
+            <h3 style={{ marginTop: 20}} className="registerTitle">Update Settings</h3>
             {this.state.changesMade ?
               <Header as="h3" style={{color: "red"}}>Press "Update" to Save Changes</Header>
             : 
@@ -609,6 +661,7 @@ class SettingsCard extends Component {
             </Grid>
           </Container>
           <Container>
+          <h4 className="h4Title" style={{textAlign: "center"}}>Add/Remove Your Classes</h4>            
             <Grid>
               <Grid.Column width={2}>
                 <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editClasses" onClick={this.handleEditToggle} data-methods="Edit Classes" content={<Icon name="edit" large />} /> 
@@ -653,23 +706,24 @@ class SettingsCard extends Component {
               </Grid.Column>
             </Grid>
           </Container>
+          <h4 className="h4Title" style={{textAlign: "center"}}>Change Your Preferred Study Methods</h4>            
           <Container>
             <Grid>
-              <Grid.Column width={2} style={{height: "250px"}}>
+              <Grid.Column width={2}>
                 <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editStudyMethods" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Methods" content={<Icon name="edit" large />} /> 
               </Grid.Column>
               <Grid.Column width={12}>
                 {this.state.edit.editStudyMethods ?
                   <Form>
                     <Form.Group widths="equal">
-                      <Button className="preferbtn" toggle={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" >Flashcards </Button>
-                      <Button className="preferbtn" toggle={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
-                      <Button className="preferbtn" toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
+                      <Button className="preferbtn" toggle={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Flashcards" >Flashcards </Button>
+                      <Button className="preferbtn" toggle={this.state.methods.quizzes} onClick={this.handleMethodToggle} active={this.state.methods} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
+                      <Button className="preferbtn" toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} active={this.state.methods}  data-methods="Rereading" > Rereading </Button>
                     </Form.Group>
                     <Form.Group widths="equal">  
-                      <Button className="preferBtn" toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
-                      <Button className="preferBtn" toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
-                      <Button className="preferBtn" toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Revision Notes" > Revision Notes </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Mnemonics" > Mnemonics </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Other" > Other </Button>
                     </Form.Group>
                     <Form.Group>
                       <Button className="updateBtn" onClick={this.handleUpdateMethods} name="methods" /*value={`${this.state.methodsUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`}*/ size="small" content="Update" />
@@ -683,14 +737,37 @@ class SettingsCard extends Component {
               </Grid.Column>
             </Grid>    
           </Container>
-          {/* ////////////////////////////// */}
-            {/* nextStep: The Locations Thingy. Calandar may end up being a real bastard */}
-
-
-
-
-          
-          {/* ////////////////////////////// */}
+          <h4 className="h4Title" style={{textAlign: "center"}}>Change Your Preferred Study Locations</h4>            
+          <Container>
+            <Grid>
+              <Grid.Column width={2} style={{height: "250px"}}>
+                <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editLocations" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Locations" content={<Icon name="edit" large />} /> 
+              </Grid.Column>
+              <Grid.Column width={12}>
+                {this.state.edit.editLocations ?
+                  <Form>
+                    <Form.Group widths="equal">
+                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.library}name="library"  onClick={this.handleLocationToggle}data-locations="Library">Library</Button>
+                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.online} name="online" onClick={this.handleLocationToggle}data-locations="Online">Online</Button>
+                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.commons}name="commons"  onClick={this.handleLocationToggle}data-locations="Commons">Commons</Button>
+                    </Form.Group>
+                    <Form.Group widths="equal">  
+                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.cafe} name="cafe" onClick={this.handleLocationToggle}data-locations="Cafe">Cafe</Button>
+                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.home} name="home" onClick={this.handleLocationToggle}data-locations="Home">Home</Button>
+                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.other} name="other" onClick={this.handleLocationToggle}data-locations="Other">Other</Button>
+                    </Form.Group>
+                    <Form.Group>
+                      <Button className="updateBtn" onClick={this.handleUpdateLocations} name="locations" /*value={`${this.state.methodsUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`}*/ size="small" content="Update" />
+                    </Form.Group>
+                  </Form>
+                : 
+                  <div>
+                    {this.renderLocations()}
+                  </div>
+                }
+              </Grid.Column>
+            </Grid>    
+          </Container>
         </Segment>
       <Footer />  
       </Container>

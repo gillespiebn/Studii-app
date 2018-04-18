@@ -3,8 +3,11 @@ import _ from 'lodash';
 import "./PracticeProfileLayout.css";
 import Footer from "../Footer";
 import API from "../../utils/API";
+import NavMenu from "../NavMenu";
 
 import { Form, Card, Image, Container, Button, List, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
+
+const transition = ['fade']
 
 class Profiles extends React.Component {  
 
@@ -13,6 +16,9 @@ class Profiles extends React.Component {
     matches: this.props.matches,
     facebook_id: this.props.facebook_id,
     index: 0,
+    animation: transition[0],
+    duration: 1000,
+    visible: true
   }
 
   componentDidMount() {
@@ -46,6 +52,15 @@ class Profiles extends React.Component {
       this.setState({noMoreMatches: true});
     }
     this.setState({index: this.state.index + 1})
+    this.setState({visible: !this.state.visible})
+    if (!this.state.visble) {
+       // this.setState({visible: true})
+       window.setTimeout(() => {
+          this.setState({visble: true})
+          console.log("There is a fairy");
+          }, 1000)
+     }
+  
   }
 
   
@@ -84,13 +99,20 @@ class Profiles extends React.Component {
     //   }
     // }
 
+    const { animation, duration, visible } = this.state
+
     return(
+   
       <div>
         {this.state.noMoreMatches ?
           <p>no more matches dummy</p>
-        :
-        <Card className="cardContainer" fluid align="center" key={profile._id} >
-          <div className="imgDiv"></div>
+          :
+           
+       <Transition.Group animation={animation} duration={duration} visible={visible}>
+        
+        <Card className="cardContainer" fluid align="center" key={profile._id} >  
+        <NavMenu />
+        <div className="imgDiv"></div>
           <div className="profileDiv">
           <Image className="cardImage" src={profile.photo} size='small' />
               <h2 className="profileName">{profile.name}</h2>
@@ -107,18 +129,18 @@ class Profiles extends React.Component {
             <div>
               <h3>Classes</h3>
               {profile.classes ?
-                profile.classes.map(clas => (
-                  <h4>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</h4>
+                profile.classes.map((clas, i) => (
+                  <h4 key={i}>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</h4>
                 ))
               :
-                <p>if this show...something has gone terribly wrong and the server is probably on fire</p>
+                <p>if this shown...something has gone terribly wrong and the server is probably on fire</p>
               }
             <Divider />
             </div>
             <h3>Study Methods</h3>
             <Grid id="methods">
-              {profile.methods.map(method => (
-                <div>
+              {profile.methods.map((method, i) => (
+                <div key={i}>
                   <Grid.Column width={2}>
                     <Button> {method} </Button>
                   </Grid.Column>
@@ -127,8 +149,8 @@ class Profiles extends React.Component {
             </Grid>
             <h3>Preferred Locations</h3>
             <Grid id="locations">
-              {profile.locations.map(location => (
-                <div>
+              {profile.locations.map((location, i) => (
+                <div key={i}>
                   <Grid.Column width={2}>
                     <Button> {location} </Button>
                   </Grid.Column>
@@ -276,6 +298,7 @@ class Profiles extends React.Component {
             <Button name="" onClick={this.handleNext}> {<Icon name="plus" size="small" />} </Button>
           </div> 
         </ Card>
+       </Transition.Group>
         }
       </div>
     )
@@ -311,38 +334,6 @@ class Profiles extends React.Component {
 
  export default Profiles;
 
-//  CAN THIS BE DELETED BELOW????????? /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                //   <Transition.Group
-                //       as={List}
-                //       duration={200}
-                //       divided
-                //       size='huge'
-                //       verticalAlign='middle'
-                //     />
-                //     {profiles.map(item => (
-                //       <List.Item key={item} />
-                //         <Card fluid style={{marginTop: 20}} align="center" key={profile._id}>
-                //         <Segment align="center"> 
-                //         <Image src={profile.photo} size='small' />
-                //         <h2>Name: {profile.name}</h2>
-                //         <h2>Class: {profile.classStanding}</h2>
-                //         <h3>Major: {profile.major}</h3>
-                //           {profile.minor ? 
-                //           <h3>Minor: {profile.minor}</h3>
-                //               : "" 
-                //         }
-                //        <Segment> 
-                //       ))}
-                //       < /Card >
-        //   ))}
-
-          /* <Card
-            image='/assets/images/avatar/large/elliot.jpg'
-            header='Elliot Baker'
-            meta='Friend'
-            description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-          /> */
 
 
 

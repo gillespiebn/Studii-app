@@ -11,9 +11,9 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
  */
 .footer {
     background: #22223B;
-    /* text-align: center; */
     height: 5em;
-    position: relative
+    position: absolute;
+    width:100%;
 }
 
 .footer-text {

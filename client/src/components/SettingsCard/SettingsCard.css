@@ -6,6 +6,10 @@
 body {
   color: white;
 }
+.h4Title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5em;
+}
 
 .ui.toggle.button.editBtn {
   background: rgb(173, 173, 173);
@@ -57,5 +61,10 @@ body {
   height: 40px;
   margin: auto;
   display: block;
+}
 
+span {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5em;
+  color: #22223B;
 }

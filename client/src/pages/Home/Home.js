@@ -3,6 +3,7 @@ import React from 'react'
 import { Form, Grid, Image, Transition } from 'semantic-ui-react'
 import PracticeProfileLayout from "../../components/PracticeProfileLayout";
 import API from "../../utils/API";
+import Loading from "../../components/Loading"
 
 
 
@@ -56,7 +57,7 @@ class Home extends React.Component {
       {this.state.matches ? 
           <PracticeProfileLayout matches={this.state.matches} user={this.state.user} facebook_id={this.props.facebook_id } />
         : 
-          <h1>This is the home page</h1> 
+          <Loading />
       }
     </div>
     )

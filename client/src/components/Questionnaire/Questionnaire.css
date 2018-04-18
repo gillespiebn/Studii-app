@@ -42,6 +42,7 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
   border-style: none;
   width: 150px;
   height: 60px;
+  margin-top: 5%;
 }
 
 .ui.button:active, .ui.button:focus {

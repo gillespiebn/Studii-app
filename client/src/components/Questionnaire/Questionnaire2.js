@@ -14,6 +14,7 @@ import SearchFormSchools from "../SearchFormSchools";
 import SearchFormClasses from "../SearchFormClasses";
 import Home from "../../pages/Home";
 import Footer from "../Footer";
+import NavMenu from "../NavMenu";
 // import SearchFormSchoolsRenderer from "../SearchFormSchoolsRenderer";
 
 // const source = allSchools;
@@ -360,6 +361,7 @@ class Questionnaire extends Component {
         return(
           <Container>
             <Segment style={{ marginTop: 20}} raised>
+            <NavMenu />
               <Container textAlign="center">
                 <h3 style={{ marginTop: 20 }} className="registerTitle">Find a Studii Buddy</h3>
               </Container>
