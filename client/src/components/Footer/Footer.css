@@ -22,7 +22,7 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
     text-align: center;
     top: 50%;
     left: 50%;
-    margin-right: -50%;
+    /* margin-right: -50%; */
     transform: translate(-50%, -50%);
     margin: 0;
     position: absolute;

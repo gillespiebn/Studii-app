@@ -10,7 +10,7 @@ MAIN COLORS
 Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = #282840
  */
 
-.ui.raised.segment {
+.ui.segment {
   background: #E4E3E5;
   color: #22223B;
   width: 75%;
