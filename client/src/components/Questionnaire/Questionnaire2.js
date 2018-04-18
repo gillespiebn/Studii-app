@@ -41,7 +41,7 @@ class Questionnaire extends Component {
           flashcards: false,
           quizzes: false,
           rereading: false,
-          revisionNotes: false,
+          notes: false,
           mnemonics: false,
           other: false
         },
@@ -485,7 +485,7 @@ class Questionnaire extends Component {
                     <Button toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
                   </Form.Group>
                   <Form.Group className="preferbtn" widths="equal">  
-                    <Button toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
+                    <Button toggle={this.state.methods.notes} name="notes" onClick={this.handleMethodToggle}data-methods="notes" > notes </Button>
                     <Button toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
                     <Button toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
                   </Form.Group>

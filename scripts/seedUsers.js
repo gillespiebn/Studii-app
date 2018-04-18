@@ -25,7 +25,7 @@ const userSeed = [
       "english:100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes", "other"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes", "other"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -49,7 +49,7 @@ const userSeed = [
       "math:100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes", "other"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes", "other"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -74,7 +74,7 @@ const userSeed = [
       "english:100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -100,7 +100,7 @@ const userSeed = [
       "english:100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -126,7 +126,7 @@ const userSeed = [
       "english:100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -152,7 +152,7 @@ const userSeed = [
       "english:100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -178,7 +178,7 @@ const userSeed = [
       "english:100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes"
     ],
     "times": [
       "SaturdayNight"
@@ -201,7 +201,7 @@ const userSeed = [
       "biology:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -250,7 +250,7 @@ const userSeed = [
       "english:100"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes", "other"
+      "flashcards", "quizzes", "rereading", "mnemonics", "notes", "other"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"

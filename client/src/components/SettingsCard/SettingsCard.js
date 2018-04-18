@@ -32,7 +32,7 @@ class SettingsCard extends Component {
       flashcards: false,
       quizzes: false,
       rereading: false,
-      revisionNotes: false,
+      notes: false,
       mnemonics: false,
       other: false
     },
@@ -720,7 +720,7 @@ class SettingsCard extends Component {
                       <Button className="preferbtn" toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} active={this.state.methods}  data-methods="Rereading" > Rereading </Button>
                     </Form.Group>
                     <Form.Group widths="equal">  
-                      <Button className="preferBtn" toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Revision Notes" > Revision Notes </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.notes} name="notes" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="notes" > notes </Button>
                       <Button className="preferBtn" toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Mnemonics" > Mnemonics </Button>
                       <Button className="preferBtn" toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Other" > Other </Button>
                     </Form.Group>
