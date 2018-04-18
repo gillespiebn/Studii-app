@@ -6,7 +6,7 @@ import "./Navmenu.css";
 const NavMenu = () => ( 
     <div>
         <Menu attached='top'>
-            <Dropdown item icon='bars' size="large" color="grey">
+            <Dropdown item icon='bars'>
                 <Dropdown.Menu>
                     <Dropdown.Item name="home">
                             <a className="Menuitem">
