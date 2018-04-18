@@ -5,9 +5,11 @@
 .container {
   background-color: transparent;
 }
-body {
-  color: white;
+
+.ui.segment{
+  background: #E4E3E5;
 }
+
 .h4Title {
   font-family: 'Nunito', sans-serif;
   font-size: 1.5em;
@@ -15,7 +17,7 @@ body {
 }
 
 .ui.toggle.button.editBtn {
-  background: rgb(173, 173, 173);
+  background: #F4AE9F;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -28,7 +30,7 @@ body {
 }
 
 .ui.small.button.updateBtn {
-  background: rgb(173, 173, 173);
+  background: #F4AE9F;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -41,7 +43,7 @@ body {
 }
 
 .ui.small.button.updateClassBtn {
-  background: rgb(173, 173, 173);
+  background: #F4AE9F;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -54,7 +56,7 @@ body {
 }
 
 .ui.tiny.button {
-  background: rgb(173, 173, 173);
+  background: #F4AE9F;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;

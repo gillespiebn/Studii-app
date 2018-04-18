@@ -536,7 +536,7 @@ class SettingsCard extends Component {
     console.log("the settings card actually is being called but just doens't render anything");
     return(
       <Container>
-        <Segment raised>
+        <Segment>
         <NavMenu />
           <Container textAlign="center">
             <h3 style={{ marginTop: 20}} className="registerTitle">Update Settings</h3>
