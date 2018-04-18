@@ -14,7 +14,7 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
   background: #E4E3E5;
   color: #22223B;
   width: 75%;
-  margin: auto;
+  margin: auto !important;
 }
 .registerTitle {
   font-family: 'Nunito', sans-serif;
@@ -45,13 +45,13 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
   margin-top: 5%;
 }
 
-.ui.button:active, .ui.button:focus {
-  background: #E4E3E5;
+.ui.button:active, .ui.button:focus, .ui.button:hover {
+  background: #E4E3E5 !important;
 }
 
 .ui.button.toggle.active {
-  background: #FFFFFF;
-  color: #22223B; 
+  background: #FFFFFF !important;
+  color: #22223B !important; 
 }
 
 .ui.button.submit {
