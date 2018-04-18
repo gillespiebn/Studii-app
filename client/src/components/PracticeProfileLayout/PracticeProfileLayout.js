@@ -7,7 +7,7 @@ import NavMenu from "../NavMenu";
 
 import { Form, Card, Image, Container, Button, List, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
 
-const transition = ['pulse']
+const transition = ['fade']
 
 class Profiles extends React.Component {  
 
@@ -17,7 +17,7 @@ class Profiles extends React.Component {
     facebook_id: this.props.facebook_id,
     index: 0,
     animation: transition[0],
-    duration: 500,
+    duration: 1000,
     visible: true
   }
 
@@ -53,6 +53,13 @@ class Profiles extends React.Component {
     }
     this.setState({index: this.state.index + 1})
     this.setState({visible: !this.state.visible})
+    if (!this.state.visble) {
+       // this.setState({visible: true})
+       window.setTimeout(() => {
+          this.setState({visble: true})
+          console.log("There is a fairy");
+          }, 1000)
+     }
   
   }
 
@@ -100,13 +107,13 @@ class Profiles extends React.Component {
         {this.state.noMoreMatches ?
           <p>no more matches dummy</p>
           :
-
-       <Transition animation={animation} duration={duration} visible={visible}>
+           
+       <Transition.Group animation={animation} duration={duration} visible={visible}>
         
         <Card className="cardContainer" fluid align="center" key={profile._id} >
           <NavMenu />
           <div className="imgDiv">
-              <Image className="cardImage" src={profile.photo} size='small' />
+              <Image className="cardImage" src={profile.photo} size='small'/>
           </div>
           <div className="profileDiv">
               <h2 className="profileName">{profile.name}</h2>
@@ -282,7 +289,7 @@ class Profiles extends React.Component {
             <Button name="" onClick={this.handleNext}> {<Icon name="plus" size="small" />} </Button>
           </div> 
         </ Card>
-       </Transition>
+       </Transition.Group>
         }
       </div>
     )

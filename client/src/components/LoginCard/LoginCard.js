@@ -9,7 +9,7 @@ const LoginCard = () => {
   return(
     <Container className="logincard-container">
         <Segment className="login-image">
-            <Image src={src1}  size='medium' center />
+            <Image src={src1}  size='medium' centered />
             <p className="loginCardTxt">
                 Need help after a confusing lecture? 
             <br />
