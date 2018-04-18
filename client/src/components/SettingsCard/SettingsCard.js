@@ -204,9 +204,9 @@ class SettingsCard extends Component {
   handleLocationToggle = event => {
     event.preventDefault();
     const { name } = event.target;
-    const location = {...this.state.location, [name]: !this.state.location[name]};
+    const locations = {...this.state.locations, [name]: !this.state.locations[name]};
     this.setState({
-      location
+      locations
     });
   }
   
@@ -351,8 +351,8 @@ class SettingsCard extends Component {
   renderClasses = () => {
     return(
       <div>
-        {this.state.classes.map(clas => (
-          <Grid>
+        {this.state.classes.map((clas, i ) => (
+          <Grid key={i}>
             <Grid.Column width={12}>
               <span>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</span>
             </Grid.Column>
@@ -473,11 +473,11 @@ class SettingsCard extends Component {
       .map(String);
 
     this.setState({objLocationsToSave: locationsArray, changesMade: true});
-    const edit = {...this.state.edit, editStudyLocations: !this.state.edit.editStudyLocations};
+    const edit = {...this.state.edit, editLocations: !this.state.edit.editLocations};
     this.setState ({
       edit
     });
-    this.setState({methodsToSave: this.state.locations})
+    this.setState({locationsToSave: this.state.locations})
   }
 
 
@@ -533,7 +533,6 @@ class SettingsCard extends Component {
       //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() { 
-    console.log("the settings card actually is being called but just doens't render anything");
     return(
       <Container>
         <Segment raised>
@@ -747,9 +746,9 @@ class SettingsCard extends Component {
                 {this.state.edit.editLocations ?
                   <Form>
                     <Form.Group widths="equal">
-                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.library}name="library"  onClick={this.handleLocationToggle}data-locations="Library">Library</Button>
+                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.library} name="library"  onClick={this.handleLocationToggle}data-locations="Library">Library</Button>
                       <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.online} name="online" onClick={this.handleLocationToggle}data-locations="Online">Online</Button>
-                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.commons}name="commons"  onClick={this.handleLocationToggle}data-locations="Commons">Commons</Button>
+                      <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.commons} name="commons"  onClick={this.handleLocationToggle}data-locations="Commons">Commons</Button>
                     </Form.Group>
                     <Form.Group widths="equal">  
                       <Button active={this.state.locations} className="preferbtn" toggle={this.state.locations.cafe} name="cafe" onClick={this.handleLocationToggle}data-locations="Cafe">Cafe</Button>
