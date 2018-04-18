@@ -346,7 +346,7 @@ class Questionnaire extends Component {
           return (
             <Router>
               <Redirect 
-                exact to='/home'
+                to='/'
                 // render={(routeProps) => (
                 //   <Home  
                 //     user={this.state.user}
@@ -360,7 +360,11 @@ class Questionnaire extends Component {
         }
         return(
           <Container>
+<<<<<<< HEAD
             <Segment className="registerSegment" style={{ marginTop: 20}} raised>
+=======
+            <Segment style={{ marginTop: 20}}>
+>>>>>>> 7bd4ec21ea9834682a063236a0b3bc42778f9dfa
             <NavMenu />
               <Container textAlign="center">
                 <h3 style={{ marginTop: 20 }} className="registerTitle">Find a Studii Buddy</h3>

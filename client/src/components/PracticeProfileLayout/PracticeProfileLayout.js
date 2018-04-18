@@ -127,7 +127,7 @@ class Profiles extends React.Component {
           </div> 
           <div className="prfDiv">
             <div>
-              <h3>Classes</h3>
+              <h2>Classes</h2>
               {profile.classes ?
                 profile.classes.map((clas, i) => (
                   <h4 key={i}>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</h4>
@@ -137,7 +137,7 @@ class Profiles extends React.Component {
               }
             <Divider />
             </div>
-            <h3>Study Methods</h3>
+            <h2>Study Methods</h2>
             <Grid id="methods">
               {profile.methods.map((method, i) => (
                 <div key={i}>
@@ -147,7 +147,7 @@ class Profiles extends React.Component {
                 </div>
               ))}
             </Grid>
-            <h3>Preferred Locations</h3>
+            <h2>Preferred Locations</h2>
             <Grid id="locations">
               {profile.locations.map((location, i) => (
                 <div key={i}>
@@ -157,9 +157,9 @@ class Profiles extends React.Component {
                 </div>
               ))}
             </Grid>
-            <h3>Availability</h3>
+            <h2>Availability</h2>
 
-            <Form> 
+            <Form className="calendar"> 
             <Form.Group className="timebtnMo" widths="equal">
                   <div className="dayTitles blank">  </div>
                   <div className="dayTitles su">Su</div>
@@ -295,7 +295,7 @@ class Profiles extends React.Component {
               </Form.Group>  
             </Form>
               
-            <Button name="" onClick={this.handleNext}> {<Icon name="plus" size="small" />} </Button>
+            <Button name="" onClick={this.handleNext}> {<Icon name="triangle right" size="large" />} </Button>
           </div> 
         </ Card>
        </Transition.Group>

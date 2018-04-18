@@ -2,11 +2,13 @@
     background: #E4E3E5;
     margin: auto;
     border: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     /* margin-bottom: -15px; */
 }
 
 .i.icon.bars:before {
-    color: #E4E3E5;
+    color: #22223b;
 }
 
 .ui.menu.dopdown.item.menu {

@@ -1,11 +1,10 @@
-
 .ui.small.image.cardImage {
     height: 200px;
     width: 200px;
     border: solid 3px #22223B;
     border-radius: 50px;
     position: absolute;
-    top:-200px;
+    top:-225px;
     margin-left: 39%;
     /* border-radius: 25px !important;
     border: 3px solid #22223B;
@@ -28,14 +27,12 @@
     height:500px;
     margin-bottom: 25px;
     background: #22223B;
-    border-radius: 25px;
+
 }
 .imgDiv {
     background-color: #F4AE9F;
     min-height: 175px;
     position: relative;
-    border-top-left-radius: 50px!important;
-    border-top-right-radius: 50px!important;
 }
 .profileName {
     color:#F4AE9F;
@@ -52,6 +49,7 @@
     color: #E4E3E5; 
     text-align: center;
     height:150px;
+    border: #22223B;
 }
 .prfDiv {
     background-color: #E4E3E5;
@@ -62,16 +60,23 @@
     font-size: 36px;
     color:  #22223B; 
     text-align: center;
+    border: #22223B;
 }
 #methods{
-  /* padding-left: auto;
-  padding-right: auto; */
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: 20%;
+    margin-right: 10%;
+}
+#locations{
+    margin-left: 20%;
+    margin-right: 10%;
+
 }
 h1, h2, h3 {
     font-family: 'Nunito', sans-serif;
 
+}
+h3 {
+    font-weight: bold;
 }
 .ui.button {
     font-family: 'Nunito', sans-serif;
@@ -82,6 +87,10 @@ h1, h2, h3 {
     padding: 0px;
     margin-top: 5px;
     margin-bottom: 5px;
+    border-radius: 10px;
+}
+.calendar{
+    margin-left: 5%;
 }
 .equal.width.fields.timebtnMo {
     margin-top: 1%;

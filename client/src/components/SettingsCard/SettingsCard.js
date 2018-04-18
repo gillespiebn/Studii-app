@@ -535,7 +535,7 @@ class SettingsCard extends Component {
   render() { 
     return(
       <Container>
-        <Segment raised>
+        <Segment>
         <NavMenu />
           <Container textAlign="center">
             <h3 style={{ marginTop: 20}} className="registerTitle">Update Settings</h3>
