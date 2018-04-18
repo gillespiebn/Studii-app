@@ -7,7 +7,7 @@
     "server": "node server.js",
     "client": "node scripts/start-client.js",
     "dev": "concurrently \"nodemon server\" \"yarn run client\"",
-    "start": "node seedusers && node server",
+    "start": "node server",
     "build": "node scripts/build.js",
     "seedschools": "node scripts/seedSchools.js",
     "seedusers": "node scripts/seedUsers.js",
