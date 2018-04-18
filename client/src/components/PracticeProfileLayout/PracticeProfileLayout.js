@@ -90,10 +90,9 @@ class Profiles extends React.Component {
           <p>no more matches dummy</p>
         :
         <Card className="cardContainer" fluid align="center" key={profile._id} >
-          <div className="imgDiv">
-              <Image className="cardImage" src={profile.photo} size='small' />
-          </div>
+          <div className="imgDiv"></div>
           <div className="profileDiv">
+          <Image className="cardImage" src={profile.photo} size='small' />
               <h2 className="profileName">{profile.name}</h2>
               <h3 className="profileElmt">{profile.classStanding}</h3>
               <h3 className="profileElmt">Major -  {profile.major}</h3>

@@ -1,30 +1,41 @@
+
 .ui.small.image.cardImage {
-    border-radius: 25px !important;
+    height: 200px;
+    width: 200px;
+    border: solid 3px #22223B;
+    border-radius: 50px;
+    position: absolute;
+    top:-200px;
+    margin-left: 39%;
+    /* border-radius: 25px !important;
     border: 3px solid #22223B;
     height: 180px;
-    width:180px;
+    width:180px; */
     /* the following lines will keep the image from getting all weird. needs a little work */
-    display: block;
+    /* display: block;
     width: auto;
     height: auto;
-    min-height: 180px;
+    min-height: 180px; */
     /* min-width: 180px; */
-    max-height: 180px;
+    /* max-height: 180px; */
     /* max-width: 500px; */
-    position: relative;
+    /* position: relative; */
 }
 
 .ui.fluid.card.cardContainer {
-    width: 75%;
+    width: 56%;
     margin: auto;
     height:500px;
     margin-bottom: 25px;
-    background: transparent;
+    background: #22223B;
+    border-radius: 25px;
 }
 .imgDiv {
     background-color: #F4AE9F;
-    height: 125px;
+    min-height: 175px;
     position: relative;
+    border-top-left-radius: 50px!important;
+    border-top-right-radius: 50px!important;
 }
 .profileName {
     color:#F4AE9F;
@@ -58,6 +69,20 @@
   margin-left: auto;
   margin-right: auto;
 }
+h1, h2, h3 {
+    font-family: 'Nunito', sans-serif;
+
+}
+.ui.button {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px; 
+    font-weight: bold; 
+    letter-spacing: 1px;
+    align-content: center;
+    padding: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 .equal.width.fields.timebtnMo {
     margin-top: 1%;
     margin-left: 5%;
@@ -84,7 +109,7 @@
 }
 
 .Afternoon {
-  margin-top: -62px;
+  margin-top: -63px;
   height: 142px;
   width: 75px;
 }
