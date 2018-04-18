@@ -484,6 +484,7 @@ class SettingsCard extends Component {
       //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() { 
+    console.log("the settings card actually is being called but just doens't render anything");
     return(
       <Container>
         <Segment raised>
@@ -664,14 +665,14 @@ class SettingsCard extends Component {
                 {this.state.edit.editStudyMethods ?
                   <Form>
                     <Form.Group widths="equal">
-                      <Button className="preferbtn" toggle={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" >Flashcards </Button>
-                      <Button className="preferbtn" toggle={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
-                      <Button className="preferbtn" toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
+                      <Button className="preferbtn" toggle={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Flashcards" >Flashcards </Button>
+                      <Button className="preferbtn" toggle={this.state.methods.quizzes} onClick={this.handleMethodToggle} active={this.state.methods} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
+                      <Button className="preferbtn" toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} active={this.state.methods}  data-methods="Rereading" > Rereading </Button>
                     </Form.Group>
                     <Form.Group widths="equal">  
-                      <Button className="preferBtn" toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
-                      <Button className="preferBtn" toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
-                      <Button className="preferBtn" toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Revision Notes" > Revision Notes </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Mnemonics" > Mnemonics </Button>
+                      <Button className="preferBtn" toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle} active={this.state.methods} data-methods="Other" > Other </Button>
                     </Form.Group>
                     <Form.Group>
                       <Button className="updateBtn" onClick={this.handleUpdateMethods} name="methods" /*value={`${this.state.methodsUpdate}*${this.state.value}*classNumberUpdate*value*editClasses`}*/ size="small" content="Update" />

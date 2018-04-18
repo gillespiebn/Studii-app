@@ -42,21 +42,21 @@ const HomeComponent = (props) => {
               />
             )} 
           />
-          <Route exact path="/home" 
+          {/* <Route exact path="/home" 
             render={(routeProps) => (
               <Home  
                 user={props.user}
                 facebook_id={props.facebook_id}
               />
             )} 
-          />
+          /> */}
           <Route 
-            exact path="/settings" 
-            render={(routeProps) => (
+            path="/settings" 
+            render={(routeProps) => { return(
               <Settings 
                 facebook_id={props.facebook_id} 
               />   
-            )}
+            )}}
           />
           <Route component={Page404} />
         </Switch>

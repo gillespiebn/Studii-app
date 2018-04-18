@@ -157,7 +157,7 @@ class App extends React.Component {
               )
             }} 
           />
-          <Route exact path="/" 
+          <Route path="/" 
             render={(routeProps) => (
               <HomeComponent  
                 user={this.state.user}

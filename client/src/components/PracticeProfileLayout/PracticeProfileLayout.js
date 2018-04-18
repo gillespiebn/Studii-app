@@ -123,18 +123,18 @@ class Profiles extends React.Component {
             <div>
               <h3>Classes</h3>
               {profile.classes ?
-                profile.classes.map(clas => (
-                  <h4>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</h4>
+                profile.classes.map((clas, i) => (
+                  <h4 key={i}>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</h4>
                 ))
               :
-                <p>if this show...something has gone terribly wrong and the server is probably on fire</p>
+                <p>if this shown...something has gone terribly wrong and the server is probably on fire</p>
               }
             <Divider />
             </div>
             <h3>Study Methods</h3>
             <Grid id="methods">
-              {profile.methods.map(method => (
-                <div>
+              {profile.methods.map((method, i) => (
+                <div key={i}>
                   <Grid.Column width={2}>
                     <Button> {method} </Button>
                   </Grid.Column>
@@ -143,8 +143,8 @@ class Profiles extends React.Component {
             </Grid>
             <h3>Preferred Locations</h3>
             <Grid id="locations">
-              {profile.locations.map(location => (
-                <div>
+              {profile.locations.map((location, i) => (
+                <div key={i}>
                   <Grid.Column width={2}>
                     <Button> {location} </Button>
                   </Grid.Column>

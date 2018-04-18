@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Redirect }from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Icon, Menu, Segment } from 'semantic-ui-react';
 import "./Navmenu.css";
@@ -9,40 +9,40 @@ const NavMenu = () => (
             <Dropdown item icon='bars' size="large" color="grey">
                 <Dropdown.Menu>
                     <Dropdown.Item name="home">
-                            <a className="Menuitem">
+                            {/* <a className="Menuitem"> */}
                                 <Link 
                                     to="/"
                                     className={
-                                        window.location.pathname === "/"
+                                        window.location.pathname === "/" ? "active" : ""
                                     }
                                 >    
                                     Find a Studii Buddy
                                 </Link>    
-                            </a>
+                            {/* </a> */}
                     </Dropdown.Item>
                     <Dropdown.Item>
-                        <a className="Menuitem">
+                        {/* <a className="Menuitem"> */}
                             <Link 
                                 to="/messenger"
                                 className={
-                                    window.location.pathname === "/messenger"
+                                    window.location.pathname === "/messenger" ? "active" : ""
                                 }
                             >        
                                 Messenger
                             </Link>    
-                        </a>
+                        {/* </a> */}
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            <a className="Menuitem">
+                            {/* <a className="Menuitem"> */}
                                 <Link 
                                     to="/settings"
                                     className={
-                                        window.location.pathname === "/settings"
+                                        window.location.pathname === "/settings" ? "active" : ""
                                     }    
                                 >    
                                     Settings
                                 </Link>
-                            </a>
+                            {/* </a> */}
                         </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown> 
