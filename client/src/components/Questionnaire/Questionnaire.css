@@ -30,7 +30,7 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
 
 .ui.search>.results {
   overflow: scroll;
-  height:100px;
+  height:200px;
 }
 
 .ui.button {
@@ -47,6 +47,11 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
 
 .ui.button:active, .ui.button:focus {
   background: #E4E3E5;
+}
+
+.ui.button.toggle.active {
+  background: #FFFFFF;
+  color: #22223B; 
 }
 
 .ui.button.submit {

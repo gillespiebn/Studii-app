@@ -20,7 +20,7 @@ const LoginCard = () => {
                 while meeting new people on campus.
             </p>
         </Segment>
-        <Segment>
+        <Segment className="segmentJoinNow">
             <h2 className="joinNow">
                 Join Now
             </h2>
