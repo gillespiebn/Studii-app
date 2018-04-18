@@ -360,7 +360,7 @@ class Questionnaire extends Component {
         }
         return(
           <Container>
-            <Segment style={{ marginTop: 20}} raised>
+            <Segment style={{ marginTop: 20}}>
             <NavMenu />
               <Container textAlign="center">
                 <h3 style={{ marginTop: 20 }} className="registerTitle">Find a Studii Buddy</h3>

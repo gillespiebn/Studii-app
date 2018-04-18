@@ -2,17 +2,22 @@
   width: auto;
   height: auto;
 } */
-
-body {
-  color: white;
+.container {
+  background-color: transparent;
 }
+
+.ui.segment{
+  background: #E4E3E5;
+}
+
 .h4Title {
   font-family: 'Nunito', sans-serif;
   font-size: 1.5em;
+  font-weight: bolder;
 }
 
 .ui.toggle.button.editBtn {
-  background: rgb(173, 173, 173);
+  background: #F4AE9F;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -25,7 +30,7 @@ body {
 }
 
 .ui.small.button.updateBtn {
-  background: rgb(173, 173, 173);
+  background: #F4AE9F;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -38,7 +43,7 @@ body {
 }
 
 .ui.small.button.updateClassBtn {
-  background: rgb(173, 173, 173);
+  background: #F4AE9F;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -51,7 +56,7 @@ body {
 }
 
 .ui.tiny.button {
-  background: rgb(173, 173, 173);
+  background: #F4AE9F;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -67,4 +72,8 @@ span {
   font-family: 'Nunito', sans-serif;
   font-size: 1.5em;
   color: #22223B;
+  font-weight: bold;
+}
+h3 {
+  font-weight: bolder;
 }
