@@ -1,0 +1,19 @@
+.ui.top.attached.menu {
+    background: #E4E3E5;
+    margin: auto;
+    border: none;
+    /* margin-bottom: -15px; */
+}
+
+.i.icon.bars:before {
+    color: #E4E3E5;
+}
+
+.ui.menu.dopdown.item.menu {
+    background: #22223B;
+}
+
+a {
+    color: #F4AE9F;
+    font-family:'Nunito', sans-serif;
+}
