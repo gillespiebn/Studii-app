@@ -49,32 +49,32 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
 }
 
 .ui.button.submit {
-  width:100%
+  width:100%;
 }
 .equal.width.fields.preferbtn {
   margin-top: 1%;
-  margin-left: 22%
+  margin-left: 22%;
 
 }
 
 .equal.width.fields.timebtnMo {
   margin-top: 1%;
-  margin-left: 5%
+  margin-left: 5%;
 
 }
 .equal.width.fields.timebtnAf {
   margin-top: 1%;
-  margin-left: 5%
+  margin-left: 5%;
 
 }
 .equal.width.fields.timebtnEv {
   margin-top: 1%;
-  margin-left: 5%
+  margin-left: 5%;
 
 }
 .equal.width.fields.timebtnNi {
   margin-top: 1%;
-  margin-left: 5%
+  margin-left: 5%;
 
 }
 
@@ -147,10 +147,6 @@ img {
   font-size:20px;
   text-align: center;
   font-weight: bolder;
-}
-
-.blank {
-
 }
 .su {
   margin-left: -13px;

@@ -1,5 +1,5 @@
 .ui.small.image.cardImage {
-    border-radius: 25% !important;
+    border-radius: 25px !important;
     border: 3px solid #22223B;
     height: 180px;
     width:180px;
@@ -28,6 +28,8 @@
 }
 .profileName {
     color:#F4AE9F;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
 }
 .profileDiv {
     position: relative;
@@ -55,6 +57,48 @@
   padding-right: auto; */
   margin-left: auto;
   margin-right: auto;
+}
+.equal.width.fields.timebtnMo {
+    margin-top: 1%;
+    margin-left: 5%;
+  
+  }
+  .equal.width.fields.timebtnAf {
+    margin-top: 1%;
+    margin-left: 5%;
+  
+  }
+  .equal.width.fields.timebtnEv {
+    margin-top: 1%;
+    margin-left: 5%;
+  
+  }
+  .equal.width.fields.timebtnNi {
+    margin-top: 1%;
+    margin-left: 5%;
+  
+  }
+.Morning {
+ height: 124px;
+ width: 75px;
+}
+
+.Afternoon {
+  margin-top: -62px;
+  height: 142px;
+  width: 75px;
+}
+
+.Evening{
+  margin-top: -65px;
+  height: 142px;
+  width: 75px;
+}
+
+.Night {
+  margin-top: -65px;
+  height: 124px;
+  width: 75px;
 }
 .dayTitles {
     width: 75px;
