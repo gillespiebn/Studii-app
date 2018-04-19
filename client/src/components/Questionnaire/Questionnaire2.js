@@ -168,7 +168,6 @@ class Questionnaire extends Component {
           schoolEmpty: false, schoolProblem: false, schoolWrong: false,
           classStandingEmpty: false, classStandingProblem: false, classStandingWrong: false,
         });
-        console.log("should be lower case: " + this.state.classStanding.toLowerCase());
         let bad = false;
         if (!this.state.name) {
           this.setState({nameEmpty: "Please Enter Your Name", nameProblem: "error"});
@@ -211,7 +210,7 @@ class Questionnaire extends Component {
           this.setState({classStandingWrong: "Please use either Freshman, Sophomore, Junior, Senior, or Postgraduate" , classStandingProblem: "error" });
           bad = true;
         }
-
+        
         if (bad) {
           return;
         }

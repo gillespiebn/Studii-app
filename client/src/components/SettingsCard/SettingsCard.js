@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Redirect } from "react";
 import API from '../../utils/API.js';
 import { Segment, Container, Header, Icon, Input, Label, Form, Button, Grid } from 'semantic-ui-react';
 import "./SettingsCard.css"
@@ -9,6 +9,7 @@ import SearchFormSchools from "../SearchFormSchools";
 import SearchFormClasses from "../SearchFormClasses";
 import Footer from "../Footer";
 import NavMenu from "../NavMenu";
+
 
 
 class SettingsCard extends Component {
@@ -111,21 +112,41 @@ class SettingsCard extends Component {
         schoolCode = this.state.schoolsForAutocomplete[i].code
       }
     }
+
+
+    const methodsObj = this.state.methods;
+    const methodsArray = Object.keys(methodsObj)
+      .filter(function(k){return methodsObj[k]})
+      .map(String);
+
+
+    const locationsObj = this.state.locations;
+    const locationsArray = Object.keys(locationsObj)
+      .filter(function(k){return locationsObj[k]})
+      .map(String);
+
+
+    const timesObj = this.state.times;
+    const timesArray = Object.keys(timesObj)
+      .filter(function(k){return timesObj[k]})
+      .map(String);
+
     const objToSave = {
       isLoading: '',
       results: [],
       value: '',
 
+      _id: this.props.user._id,
       name: this.state.name,
       email: this.state.email,
       school: this.state.school,
       schoolCode: schoolCode,
-      facebook_id: this.state.facebook_id + 1,
+      facebook_id: this.state.facebook_id,
       classStanding: this.state.classStanding,
       classes: this.state.classes,
-      methods: this.state.methods,
-      times: this.state.times,
-      locations: this.state.locations,
+      methods: methodsArray,
+      times: timesArray,
+      locations: locationsArray,
       photo: "https://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.pnghttps://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.png",
       major: this.state.major,
       minor: this.state.minor,
@@ -133,7 +154,11 @@ class SettingsCard extends Component {
       flashcardActive: false,
     }
     // need to make check functions here. they will set states and if those states exist, they will highlight where something needs to change
-    this.checkFunctions(objToSave);
+    API.updateUser(objToSave).then(data =>{
+      // <Redirect to="/" />
+
+      console.log(data);
+    }).catch(err => console.log(err));
   };
 
   updateClassStanding = event => {
@@ -1080,9 +1105,14 @@ class SettingsCard extends Component {
               </Grid.Column>
             </Grid>    
           </Container>
-
-          <Button content="Save Changes" onClick={this.handleFormSubmit} />
-          <Button red content="Cancel Changes" onClick={this.handleFormSubmit} />
+          {this.state.changesMade ? 
+            <div>
+              <Button content="Save Changes" onClick={this.handleFormSubmit} />
+              <Button red content="Cancel Changes" onClick={this.handleFormSubmit} />
+            </div>
+          :
+            ""
+          }
         </Segment>
       <Footer />  
       </Container>

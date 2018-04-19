@@ -56,8 +56,8 @@ class AuthComponent extends Component {
         //production(window.fbToken.authResponse.userID) dev(10)
         //  this.props.setFacebookID(10);
         //  this.props.setFacebookID(window.fbToken.authResponse.userID);
-        // this.getUser(window.fbToken.authResponse.userID);
-        this.getUser(10);
+        this.getUser(window.fbToken.authResponse.userID);
+        // this.getUser(10);
       }
 		}
   };

@@ -25,4 +25,10 @@ export default {
       data: user
     });
   },
+
+  updateUser: function(user) {
+    return axios.put('api/updateuser', {
+      data: user
+    });
+  },
 };
