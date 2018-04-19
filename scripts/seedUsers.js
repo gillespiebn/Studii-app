@@ -14,18 +14,18 @@ mongoose.connect(
 const userSeed = [
   {
     "facebook_id": "9",
-    "name": "Hingle McCringleberry",
+    "name": "Rosanna Pansino",
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
-    "email": "hingmcring@vcu.edu",
+    "email": "pansinoro@vcu.edu",
     "classStanding": "Freshman",
     "classes": [
-      "biology:101",
-      "math:100",
-      "english:100"
+      "Biology:101",
+      "Math:101",
+      "English:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes", "other"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision", "other"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -33,23 +33,24 @@ const userSeed = [
     "locations": [
       "online", "library", "commons", "other", "cafe", "home"
     ],
-    "photo": "https://vignette.wikia.nocookie.net/keyandpeele/images/4/4a/IMG_0945.png/revision/latest?cb=20140507072519",
-    "major": "Biology"
+    "photo": "http://i64.tinypic.com/2hqf4gm.jpg",
+    "major": "Biology",
+    "minor": "Psychology"
   },
 
   {
     "facebook_id": "8",
-    "name": "Tyroil Smoochie-Wallace",
+    "name": "Mark Fischbach",
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
-    "email": "ty@vcu.edu",
+    "email": "fischbachme@vcu.edu",
     "classStanding": "Freshman",
     "classes": [
-      "biology:101",
-      "math:100"
+      "Biology:101",
+      "Math:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes", "other"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision", "other"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -57,24 +58,24 @@ const userSeed = [
     "locations": [
       "online", "library", "commons", "other", "cafe", "home"
     ],
-    "photo": "https://pbs.twimg.com/profile_images/2841709475/55a923e3bbcab0c4d7a46ca087f02cf4_400x400.jpeg",
+    "photo": "http://i68.tinypic.com/331lw1u.png",
     "major": "Biology"
   },
 
   {
     "facebook_id": "7",
-    "name": "T.J. A.J. R.J. Backslashinfourth V",
+    "name": "Machaizelli Kahey",
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
-    "email": "tjajrj@vcu.edu",
+    "email": "machaizellika@vcu.edu",
     "classStanding": "Junior",
     "classes": [
-      "biology:101",
-      "math:100",
-      "english:100"
+      "Biology:101",
+      "Math:101",
+      "English:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -82,25 +83,25 @@ const userSeed = [
     "locations": [
       "online", "library", "commons", "other", "home"
     ],
-    "photo": "https://g.rrrather.com/img/q/168880b.jpg",
+    "photo": "http://i66.tinypic.com/24415sp.jpg",
     "major": "Math",
     "minor": "Women's Studies"
   },
 
   {
     "facebook_id": "6",
-    "name": "Sequester Grundelplith M.D.",
+    "name": "Kat Blaque",
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
-    "email": "tjajrj@vcu.edu",
+    "email": "blaqueka@vcu.edu",
     "classStanding": "Freshman",
     "classes": [
-      "biology:101",
-      "math:100",
-      "english:100"
+      "Biology:101",
+      "Math:101",
+      "English:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -108,25 +109,25 @@ const userSeed = [
     "locations": [
       "online", "library", "commons", "other", "home"
     ],
-    "photo": "https://yt3.ggpht.com/a-/AJLlDp3kCOOG1s6rfMZ8B2szunJ1MqgJGA8mAZoYiA=s900-mo-c-c0xffffffff-rj-k-no",
+    "photo": "http://i65.tinypic.com/1zdb4tg.jpg",
     "major": "Math",
-    "minor": "Spelling"
+    "minor": "English"
   },
 
   {
     "facebook_id": "5",
-    "name": "Donkey Teeth",
-    "school": "UNIVERSITY OF RICHMOND",
-    "schoolCode": "003744",
-    "email": "tjajrj@urich.edu",
+    "name": "Safiya Nygaard",
+    "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
+    "schoolCode": "003735",
+    "email": "nygaardsa@vcu.edu",
     "classStanding": "Senior",
     "classes": [
-      "biology:101",
-      "math:100",
-      "english:100"
+      "Biology:101",
+      "Math:101",
+      "English:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -134,25 +135,25 @@ const userSeed = [
     "locations": [
       "online", "library", "commons", "other", "home"
     ],
-    "photo": "https://pbs.twimg.com/profile_images/750730202821431296/Nwj9YKkn_400x400.jpg",
+    "photo": "http://i68.tinypic.com/mm7e3b.jpg",
     "major": "Philosophy",
-    "minor": "Spelling"
+    "minor": "Biology"
   },
 
   {
     "facebook_id": "4",
-    "name": "Decatholac Mango",
-    "school": "UNIVERSITY OF RICHMOND",
-    "schoolCode": "003744",
-    "email": "tjajrj@urich.edu",
+    "name": "Liza Koshy",
+    "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
+    "schoolCode": "003735",
+    "email": "koshyli@vcu.edu",
     "classStanding": "Sophomore",
     "classes": [
-      "biology:101",
-      "math:100",
-      "english:100"
+      "Biology:101",
+      "Math:101",
+      "English:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -160,25 +161,24 @@ const userSeed = [
     "locations": [
       "online", "library", "commons", "other", "home"
     ],
-    "photo": "https://i.ytimg.com/vi/RV6yPi-6sJg/maxresdefault.jpg",
-    "major": "Beer",
-    "minor": "Weed"
+    "photo": "http://i66.tinypic.com/2iatkyq.jpg",
+    "major": "English"
   },
 
   {
     "facebook_id": "3",
-    "name": "Swordless Mimetown",
-    "school": "UNIVERSITY OF RICHMOND",
-    "schoolCode": "003744",
-    "email": "neckbeard@urich.edu",
+    "name": "Tyler Williams",
+    "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
+    "schoolCode": "003735",
+    "email": "williamsty@vcu.edu",
     "classStanding": "Sophomore",
     "classes": [
-      "biology:101",
-      "math:100",
-      "english:100"
+      "Biology:101",
+      "Math:101",
+      "English:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision"
     ],
     "times": [
       "SaturdayNight"
@@ -186,22 +186,23 @@ const userSeed = [
     "locations": [
       "other", "home"
     ],
-    "photo": "http://www.bdcwire.com/wp-content/uploads/2015/01/Swordless-Mimetown.png",
-    "major": "ESP"
+    "photo": "http://i68.tinypic.com/1zvbms9.jpg",
+    "major": "French"
   },
 
   {
     "facebook_id": "2",
-    "name": "Legume Duprix",
-    "school": "UNIVERSITY OF RICHMOND",
-    "schoolCode": "003744",
-    "email": "beandip@urich.edu",
+    "name": "Joseph Graceffa",
+    "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
+    "schoolCode": "003735",
+    "email": "graceffajm@vcu.edu",
     "classStanding": "Senior",
     "classes": [
-      "biology:101"
+      "Biology:101",
+      "Chemistry:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -209,48 +210,48 @@ const userSeed = [
     "locations": [
       "online", "library", "commons", "other", "home"
     ],
-    "photo": "http://s1.totalprosports.com/wp-content/uploads/2015/01/key-peele-eastwest-bowl-3-aaron-rodgers.png",
-    "major": "Why Did I make So Many Of These?"
+    "photo": "http://i68.tinypic.com/9i4kd5.jpg",
+    "major": "Chemistry?"
   },
 
   {
     "facebook_id": "1",
-    "name": "Grunky Peep",
-    "school": "UNIVERSITY OF RICHMOND",
-    "schoolCode": "003744",
-    "email": "grunk@urich.edu",
+    "name": "Bunny Meyer",
+    "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
+    "schoolCode": "003735",
+    "email": "meyerbr@vcu.edu",
     "classStanding": "Freshman",
     "classes": [
-      "biology:101",
-      "math:100",
-      "english:100"
+      "Biology:101",
+      "Math:101",
+      "English:101"
     ],
     "methods": [
-      "flashcards"
+      "flashcards", "quizzes", "rereading", "mnemonics"
     ],
     "times": [
-      "SundayMorning"
+      "SundayMorning", "TuesdayEvening", "WednesdayNight"
     ],
     "locations": [
       "online"
     ],
-    "photo": "http://www.bdcwire.com/wp-content/uploads/2015/01/Grunky-peep.png",
-    "major": "GRUNK"
+    "photo": "http://i66.tinypic.com/x414jl.png",
+    "major": "Fashion"
   },
   {
     "facebook_id": "10",
-    "name": "Bismo Funyuns",
+    "name": "Jordan Simmons",
     "school": "VIRGINIA COMMONWEALTH UNIVERSITY",
     "schoolCode": "003735",
-    "email": "bfunyuns@vcu.edu",
+    "email": "simmonsjo@vcu.edu",
     "classStanding": "Freshman",
     "classes": [
-      "biology:101",
-      "math:100",
-      "english:100"
+      "Biology:101",
+      "Math:101",
+      "English:101"
     ],
     "methods": [
-      "flashcards", "quizzes", "rereading", "mnemonics", "revisionNotes", "other"
+      "flashcards", "quizzes", "rereading", "mnemonics", "revision", "other"
     ],
     "times": [
       "SundayMorning", "MondayAfternoon", "TuesdayEvening", "WednesdayNight", "ThursdayMorning", "ThursdayAfternoon", "FridayEvening", "SaturdayNight"
@@ -258,7 +259,7 @@ const userSeed = [
     "locations": [
       "online", "library", "commons", "other", "cafe", "home"
     ],
-    "photo": "https://i.ytimg.com/vi/_nioio-r47k/maxresdefault.jpg",
+    "photo": "http://i68.tinypic.com/23t1hqt.jpg",
     "major": "Women's Studies",
     blockedUsers: ["5ac945a685ac2a4afc3e1b7c"]
   }
