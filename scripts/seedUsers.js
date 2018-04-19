@@ -211,7 +211,7 @@ const userSeed = [
       "online", "library", "commons", "other", "home"
     ],
     "photo": "http://i68.tinypic.com/9i4kd5.jpg",
-    "major": "Chemistry?"
+    "major": "Chemistry"
   },
 
   {
