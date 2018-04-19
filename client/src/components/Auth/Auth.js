@@ -19,7 +19,7 @@ class AuthComponent extends Component {
   }
   
   state = {
-
+    facebook_id: ''
   }
 
   handleInputChange = event => {
@@ -29,6 +29,13 @@ class AuthComponent extends Component {
       [name]: value
     });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.facebook_id !== this.state.facebook_id){
+      console.log("Comp did update ran!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+      this.getUser(this.state.facebook_id);
+    }
+  }
     
   handleFormSubmit = event => {
     event.preventDefault();
@@ -45,7 +52,8 @@ class AuthComponent extends Component {
         //production(window.fbToken.authResponse.userID) dev(10)
         //  this.props.setFacebookID(10);
         //  this.props.setFacebookID(window.fbToken.authResponse.userID);
-        this.getUser(window.fbToken.authResponse.userID);
+        this.setState({facebook_id: window.fbToken.authResponse.userID})
+        // this.getUser(window.fbToken.authResponse.userID);
         // this.getUser(10);
       }
 		}
@@ -56,6 +64,8 @@ class AuthComponent extends Component {
     console.log("=========================pictue===============");  })
     API.getUser(fbID)
       .then(data => {
+        console.log("grimplepith maestro");
+        console.log(data);
         if (!data.data) {
           this.setState({newUser: true})
           this.props.setNewState({checked: true, facebook_id: fbID, user: null})
@@ -67,7 +77,7 @@ class AuthComponent extends Component {
   };
 
   responseFacebook = (response) => {
-    this.props.setFacebookID(response.id);
+    this.setState({facebook_id: response.id})
   };
 
   componentDidMount () {

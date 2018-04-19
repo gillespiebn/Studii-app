@@ -454,7 +454,7 @@ class Questionnaire extends Component {
                     <Button active={this.state.methods} toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
                   </Form.Group>
                   <Form.Group className="preferbtn" widths="equal">  
-                    <Button active={this.state.methods} toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
+                    <Button active={this.state.methods} toggle={this.state.methods.notes} name="notes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
                     <Button active={this.state.methods} toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
                     <Button active={this.state.methods} toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
                   </Form.Group>
