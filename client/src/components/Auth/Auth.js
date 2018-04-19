@@ -1,6 +1,6 @@
 
 import  React, { Component } from "react";
-import { BrowserRouter as Redirect } from "react-router-dom";
+import {  Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import Header from "../../components/Header/";
 import Loading from "../../components/Loading";
@@ -142,6 +142,7 @@ class AuthComponent extends Component {
           </div>
           )
         } else {
+          console.log("we should redirect");
           return (
             <div>
               <Redirect to="/" />
