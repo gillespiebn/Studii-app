@@ -34,7 +34,7 @@ class Questionnaire extends Component {
           flashcards: false,
           quizzes: false,
           rereading: false,
-          revisionNotes: false,
+          notes: false,
           mnemonics: false,
           other: false
         },
