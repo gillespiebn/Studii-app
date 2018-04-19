@@ -72,6 +72,7 @@ class AuthComponent extends Component {
       .then(data => {
         if (!data.data) {
           this.setState({newUser: true})
+          this.props.setNewState({checked: true, facebook_id: fbID, user: null})
         } else {
           // this.props.setUser(data.data[0])
           // this.props.setUser(data.data)

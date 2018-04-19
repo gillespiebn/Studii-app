@@ -9,11 +9,9 @@ MAIN COLORS
  ACCENT COLORS
 Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = #282840
  */
-
-/* .ui.container {
-     background-image: url("./images/studiiTileBackground.png");
-     background-repeat: repeat-y;
- } */
+.ui.container.logincard-container {
+    background: transparent;
+}
 .ui.segment.login-image {
     background: #22223B;
     width: 60%;
@@ -53,4 +51,7 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
     border: none;
     font-size: 4em;
     transform: translate(0%, -330%);
+}
+.ui.segment.segmentJoinNow {
+    background: transparent;
 }

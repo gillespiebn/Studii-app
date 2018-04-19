@@ -360,7 +360,7 @@ class Questionnaire extends Component {
         }
         return(
           <Container>
-            <Segment style={{ marginTop: 20}}>
+            <Segment className="registerSegment" style={{ marginTop: 20}} raised>
             <NavMenu />
               <Container textAlign="center">
                 <h3 style={{ marginTop: 20 }} className="registerTitle">Find a Studii Buddy</h3>
@@ -480,25 +480,25 @@ class Questionnaire extends Component {
                   </Grid> 
                   <h4 className="registerTitle">Preferred Study Methods</h4>
                   <Form.Group className="preferbtn" widths="equal">
-                    <Button toggle={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
-                    <Button toggle={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
-                    <Button toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
+                    <Button active={this.state.methods} toggle={this.state.methods.flashcards} name="flashcards" onClick={this.handleMethodToggle} data-methods="Flashcards" > Flashcards </Button>
+                    <Button active={this.state.methods} toggle={this.state.methods.quizzes} onClick={this.handleMethodToggle} name="quizzes" data-methods="Quizzes" > Quizzes </Button>
+                    <Button active={this.state.methods} toggle={this.state.methods.rereading} name="rereading" onClick={this.handleMethodToggle} data-methods="Rereading" > Rereading </Button>
                   </Form.Group>
                   <Form.Group className="preferbtn" widths="equal">  
-                    <Button toggle={this.state.methods.notes} name="notes" onClick={this.handleMethodToggle}data-methods="notes" > notes </Button>
-                    <Button toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
-                    <Button toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
+                    <Button active={this.state.methods} toggle={this.state.methods.revisionNotes} name="revisionNotes" onClick={this.handleMethodToggle}data-methods="Revision Notes" > Revision Notes </Button>
+                    <Button active={this.state.methods} toggle={this.state.methods.mnemonics} name="mnemonics" onClick={this.handleMethodToggle}data-methods="Mnemonics" > Mnemonics </Button>
+                    <Button active={this.state.methods} toggle={this.state.methods.other} name="other" onClick={this.handleMethodToggle}data-methods="Other" > Other </Button>
                   </Form.Group>
                   <h4 className="registerTitle">Preferred Study Location</h4>
                   <Form.Group className="preferbtn" widths="equal">
-                    <Button toggle={this.state.locations.library}name="library"  onClick={this.handleLocationToggle}data-locations="Library">Library</Button>
-                    <Button toggle={this.state.locations.online} name="online" onClick={this.handleLocationToggle}data-locations="Online">Online</Button>
-                    <Button toggle={this.state.locations.commons}name="commons"  onClick={this.handleLocationToggle}data-locations="Commons">Commons</Button>
+                    <Button active={this.state.locations} toggle={this.state.locations.library}name="library"  onClick={this.handleLocationToggle}data-locations="Library">Library</Button>
+                    <Button active={this.state.locations} toggle={this.state.locations.online} name="online" onClick={this.handleLocationToggle}data-locations="Online">Online</Button>
+                    <Button active={this.state.locations} toggle={this.state.locations.commons}name="commons"  onClick={this.handleLocationToggle}data-locations="Commons">Commons</Button>
                   </Form.Group>
                   <Form.Group className="preferbtn" widths="equal">  
-                    <Button toggle={this.state.locations.cafe} name="cafe" onClick={this.handleLocationToggle}data-locations="Cafe">Cafe</Button>
-                    <Button toggle={this.state.locations.home} name="home" onClick={this.handleLocationToggle}data-locations="Home">Home</Button>
-                    <Button toggle={this.state.locations.other} name="other" onClick={this.handleLocationToggle}data-locations="Other">Other</Button>
+                    <Button active={this.state.locations} toggle={this.state.locations.cafe} name="cafe" onClick={this.handleLocationToggle}data-locations="Cafe">Cafe</Button>
+                    <Button active={this.state.locations} toggle={this.state.locations.home} name="home" onClick={this.handleLocationToggle}data-locations="Home">Home</Button>
+                    <Button active={this.state.locations} toggle={this.state.locations.other} name="other" onClick={this.handleLocationToggle}data-locations="Other">Other</Button>
                   </Form.Group>
                   <h4 className="registerTitle">Preferred Study Time</h4>
                   <Form.Group className="timebtnMo" widths="equal">
