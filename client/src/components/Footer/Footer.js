@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Footer.css";
-// import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown, Footer } from 'semantic-ui-react';
 
 const FooterClass = () => {
   return(

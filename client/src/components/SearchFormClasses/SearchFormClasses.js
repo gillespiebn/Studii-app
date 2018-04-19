@@ -1,10 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Search, Grid, Label } from 'semantic-ui-react'
-// import SearchExampleStandard from './SearchExampleStandard';
 import PropTypes from 'prop-types';
-
-
 
 const resultRenderer = ({ fullName, code }) => <Label key={code} content={fullName} ></Label>
 
@@ -13,7 +10,6 @@ resultRenderer.propTypes = {
   description: PropTypes.string,
   code: PropTypes.string,
 }
-
 
 export default class SearchExampleStandard extends Component {
   state= {

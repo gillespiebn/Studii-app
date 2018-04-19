@@ -57,7 +57,7 @@ class Questionnaire extends Component {
           email: this.state.email,
           school: this.state.school,
           schoolCode: schoolCode,
-          facebook_id: this.state.facebook_id + 1,
+          facebook_id: this.state.facebook_id,
           classStanding: this.state.classStanding,
           classes: this.state.classes,
           methods: this.state.methods,
@@ -165,7 +165,7 @@ class Questionnaire extends Component {
               <button onClick={this.updateStudyMethods} data-methods="Flashcards" > Flashcards </button>
               <button onClick={this.updateStudyMethods} data-methods="Quizzes" > Quizzes </button>
               <button onClick={this.updateStudyMethods} data-methods="Rereading" > Rereading </button>
-              <button onClick={this.updateStudyMethods} data-methods="Revision Notes" > Revision Notes </button>
+              <button onClick={this.updateStudyMethods} data-methods="notes" > notes </button>
               <button onClick={this.updateStudyMethods} data-methods="Mnemonics" > Mnemonics </button>
               <button onClick={this.updateStudyMethods} data-methods="Other" > Other </button>
               <p>Preferred places to study (select all that apply)</p>

@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import "./LoginCard.css";
-import { Segment, Container, Header, Icon, Input, Image, Label, Form, Button, Search, Grid, Dropdown } from 'semantic-ui-react';
+import { Segment, Container, Image } from 'semantic-ui-react';
 
 const src1 = "./images/homepage2.png";
-// const src2 = "./images/studiiTileBackground.png";
 
 const LoginCard = () => {
   return(
@@ -28,6 +27,5 @@ const LoginCard = () => {
     </Container>
   )
 }
-
 
 export default LoginCard;

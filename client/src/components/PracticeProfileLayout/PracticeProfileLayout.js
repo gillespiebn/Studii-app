@@ -1,11 +1,8 @@
 import React from "react";
-import _ from 'lodash';
 import "./PracticeProfileLayout.css";
-import Footer from "../Footer";
 import API from "../../utils/API";
 import NavMenu from "../NavMenu";
-
-import { Form, Card, Image, Container, Button, List, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
+import { Form, Card, Image, Button, Transition, Divider, Icon, Grid } from 'semantic-ui-react'
 
 const transition = ['fade']
 
@@ -22,13 +19,10 @@ class Profiles extends React.Component {
   }
 
   componentDidMount() {
-    // this.getUser();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // if (prevProps.index !== this.state.index || this.state.index === 0) {
-    //   // this.setState({times: this.state.matches[this.state.index].times});
-    // }
+    
   }
 
   getUser = () => {
@@ -39,14 +33,6 @@ class Profiles extends React.Component {
     )
   };
 
-  // getMatches = () => {
-  //   API.getMatches(this.state.user)
-  //   .then(data => {
-  //     console.log("the line under this is matches")
-  //     console.log(data)      
-  //   })
-  // };
-
   handleNext = () => {
     if (this.state.index + 1 === this.state.matches.length){
       this.setState({noMoreMatches: true});
@@ -54,7 +40,6 @@ class Profiles extends React.Component {
     this.setState({index: this.state.index + 1})
     this.setState({visible: !this.state.visible})
     if (!this.state.visble) {
-       // this.setState({visible: true})
        window.setTimeout(() => {
           this.setState({visble: true})
           console.log("There is a fairy");
@@ -63,7 +48,6 @@ class Profiles extends React.Component {
   
   }
 
-  
   renderCard = () => {
     let profile;
     if (this.state.matches[this.state.index]){
@@ -73,7 +57,6 @@ class Profiles extends React.Component {
     }
     console.log("Hee Haw");
     console.log(profile);
-    // const profile = this.state.matches[this.state.index];
     const user = this.props.user;
     if (profile.facebook_id === user.facebook_id){
       if (this.state.index + 1 === this.state.matches.length){
@@ -89,15 +72,6 @@ class Profiles extends React.Component {
     }
     console.log("Plithy THe Spoonman");
     console.log(timesObject);
-    // if (user.blockedUsers) {
-    //   for(var i = 0; i < user.blockedUsers.length; i++){
-    //     console.log(user.blockedUsers[i] + " " + profile._id)
-    //     if (user.blockedUsers[i] === profile._id){
-    //       this.setState({index: this.state.index + 1});
-    //       return;
-    //     }
-    //   }
-    // }
 
     const { animation, duration, visible } = this.state
 
@@ -316,57 +290,7 @@ class Profiles extends React.Component {
       }
       </div>
     )
-    // if (this.state.matches) {
-    //   return(
-    //     <div>
-    //       <Container>
-    //       </Container>
-    //       <Footer />
-    //     </div>  
-    //   )
-    // } else {
-    //   return(
-    //    <div></div>
-    //   )
-    // }
   }
 }
 
- export default Profiles;
-
-
-
-
-
-          // Save this...dunno on the other Stuff.
-
-          // {this.state.matches.map(profile => (
-          //   <div>
-          //     <Card className="cardContainer" fluid align="center" key={profile._id} style={{display: (firstUserId===profile.facebook_id ? 'block' : 'none') }}>
-          //       <div className="imgDiv">
-          //           <Image className="cardImage" src={profile.photo} size='small' />
-          //       </div>
-          //       <div className="profileDiv">
-          //           <h2 className="profileName">{profile.name}</h2>
-          //           <h3 className="profileElmt">{profile.classStanding}</h3>
-          //           <h3 className="profileElmt">Major -  {profile.major}</h3>
-          //           {profile.minor ? 
-          //             <h3 className="profileElmt">Minor -  {profile.minor}</h3>
-          //           : 
-          //             "" 
-          //           }
-          //       </div> 
-          //       <div class="prfDiv">
-          //         <h3>Classes</h3>
-          //         <h3>Study Methods</h3>
-          //         <h3>Preferred Locations</h3>
-          //         <h3>Availability</h3>
-          //       </div> 
-          //     </ Card>
-          //     <div>
-          //         <Button.Group>
-          //             <Button icon='plus' onClick={this.handleNext} />
-          //         </Button.Group>
-          //     </div>
-          //   </div>
-          // ))}                    
+ export default Profiles;                 

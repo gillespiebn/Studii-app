@@ -9,7 +9,7 @@
 }
 
 .ui.fluid.card.cardContainer {
-    width: 56%;
+    width: 75%;
     margin: auto;
     height:500px;
     margin-bottom: 25px;
@@ -25,6 +25,7 @@
     color:#F4AE9F;
     font-family: 'Nunito', sans-serif;
     text-align: center;
+    font-size: .8em;
 }
 .profileDiv {
     position: relative;
@@ -42,7 +43,7 @@
     background-color: #E4E3E5;
     position: relative;
     top: 100px;
-    font-family: "arial";
+    font-family: 'Nunito', sans-serif;
     font-weight: bold;
     font-size: 36px;
     color:  #22223B; 
@@ -64,6 +65,10 @@ h1, h2, h3 {
 }
 h3 {
     font-weight: bold;
+}
+
+h4 {
+  font-family: 'Nunito', sans-serif;
 }
 .ui.button {
     font-family: 'Nunito', sans-serif;

@@ -66,5 +66,16 @@ router.post('/createuser', (req, res) => {
   // res.send("we did shit here");
 })
 
+router.put('/updateUser', (req, res) => {
+  // console.log(req.body.data._id)
+  // db.Users.findOneAndRemove({_id: req.body.data._id}).then(data=> {
+  //   console.log(data);
+  //   db.Users.create(req.body.data).then(data1=> {
+  //     res.send("user was updated");
+  //   }).catch(err => console.log(err))
+  // }).catch(err => console.log(err))
+  db.Users.findByIdAndUpdate(req.body.data._id, req.body.data).then(data => res.send("shit happened yo")).catch(err => console.log(err));
+})
+
 
 module.exports = router;
