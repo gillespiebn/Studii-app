@@ -5,7 +5,6 @@ import "./SettingsCard.css"
 import _ from 'lodash';
 import vaSchools from '../../utils/vaSchools.js'
 import classNamesSeed from '../../utils/classNames.js'
-import SearchFormSchools from "../SearchFormSchools";
 import SearchFormClasses from "../SearchFormClasses";
 import Footer from "../Footer";
 import NavMenu from "../NavMenu";
@@ -25,7 +24,6 @@ class SettingsCard extends Component {
     classID: '',
     classes: [],
     results: [],
-    //change major and minor when they are created
     major: '',
     minor: 'None Selected',
     photo: '',
@@ -85,7 +83,6 @@ class SettingsCard extends Component {
     },
   };
 
-  //this function is good
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -103,7 +100,6 @@ class SettingsCard extends Component {
     });
   }
 
-  //jordan worked on this part...it is working. the objToSave is the data structure that I need...facebook_id will change as it's working with fake data right now
   handleFormSubmit = event => {
     event.preventDefault();
     let schoolCode;
@@ -153,9 +149,8 @@ class SettingsCard extends Component {
 
       flashcardActive: false,
     }
-    // need to make check functions here. they will set states and if those states exist, they will highlight where something needs to change
     API.updateUser(objToSave).then(data =>{
-      // <Redirect to="/" />
+      <Redirect to="/" />
 
       console.log(data);
     }).catch(err => console.log(err));
@@ -381,9 +376,6 @@ class SettingsCard extends Component {
             <Grid.Column width={12}>
               <span>{clas.split(":")[0].split("*").join(" ")}: {clas.split(":")[1]}</span>
             </Grid.Column>
-            {/* <Grid.Column width={4}>
-              <Button size="tiny" onClick={this.handleDeleteClass} name={clas} content="x" />
-            </Grid.Column> */}
           </Grid>
         ))}
       </div>
@@ -677,9 +669,7 @@ class SettingsCard extends Component {
     
           const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
           const isMatch = result => re.test(result.name)
-          // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
-          // this.setState({results: tempResults});
-    
+
           this.setState({
             isLoading: false,
             results: _.filter(this.state.schoolsForAutocomplete, isMatch),
@@ -703,8 +693,6 @@ class SettingsCard extends Component {
     
           const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
           const isMatch = result => re.test(result.fullName)
-          // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
-          // this.setState({results: tempResults});
     
           this.setState({
             isLoading: false,
@@ -730,7 +718,7 @@ class SettingsCard extends Component {
           <Container>
             <Grid>
               <Grid.Column width={2}>
-                <Button toggle /*active={this.state.edit.editName}*/ className="editBtn" name="editName" onClick={this.handleEditToggle} data-methods="Edit Name" content={<Icon name="edit" medium />} /> 
+                <Button toggle className="editBtn" name="editName" onClick={this.handleEditToggle} data-methods="Edit Name" content={<Icon name="edit" medium />} /> 
               </Grid.Column>
               <Grid.Column width={12}>
                 {this.state.edit.editName ?
@@ -742,7 +730,6 @@ class SettingsCard extends Component {
                         : ""}
                     </Form.Field>
                     <Button className="updateBtn" onClick={this.handleUpdateOne} name="name" value={`${this.state.nameUpdate}*nameUpdate*editName`} size="small" content="Update" />
-                    {/* </Grid> */}
                   </Form>
                 : 
                   <span>Name: {this.state.name}</span>
@@ -753,7 +740,7 @@ class SettingsCard extends Component {
           <Container>
             <Grid>
               <Grid.Column width={2}>
-                <Button toggle /*active={this.state.edit.editName}*/ className="editBtn" name="editEmail" onClick={this.handleEditToggle} data-methods="Edit Email" content={<Icon name="edit" large />} /> 
+                <Button toggle className="editBtn" name="editEmail" onClick={this.handleEditToggle} data-methods="Edit Email" content={<Icon name="edit" large />} /> 
               </Grid.Column>
               <Grid.Column width={12}>
                 {this.state.edit.editEmail ?
@@ -778,7 +765,7 @@ class SettingsCard extends Component {
           <Container>
             <Grid>
               <Grid.Column width={2}>
-                <Button toggle className="editBtn" /*active={this.state.edit.editName}*/ name="editMajor" onClick={this.handleEditToggle} data-methods="Edit Major" content={<Icon name="edit" large />} /> 
+                <Button toggle className="editBtn" name="editMajor" onClick={this.handleEditToggle} data-methods="Edit Major" content={<Icon name="edit" large />} /> 
               </Grid.Column>
               <Grid.Column width={12}>
                 {this.state.edit.editMajor ?
@@ -800,7 +787,7 @@ class SettingsCard extends Component {
           <Container>
             <Grid>
               <Grid.Column width={2}>
-                <Button toggle className="editBtn" /*active={this.state.edit.editName}*/ name="editMinor" onClick={this.handleEditToggle} data-methods="Edit Minor" content={<Icon name="edit" large />} /> 
+                <Button toggle className="editBtn" name="editMinor" onClick={this.handleEditToggle} data-methods="Edit Minor" content={<Icon name="edit" large />} /> 
               </Grid.Column>
               <Grid.Column width={12}>
                 {this.state.edit.editMinor ?
@@ -819,7 +806,7 @@ class SettingsCard extends Component {
           <Container>
             <Grid>
               <Grid.Column width={2}>
-                <Button toggle className="editBtn" /*active={this.state.edit.editName}*/ name="editClassStanding" onClick={this.handleEditToggle} data-methods="Edit Class Standing" content={<Icon name="edit" large />} /> 
+                <Button toggle className="editBtn" name="editClassStanding" onClick={this.handleEditToggle} data-methods="Edit Class Standing" content={<Icon name="edit" large />} /> 
               </Grid.Column>
             <Grid.Column width={12}>
             {this.state.edit.editClassStanding ?
@@ -845,7 +832,7 @@ class SettingsCard extends Component {
           <h4 className="h4Title" style={{textAlign: "center"}}>Add/Remove Your Classes</h4>            
             <Grid>
               <Grid.Column width={2}>
-                <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editClasses" onClick={this.handleEditToggle} data-methods="Edit Classes" content={<Icon name="edit" large />} /> 
+                <Button toggle className="editBtn" name="editClasses" onClick={this.handleEditToggle} data-methods="Edit Classes" content={<Icon name="edit" large />} /> 
               </Grid.Column>
               <Grid.Column width={12}>
                 {this.state.edit.editClasses ?
@@ -860,7 +847,6 @@ class SettingsCard extends Component {
                           style={{minWidth: 150}}
                           fluid
                           className={`${this.state.classPrefixProblem}`}
-                          // style={{overflow: "auto", height: 75}}
                           loading={this.stateisLoadingClass}
                           onResultSelect={this.handleResultSelectClass}
                           onSearchChange={_.debounce(this.handleSearchChangeClass, 500, { leading: true })}
@@ -891,7 +877,7 @@ class SettingsCard extends Component {
           <Container>
             <Grid>
               <Grid.Column width={2}>
-                <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editStudyMethods" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Methods" content={<Icon name="edit" large />} /> 
+                <Button toggle className="editBtn" name="editStudyMethods" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Methods" content={<Icon name="edit" large />} /> 
               </Grid.Column>
               <Grid.Column width={12}>
                 {this.state.edit.editStudyMethods ?
@@ -922,7 +908,7 @@ class SettingsCard extends Component {
           <Container>
             <Grid>
               <Grid.Column width={2} style={{height: "250px"}}>
-                <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editLocations" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Locations" content={<Icon name="edit" large />} /> 
+                <Button toggle className="editBtn" name="editLocations" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Locations" content={<Icon name="edit" large />} /> 
               </Grid.Column>
               <Grid.Column width={12}>
                 {this.state.edit.editLocations ?

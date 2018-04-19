@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import "./Questionnaire.css";
-// import TeacherInput from "../Teachers";
-// import ClassInput from "../Classes";
 import API from '../../utils/API.js';
-import { Segment, Container, Header, Icon, Input, Label, Form, Button, Search, Grid, Dropdown } from 'semantic-ui-react';
+import { Segment, Container, Input, Label, Form, Button, Grid } from 'semantic-ui-react';
 import _ from 'lodash';
-// import allSchools from '../../utils/allSchools.js'
-// import twoSchools from '../../utils/twoSchools.js'
 import vaSchools from '../../utils/vaSchools.js'
 import classNamesSeed from '../../utils/classNames.js'
 import SearchFormSchools from "../SearchFormSchools";
@@ -15,9 +11,6 @@ import SearchFormClasses from "../SearchFormClasses";
 import Home from "../../pages/Home";
 import Footer from "../Footer";
 import NavMenu from "../NavMenu";
-// import SearchFormSchoolsRenderer from "../SearchFormSchoolsRenderer";
-
-// const source = allSchools;
 
 class Questionnaire extends Component {
     state = {
@@ -68,7 +61,6 @@ class Questionnaire extends Component {
           ThursdayAfternoon: false,
           FridayAfternoon: false,
           SaturdayAfternoon: false,
-          SundayAfternoon: false,
           SundayEvening: false,
           MondayEvening: false,
           TuesdayEvening: false,
@@ -76,7 +68,6 @@ class Questionnaire extends Component {
           ThursdayEvening: false,
           FridayEvening: false,
           SaturdayEvening: false,
-          SundayEvening: false,
           SundayNight: false,
           MondayNight: false,
           TuesdayNight: false,
@@ -84,7 +75,6 @@ class Questionnaire extends Component {
           ThursdayNight: false,
           FridayNight: false,
           SaturdayNight: false,
-          SundayNight: false
         } 
        };
 
@@ -155,11 +145,10 @@ class Questionnaire extends Component {
           major: this.state.major,
           minor: this.state.minor,
         }
-        // need to make check functions here. they will set states and if those states exist, they will highlight where something needs to change
+
         this.checkFunctions(objToSave);
       };
 
-      //jordan wrote this and it is good for now but needs to be updated. I can work on this part if you want.
       checkFunctions = (obj) => {
         this.setState({ 
           nameEmpty: false, nameProblem: false, 
@@ -229,9 +218,7 @@ class Questionnaire extends Component {
         this.setState({ classStanding: standing })
       };
 
-      //this is currently grabbing all the schools for the auto-complete and for grabbing the school code
       componentDidMount() {
-        // API.getAllSchools().then(data => this.setState({schoolsForAutocomplete: data.data})).catch(err => console.log(err));
       }
 
       componentWillMount() {
@@ -294,9 +281,7 @@ class Questionnaire extends Component {
     
           const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
           const isMatch = result => re.test(result.name)
-          // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
-          // this.setState({results: tempResults});
-    
+          
           this.setState({
             isLoading: false,
             results: _.filter(this.state.schoolsForAutocomplete, isMatch),
@@ -319,8 +304,6 @@ class Questionnaire extends Component {
     
           const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
           const isMatch = result => re.test(result.fullName)
-          // const tempResults = this.state.results.filter(result => result.state = this.state.state.toUpperCase())
-          // this.setState({results: tempResults});
     
           this.setState({
             isLoading: false,
@@ -328,8 +311,6 @@ class Questionnaire extends Component {
           })
         }, 300)
       }
-      //this ends the autocomplete shit//////////////////////////////////////////////////////////////////////////////////////////////////
-
 
       render() { 
 
@@ -345,14 +326,7 @@ class Questionnaire extends Component {
           return (
             <Router>
               <Redirect 
-                to='/'
-                // render={(routeProps) => (
-                //   <Home  
-                //     user={this.state.user}
-                //     profiles={this.state.matches}
-                //     facebook_id={this.state.facebook_id}
-                //   />
-                // )} 
+                to='/' 
               />
             </Router>
           )
@@ -390,7 +364,6 @@ class Questionnaire extends Component {
                   <h4>Find Your University</h4>
                   <Form.Group>  
                     <Form.Field width={16}>
-                      {/* <div>  */}
                         {this.state.schoolEmpty ?
                           <Label basic color="red" pointing="below">{`${this.state.schoolEmpty}`}</Label>
                         : ""}
@@ -398,7 +371,6 @@ class Questionnaire extends Component {
                           <Label basic color="red" pointing="below">{`${this.state.schoolWrong}`}</Label>
                         : ""}
                         <SearchFormSchools
-                          // style={{overflow: "auto", height: 50}}
                           placeholder="Type in Your University"
                           loading={this.stateisLoading}
                           onResultSelect={this.handleResultSelect}
@@ -407,7 +379,6 @@ class Questionnaire extends Component {
                           value={this.state.value}
                           {...this.props}  
                         />
-                      {/* </div> */}
                     </Form.Field>  
                   </Form.Group>
                   <Form.Group widths='equal'>  
@@ -444,7 +415,6 @@ class Questionnaire extends Component {
                         <SearchFormClasses
                           fluid
                           className={`${this.state.prefixProblem}`}
-                          // style={{overflow: "auto", height: 75}}
                           loading={this.stateisLoadingClass}
                           onResultSelect={this.handleResultSelectClass}
                           onSearchChange={_.debounce(this.handleSearchChangeClass, 500, { leading: true })}

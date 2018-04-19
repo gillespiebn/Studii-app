@@ -1,12 +1,7 @@
 import React from 'react'
-// import {  } from 'semantic-ui-react'
-import { Form, Grid, Image, Transition } from 'semantic-ui-react'
 import PracticeProfileLayout from "../../components/PracticeProfileLayout";
 import API from "../../utils/API";
 import Loading from "../../components/Loading"
-
-
-
 
 class Home extends React.Component {
     state = {
@@ -22,7 +17,6 @@ class Home extends React.Component {
       API.getUser(this.props.facebook_id)
         .then(data => {
             this.setState({user: data.data})
-            // this.getMatches();
         }
       )
     };

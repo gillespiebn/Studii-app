@@ -1,6 +1,6 @@
-import React, { Redirect }from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Dropdown, Icon, Menu, Segment } from 'semantic-ui-react';
+import { Dropdown, Menu } from 'semantic-ui-react';
 import "./Navmenu.css";
 
 const NavMenu = () => ( 
@@ -9,7 +9,6 @@ const NavMenu = () => (
             <Dropdown item icon='bars'>
                 <Dropdown.Menu>
                     <Dropdown.Item name="home">
-                            {/* <a className="Menuitem"> */}
                                 <Link 
                                     to="/"
                                     className={
@@ -18,10 +17,8 @@ const NavMenu = () => (
                                 >    
                                     Find a Studii Buddy
                                 </Link>    
-                            {/* </a> */}
                     </Dropdown.Item>
                     <Dropdown.Item>
-                        {/* <a className="Menuitem"> */}
                             <Link 
                                 to="/messenger"
                                 className={
@@ -30,10 +27,8 @@ const NavMenu = () => (
                             >        
                                 Messenger
                             </Link>    
-                        {/* </a> */}
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            {/* <a className="Menuitem"> */}
                                 <Link 
                                     to="/settings"
                                     className={
@@ -42,7 +37,6 @@ const NavMenu = () => (
                                 >    
                                     Settings
                                 </Link>
-                            {/* </a> */}
                         </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown> 

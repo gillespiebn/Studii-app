@@ -1,26 +1,15 @@
 
 import  React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Redirect } from "react-router-dom";
 import API from "../../utils/API";
-// import NavMenu from "./components/NavMenu";
 import Header from "../../components/Header/";
-import Questionnaire from "../../components/Questionnaire/";
 import Loading from "../../components/Loading";
 import Footer from "../../components/Footer";
 import LoginCard from "../../components/LoginCard";
-import HomeComponent from "../../components/HomeComponent";
-import Home from "../../pages/Home";
-import Profile from "../../pages/Profile";
-import Groups from "../../pages/Groups";
-// import Messenger from "./pages/Messenger";
-import Settings from "../../pages/Settings";
 import Register from "../../pages/Register";
-import Page404 from "../../pages/404";
-// import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { Container } from 'semantic-ui-react';
 import Axios from "axios";
-
 
 class AuthComponent extends Component {
   constructor(props) {
@@ -65,17 +54,12 @@ class AuthComponent extends Component {
   getUser = (fbID) => {
     Axios.get("https://graph.facebook.com/v2.12/" + fbID + "/picture?type=large&width=200&height=200&redirect=false").then(data => {
     console.log("=========================pictue===============");  })
-    // data.data.data.url gets facebook profile picture! 
-    // console.log(data.data.data.url);
-    // console.log(data);})
     API.getUser(fbID)
       .then(data => {
         if (!data.data) {
           this.setState({newUser: true})
           this.props.setNewState({checked: true, facebook_id: fbID, user: null})
         } else {
-          // this.props.setUser(data.data[0])
-          // this.props.setUser(data.data)
           this.props.setNewState({checked: true, facebook_id: fbID, user: data.data})
         }
       }
@@ -120,7 +104,6 @@ class AuthComponent extends Component {
     );
   }
 
-
   render() {
     console.log("akunamatata");
     console.log(this.props);
@@ -156,7 +139,6 @@ class AuthComponent extends Component {
             <Register
               facebook_id={this.props.facebook_id}
             />
-            {/* {this.redirectToQuestionnaire()} */}
           </div>
           )
         } else {
@@ -170,6 +152,5 @@ class AuthComponent extends Component {
     } 
   }
 } 
-
 
 export default AuthComponent
