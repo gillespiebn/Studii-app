@@ -151,7 +151,7 @@ class SettingsCard extends Component {
     }
     API.updateUser(objToSave).then(data =>{
       <Redirect to="/" />
-
+      this.setState({changesMade: false})
       console.log(data);
     }).catch(err => console.log(err));
   };
@@ -484,7 +484,7 @@ class SettingsCard extends Component {
 
   renderTimes = () => {
     return(
-      <Form className="calendar"> 
+      <Form className="calendar settingsCalendar" styles={{marginLeft: "auto"}}> 
       <Form.Group className="timebtnMo" widths="equal">
             <div className="dayTitles blank">  </div>
             <div className="dayTitles su">Su</div>
@@ -704,7 +704,7 @@ class SettingsCard extends Component {
 
   render() { 
     return(
-      <Container>
+      <Container fluid>
         <Segment>
         <NavMenu />
           <Container textAlign="center">
@@ -938,7 +938,7 @@ class SettingsCard extends Component {
 
 
           <h4 className="h4Title" style={{textAlign: "center"}}>Change Your Preferred Study Times</h4>            
-          <Container>
+          <Container className="calendar settingsCalendar" id="settingsCalendar" style={{marginLeft: "auto"}}>
             <Grid>
               <Grid.Column width={2} style={{height: "250px"}}>
                 <Button toggle className="editBtn"/*active={this.state.edit.editName}*/ name="editTimes" onClick={this.handleEditToggle} data-methods="Edit Preferred Study Times" content={<Icon name="edit" large />} /> 

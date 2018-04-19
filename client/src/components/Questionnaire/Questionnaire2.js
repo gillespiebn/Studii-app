@@ -141,7 +141,7 @@ class Questionnaire extends Component {
           methods: this.filterMethods(),
           times: this.filterTime(),
           locations: this.filterLocations(),
-          photo: "https://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.pnghttps://images-na.ssl-images-amazon.com/images/I/71EigcnfsyL.png",
+          photo: "http://i64.tinypic.com/2hqf4gm.jpg",
           major: this.state.major,
           minor: this.state.minor,
         }
@@ -207,6 +207,7 @@ class Questionnaire extends Component {
         console.log("we got here");
         API.createUser(obj).then(data =>{
           this.setState({user: data.data, userCreatedGoToHome: true});
+
         }).catch(err => console.log(err));
       };
     

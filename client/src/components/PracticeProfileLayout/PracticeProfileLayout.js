@@ -78,9 +78,6 @@ class Profiles extends React.Component {
     return(
    
       <div>
-        {this.state.noMoreMatches ?
-          <p>no more matches dummy</p>
-          :
            
        <Transition.Group animation={animation} duration={duration} visible={visible}>
         
@@ -273,7 +270,7 @@ class Profiles extends React.Component {
           </div> 
         </ Card>
        </Transition.Group>
-        }
+        
       </div>
     )
   }
@@ -283,7 +280,13 @@ class Profiles extends React.Component {
       <div>
       {this.state.matches ? 
         <div>
-          {this.renderCard()}
+          {this.state.noMoreMatches ?
+            ""
+          :
+            <div>
+              {this.renderCard()}
+            </div>
+          }
         </div>
       :  
         <div>mathces didn't happen</div>
