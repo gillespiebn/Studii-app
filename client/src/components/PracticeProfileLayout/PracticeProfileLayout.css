@@ -5,7 +5,10 @@
     border-radius: 50px;
     position: absolute;
     top:-225px;
-    margin-left: 39%;
+    margin-left: 42%;
+}
+.ui.card{
+  box-shadow: transparent;
 }
 
 .ui.fluid.card.cardContainer {
@@ -51,11 +54,11 @@
     border: #22223B;
 }
 #methods{
-    margin-left: 20%;
+    margin-left: 27%;
     margin-right: 10%;
 }
 #locations{
-    margin-left: 20%;
+    margin-left: 27%;
     margin-right: 10%;
 
 }
@@ -79,10 +82,10 @@ h4 {
     padding: 0px;
     margin-top: 5px;
     margin-bottom: 5px;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 .calendar{
-    margin-left: 5%;
+    margin-left: 15%;
 }
 .equal.width.fields.timebtnMo {
     margin-top: 1%;
