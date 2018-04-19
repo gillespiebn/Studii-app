@@ -6,19 +6,6 @@
     position: absolute;
     top:-225px;
     margin-left: 39%;
-    /* border-radius: 25px !important;
-    border: 3px solid #22223B;
-    height: 180px;
-    width:180px; */
-    /* the following lines will keep the image from getting all weird. needs a little work */
-    /* display: block;
-    width: auto;
-    height: auto;
-    min-height: 180px; */
-    /* min-width: 180px; */
-    /* max-height: 180px; */
-    /* max-width: 500px; */
-    /* position: relative; */
 }
 
 .ui.fluid.card.cardContainer {

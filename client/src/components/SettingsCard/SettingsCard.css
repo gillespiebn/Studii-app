@@ -17,7 +17,7 @@
 }
 
 .ui.toggle.button.editBtn {
-  background: #F4AE9F;
+  background: #22223b;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -30,7 +30,7 @@
 }
 
 .ui.small.button.updateBtn {
-  background: #F4AE9F;
+  background: #22223B;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -43,7 +43,7 @@
 }
 
 .ui.small.button.updateClassBtn {
-  background: #F4AE9F;
+  background: #22223b;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;
@@ -56,7 +56,7 @@
 }
 
 .ui.tiny.button {
-  background: #F4AE9F;
+  background: #22223b;
   font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   font-size: 15px;

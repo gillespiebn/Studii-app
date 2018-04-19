@@ -36,7 +36,7 @@ Lighter Dark Blue (Sign in/join page + Dropdown menu items, list of messages) = 
    background-color: #E4E3E5;
    border-radius: 5px;
    overflow: hidden;
-   box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
+   box-shadow: 0 0 8px 0 #22223B;
  }
  
  .messenger h3 {
