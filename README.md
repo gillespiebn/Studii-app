@@ -18,6 +18,20 @@ Studying in groups can
 * Expand access to information
 * Boost motivation
 
+## Technologies
+* MongoDB
+* Mongoose
+* Express
+* React
+* React-Router-DOM
+* Node.js
+* Semantic
+* Facebook Authentication
+* Pure CSS
+* Heroku
+* Figma
+* Trello
+
 
 ## Photos
 ### Studii buddy match page
